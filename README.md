@@ -1,4 +1,4 @@
-# Legal Lounge Live (Version 4)
+# Legal Lounge Live (Version 5)
 
 Static website for GitHub Pages. No build step is needed.
 
@@ -15,4 +15,9 @@ Upload the contents of this folder to the root of your repository (do not upload
 Paste a page link into LinkedIn's Post Inspector (linkedin.com/post-inspector) to refresh the preview card.
 
 ## Files
-`index.html`, `articles.html`, three `article-*.html` pages, `case-law.html`, `learning.html`, `decision-room.html`, `glossary.html`, `about.html`, `contact.html`, `community.html`, `disclaimer.html`, `privacy.html`, `404.html`, `styles.css`, `script.js`, `favicon.svg`, `apple-touch-icon.png`, `og-image.png`, `sitemap.xml`, `robots.txt`, `.nojekyll`.
+`index.html`, `articles.html`, three `article-*.html` pages, `case-law.html`, `learning.html`, `decision-room.html`, `glossary.html`, `section-finder.html`, `quiz.html`, `about.html`, `contact.html`, `community.html`, `disclaimer.html`, `privacy.html`, `404.html`, `styles.css`, `script.js`, `tools.js`, `favicon.svg`, `apple-touch-icon.png`, `og-image.png`, `sitemap.xml`, `robots.txt`, `.nojekyll`.
+
+## New in Version 5 (study tools)
+- `section-finder.html`: searchable IPC to BNS, CrPC to BNSS and Evidence Act to BSA table. The mappings were cross-checked against several published concordances, but confirm each one on India Code before you rely on it, and add rows only after checking.
+- `case-law.html`: a filterable library of 19 case notes. Check every citation and detail against the law reports.
+- `quiz.html`: 41 questions in five subjects, with shuffled options and a review of missed questions. Edit or add questions in the `BANK` list in `tools.js`.
