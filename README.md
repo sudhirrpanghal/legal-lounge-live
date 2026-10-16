@@ -1,13 +1,15 @@
-# Legal Lounge Live — multi-page update
+# Legal Lounge Live — Version 3
 
-This package separates the main learning areas into dedicated pages while retaining the navy-and-gold visual identity and existing interactive features.
+This static GitHub Pages package includes the home page, separate navigation pages, and three individual article pages.
 
-## Upload to GitHub
-Upload/replace these files in the repository root: `index.html`, `articles.html`, `case-law.html`, `learning.html`, `decision-room.html`, `community.html`, `styles.css`, and `script.js`. Keep your existing `.github/workflows` folder and deployment workflow.
+## Files
+- `index.html` — home page
+- `articles.html` — searchable and filterable newsroom
+- `article-peaceful-protest.html` — constitutional law explainer
+- `article-freelancer-contracts.html` — freelance contract checklist
+- `article-digital-evidence.html` — social media and electronic evidence explainer
+- `case-law.html`, `learning.html`, `decision-room.html`, `community.html` — dedicated sections
+- `styles.css`, `script.js` — shared styling and interactions
 
-## Before publishing
-- Replace sample article-card links with your actual article URLs.
-- Replace the LinkedIn destination in `community.html` with your Legal Lounge Live page URL.
-- Case-law content and article cards currently include sample/demo material; review and replace before presenting them as published legal content.
-
-The multi-page layout is assembled from the supplied website source. It has been checked for file/link structure, but not browser-rendered in this environment.
+## Publish
+Upload the files to the repository root and keep your existing `.github/workflows` deployment folder. Do not upload the enclosing folder itself. Article pages are educational overviews and should be checked for legal updates before being relied upon or republished as legal advice. The community button still needs your actual Legal Lounge Live LinkedIn URL.

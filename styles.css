@@ -4,3 +4,23 @@
 
 /* Multi-page navigation and editorial page intro */
 .page-intro{padding-top:72px;padding-bottom:48px;border-bottom:1px solid var(--line,#e4dcc8);margin-bottom:48px}.page-intro h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(2.7rem,6vw,5rem);line-height:1.04;max-width:900px;margin:14px 0 20px;color:var(--ink,#101f35)}.page-intro>p:not(.eyebrow){max-width:660px;font-size:1.15rem;line-height:1.8;color:var(--soft,#5b6474)}.page-intro .text-link{display:inline-block;margin-top:12px}
+
+
+/* Version 3: article detail pages and active navigation */
+.main-nav a[aria-current="page"]{color:var(--gold-dark)}
+.main-nav a[aria-current="page"]:after{width:100%}
+.article-detail{max-width:850px;margin:0 auto;padding:54px 0 88px}
+.article-detail .article-kicker{font-size:10px;font-weight:700;letter-spacing:1.8px;color:var(--gold-dark);text-transform:uppercase}
+.article-detail h1{font:700 clamp(38px,5.8vw,66px)/1.1 var(--serif);letter-spacing:-.8px;color:var(--navy);margin:18px 0}
+.article-deck{font-size:18px;line-height:1.8;color:#5c6878;max-width:760px}
+.article-byline{display:flex;flex-wrap:wrap;gap:10px 18px;padding:18px 0;border-block:1px solid var(--line);font-size:11px;color:var(--muted);margin:26px 0 34px}
+.article-detail .article-body{font-size:16px;line-height:1.9;color:#3e4a5b}
+.article-detail .article-body h2{font:700 30px/1.25 var(--serif);color:var(--navy);margin:36px 0 12px}
+.article-detail .article-body h3{font:700 21px/1.3 var(--serif);color:var(--navy);margin:28px 0 8px}
+.article-detail .article-body ul{padding-left:24px}
+.article-detail .article-body li{margin:8px 0}
+.article-note{padding:18px 20px;background:#f3efe6;border-left:3px solid var(--gold);font-size:13px;line-height:1.8;color:#566274;margin:28px 0}
+.article-actions{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:35px}
+@media(max-width:700px){.article-detail{padding:35px 0 60px}.article-detail h1{font-size:42px}.article-deck{font-size:16px}.article-detail .article-body{font-size:15px}}
+
+.newsroom-count{font-size:12px;color:var(--muted);margin:0 0 12px}
