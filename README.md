@@ -1,24 +1,23 @@
-# Legal Lounge Live — Homepage Prototype
+# Legal Lounge Live v1.2
 
-A responsive static homepage prototype for the Legal Lounge Live legal-learning platform.
+Responsive legal learning website prototype for GitHub Pages.
 
-## Included
-- Premium navy, cream, and gold visual identity
-- Responsive mobile navigation
-- Article keyword search and category filters
-- Sample legal quiz with answer feedback
-- Interactive fictional Decision Room scenario
-- Expandable legal glossary
-- Case-note preview and educational disclaimer
+## Files
+- `index.html` — homepage and sections
+- `styles.css` — responsive styling and v1.2 layout polish
+- `script.js` — interactive quiz, article filters/search, Decision Room
+- `.nojekyll` — disables Jekyll processing
+- `.github/workflows/pages.yml` — GitHub Pages deployment workflow
 
-## Run locally
-Open `index.html` in a browser. No build step or package installation is required.
+## Update your existing GitHub repository
+1. Extract this ZIP.
+2. Open `https://github.com/sudhirrpanghal/legal-lounge-live` and select **Add file → Upload files**.
+3. Upload the files from this package into the repository root, preserving the `.github/workflows/pages.yml` path. Replace existing `index.html`, `styles.css`, `script.js`, and docs when GitHub asks.
+4. Commit to `main` with a message such as `Polish Legal Lounge Live homepage v1.2`.
+5. Open **Actions** and wait for the Pages deployment workflow to finish with a green check.
+6. Refresh `https://sudhirrpanghal.github.io/legal-lounge-live/`.
 
-## Before publishing
-1. Replace the LinkedIn URL in `index.html` with the Legal Lounge Live page URL.
-2. Replace sample article cards and demo links with verified, published articles.
-3. Add verified case summaries and primary-source citations before presenting case law as factual.
-4. Update the legal disclaimer for your intended jurisdiction and content model.
-5. For production, consider moving articles and quiz content into a CMS or database.
+If uploading through the browser is awkward, you can instead use GitHub Desktop and commit the extracted files into the existing local repository.
 
-This is a frontend prototype. It does not include accounts, a backend, analytics, or a live legal database. Quiz and scenario content is a small demonstration.
+## Content note
+Sample article and case-law content is illustrative. Verify legal authorities, citations, and current law before publishing substantive legal explanations. This site is educational, not legal advice.

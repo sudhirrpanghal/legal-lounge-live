@@ -1,15 +1,16 @@
-# Legal Lounge Live — Project status
+# Legal Lounge Live — Version 1.2
 
-## Version 1.1: GitHub Pages handoff
+This release polishes the live homepage layout while preserving the navy-and-gold identity and existing interactive demo features.
 
-- Static homepage prototype retained.
-- GitHub Actions workflow added for GitHub Pages deployment.
-- Publishing checklist and setup guide added.
-- No GitHub repository was created and no public deployment was performed from this workspace.
+## Improvements
+- Better-balanced hero columns and typography
+- More visible hero illustration panel
+- Cleaner newsroom card grid and featured article layout
+- Improved spacing around section headings and filters
+- Responsive adjustments for tablet and mobile
+- Retains the existing GitHub Pages workflow
 
-## Next development tasks
+## Deploy update
+Upload/replace the website files in the root of the `legal-lounge-live` repository with the files in this package. Keep `.github/workflows/pages.yml` in the repository. Commit the changes to `main`; the existing GitHub Actions workflow should deploy the update.
 
-1. Confirm the exact LinkedIn page URL and add it to the site.
-2. Add individual article pages and metadata (title, description, canonical URL once the domain is known).
-3. Add a reviewed case-note dataset with source links.
-4. Add a real feedback/newsletter provider only after choosing what information to collect and reviewing privacy needs.
+This is a frontend prototype. Sample articles and case-law framework are illustrative and need verified content before publication as legal information.
