@@ -1,4 +1,4 @@
-# Legal Lounge Live (Version 6)
+# Legal Lounge Live (Version 7)
 
 Static website for GitHub Pages. No build step is needed.
 
@@ -25,3 +25,13 @@ Paste a page link into LinkedIn's Post Inspector (linkedin.com/post-inspector) t
 ## New in Version 6
 - `glossary.html`: a Flashcards mode (shuffle, "I knew it", "Show again later") built from the glossary entries. Add terms to the list and they appear in the deck automatically.
 - `moot.html`, `drafting.html`, `careers.html`: guidance pages. They are general learning material. Check them against your own competition rules, court formats and the official exam notices before relying on them.
+
+## New in Version 7
+- `search.html` with `search-index.js`: site-wide search. **The index is generated when the site is built.** If you add articles, cases, terms or sections by hand, add a matching entry to `search-index.js` (same format as the existing entries).
+- `constitution.html`: 56 key Articles in plain language. Check against India Code before relying.
+- `cite-it.html`: citation generator for cases and statutes (common Indian, OSCOLA and Bluebook-style). Confirm against your institution's style guide.
+- `know-your-rights.html`: guides to arrest, FIRs, consumer complaints and legal aid. General information only. Re-check the BNSS and consumer rules periodically.
+- `exam-hub.html`: CLAT, AIBE, judicial services and UGC-NET overview with official links. Check each link and the current notices before promoting.
+- `topics.html`: all content grouped by area of law.
+- Case notes now show **related cases** and **related law** links, and the home page has a search box.
+- `extras.js`: shared script for search, the citation tool, and links that open a specific case, term or filter.
