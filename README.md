@@ -1,10 +1,10 @@
-# Legal Lounge Live (Version 8)
+# Legal Lounge Live (Version 9)
 
 Static website for GitHub Pages. No build step is needed.
 
 ## Before you publish: do this once
 1. **LinkedIn:** the site links to https://www.linkedin.com/company/legal-lounge-live/ Change it only if your page address changes. It appears in `index.html`, `community.html`, `contact.html` and every footer.
-2. **Check the site address.** Meta tags, `sitemap.xml` and `robots.txt` use `https://sudhirrpanghal.github.io/legal-lounge-live/`. If you change the repository name or add a custom domain, replace that address everywhere.
+2. **Check the site address.** Meta tags, `sitemap.xml` and `robots.txt` use `https://legallounge.live/`. If you change the repository name or add a custom domain, replace that address everywhere.
 3. **Review the legal pages** (`privacy.html`, `disclaimer.html`) and adjust them to your needs. If you later add analytics or a signup form, update the privacy policy.
 4. **Verify every case name, citation and statute** against official sources before sharing. The articles and case notes are educational summaries.
 
@@ -51,4 +51,10 @@ Paste a page link into LinkedIn's Post Inspector (linkedin.com/post-inspector) t
 
 **Other:** `feed.xml` (RSS) and print styles. New articles, cases and terms are not added to search by themselves. Add a matching entry to `search-index.js` when you add content by hand. Case flashcards read from `case-data.js`, so add new cases there too.
 
-**Custom domain:** in GitHub, open Settings, then Pages, and add your domain under Custom domain. Then set the DNS records your domain provider asks for. Afterwards, replace `https://sudhirrpanghal.github.io/legal-lounge-live/` in the files with your new address.
+**Domain:** the site runs on https://legallounge.live/. The `CNAME` file keeps the domain attached to GitHub Pages, so upload it with the other files. In GitHub, Settings, then Pages, keep **Enforce HTTPS** ticked.
+## New in Version 9
+- Every web address now uses https://legallounge.live/.
+- Links added: WhatsApp Channel, WhatsApp Community, Instagram, LinkedIn and the Google Form for article submissions. They are in the footer of every page, on the Community, Contact, Contribute and Newsletter pages, and on the new Join page (`join.html`), which is built to use as your link in bios.
+- WhatsApp share buttons on every article.
+- The privacy policy and disclaimer now mention Google Forms, Instagram and WhatsApp. Please read them again and adjust as needed.
+- Social links are written directly into the pages. To change one, search the files for its address and replace it.

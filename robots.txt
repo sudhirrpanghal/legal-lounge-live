@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sudhirrpanghal.github.io/legal-lounge-live/sitemap.xml
+Sitemap: https://legallounge.live/sitemap.xml
