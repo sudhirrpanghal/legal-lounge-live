@@ -1,4 +1,4 @@
-# Legal Lounge Live (Version 7)
+# Legal Lounge Live (Version 8)
 
 Static website for GitHub Pages. No build step is needed.
 
@@ -35,3 +35,20 @@ Paste a page link into LinkedIn's Post Inspector (linkedin.com/post-inspector) t
 - `topics.html`: all content grouped by area of law.
 - Case notes now show **related cases** and **related law** links, and the home page has a search box.
 - `extras.js`: shared script for search, the citation tool, and links that open a specific case, term or filter.
+
+## New in Version 8
+**Settings file: `site-config.js`.** Open it in any text editor and fill in what you want. Nothing is shown until you do:
+- `authorName`, `authorRole`, `authorBio`, `authorPhoto`: shows your name in article bylines and an author card on the About page.
+- `newsletterAction`: the sign-up form address from your email service (Buttondown, Mailchimp and similar). Until it is set, the Newsletter page shows a LinkedIn follow button.
+- `goatCounterCode`: turns on GoatCounter visitor counts (create a free GoatCounter account first). If you turn this on, update `privacy.html` to mention it.
+- `events`: one line per event for the Events page.
+
+**New study tools:** `my-study.html` (saved items and scores, stored in the visitor's own browser), `mock-test.html` (20 questions in 20 minutes), `case-flashcards.html`, `decision-flows.html` (which writ, valid contract), `maxims.html`, `bare-acts.html`, `amendments.html`, `cheatsheets.html` (print or save as PDF), and `resources.html` (everything in one list).
+
+**New content:** 4 articles (bail, cheque bounce, writs, how to read a bare Act), 32 case notes, 40 glossary terms, 69 quiz questions in six subjects, and a Hindi version of Know Your Rights (`know-your-rights-hi.html`). Have the Hindi page read by a Hindi-speaking lawyer or teacher before promoting it.
+
+**Community pages:** Newsletter, Events, Write for us, and a public Corrections log. Add entries to the corrections table in `corrections.html` as you fix mistakes.
+
+**Other:** `feed.xml` (RSS) and print styles. New articles, cases and terms are not added to search by themselves. Add a matching entry to `search-index.js` when you add content by hand. Case flashcards read from `case-data.js`, so add new cases there too.
+
+**Custom domain:** in GitHub, open Settings, then Pages, and add your domain under Custom domain. Then set the DNS records your domain provider asks for. Afterwards, replace `https://sudhirrpanghal.github.io/legal-lounge-live/` in the files with your new address.
