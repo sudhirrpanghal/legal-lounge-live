@@ -1,4 +1,4 @@
-# Legal Lounge Live (Version 9)
+# Legal Lounge Live (Version 11)
 
 Static website for GitHub Pages. No build step is needed.
 
@@ -58,3 +58,16 @@ Paste a page link into LinkedIn's Post Inspector (linkedin.com/post-inspector) t
 - WhatsApp share buttons on every article.
 - The privacy policy and disclaimer now mention Google Forms, Instagram and WhatsApp. Please read them again and adjust as needed.
 - Social links are written directly into the pages. To change one, search the files for its address and replace it.
+
+## New in Version 10
+- **Criminal code guides:** `criminal-codes.html`, `bns-guide.html`, `bnss-guide.html`, `bsa-guide.html`. Chapter-by-chapter, with all section headings and about 100 key sections explained in our own words. The BNS guide follows the Gazette Act; **the BNSS headings come from the Bill as introduced in the Lok Sabha (Bill No. 174 of 2023), so please replace them with the final Act's headings when you can**; the BSA guide follows the India Code version updated to 6 October 2025. The "Earlier law" notes beside key sections are our cross-references: check them against the official texts before relying on them.
+- **Writing and research:** `writing.html` (hub), `how-to-write-a-legal-article.html`, `how-to-write-a-research-paper.html`, `legal-research-guide.html`, `citation-guide.html`, `writing-planner.html`.
+- The citation generator now also gives the Indian law school Bluebook format for statutes.
+- Search now covers every section heading of the three codes.
+
+## New in Version 11: Supreme Court Live merged in
+- Your files are included unchanged: `fetch_supreme_court.py`, `requirements.txt`, `sc-live.js`, `data/supreme-court-latest.json` (the latest saved feed) and `SUPREME-COURT-LIVE-SETUP.md`.
+- `supreme-court-live.html` was rebuilt with the current header and footer. **Supreme Court Live is now in the main menu of every page**, in the footer, on the Resources page, in the sitemap and in search.
+- The styles for the record cards are now in `styles.css` (they were missing from the repository).
+- `.github/workflows/update-supreme-court.yml` now also starts the site deployment after it saves new data. A commit made by a workflow does not start other workflows by itself, so before this change the new data could sit in the repository without going live.
+- Delete these stray files from the repository root if they are there: `pages.yml`, `static.yml` (the real one lives in `.github/workflows`), `DEPLOY-GITHUB-PAGES.md`, `PROJECT-STATUS.md`.

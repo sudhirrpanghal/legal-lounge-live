@@ -75,13 +75,13 @@
     else { ref = year + ' SCC OnLine ' + court + ' ' + page; bb = ref; }
     var p = pin ? ', ' + pin : '';
     var plain = name.replace(/\s+v\.?\s+/i, ' v. '), os = name.replace(/\s+v\.?\s+/i, ' v ');
-    out('citeOut', [['Common Indian style', plain + ', ' + ref + p + '.'], ['OSCOLA style', os + ' ' + ref + p], ['Bluebook style', plain + ', ' + bb + p + ' (India)']]);
+    out('citeOut', [['Common Indian style (also the Indian Bluebook format)', plain + ', ' + ref + p + '.'], ['OSCOLA style', os + ' ' + ref + p], ['Bluebook style', plain + ', ' + bb + p + ' (India)']]);
   });
   var sgo = $('#statuteGo');
   if (sgo) sgo.addEventListener('click', function () {
     var n = v('sName'), y = v('sYear'), s = v('sSec'), no = v('sNo');
     if (!n || !y || !s) { out('statuteOut', [['Missing details', 'Please fill in the Act name, year and section.']]); return; }
-    out('statuteOut', [['Common Indian style', 'Section ' + s + ', ' + n + ', ' + y + (no ? ' (Act ' + no + ' of ' + y + ')' : '') + '.'], ['OSCOLA style', n + ' ' + y + ', s ' + s], ['Bluebook style', n + ', ' + y + ', § ' + s + ' (India)']]);
+    out('statuteOut', [['Common Indian style', 'Section ' + s + ', ' + n + ', ' + y + (no ? ' (Act ' + no + ' of ' + y + ')' : '') + '.'], ['OSCOLA style', n + ' ' + y + ', s ' + s], ['Bluebook style', n + ', ' + y + ', § ' + s + ' (India)'], ['Bluebook (Indian law school format)', n + ', ' + y + ', § ' + s + (no ? ', No. ' + no + ', Acts of Parliament, ' + y : '') + ' (India).']]);
   });
 
   // Site search
