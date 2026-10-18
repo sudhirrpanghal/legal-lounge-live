@@ -3,10 +3,15 @@ name: Update Supreme Court latest feed
 on:
   workflow_dispatch:
   schedule:
-    - cron: "20 2 * * *"
+    - cron: "20 2 * * *"   # 07:50 India Standard Time, every day
 
 permissions:
-  contents: write
+  contents: write   # lets the job commit the data file
+  actions: write    # lets the job start the site deployment
+
+concurrency:
+  group: supreme-court-feed
+  cancel-in-progress: false
 
 jobs:
   update-feed:
@@ -22,19 +27,30 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install -r requirements.txt
 
       - name: Fetch Supreme Court updates
         run: python fetch_supreme_court.py
 
       - name: Commit updated data
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/supreme-court-latest.json
           if git diff --cached --quiet; then
             echo "No changes to publish."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "Update Supreme Court latest feed"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      # A push made with the built-in token does not start other workflows,
+      # so start the site deployment directly.
+      - name: Deploy the updated site
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run static.yml --ref main
