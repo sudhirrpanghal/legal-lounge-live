@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Dashboard | Legal Lounge Live</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin-shell{max-width:1180px;margin:0 auto;padding:clamp(1.25rem,4vw,3rem) 1rem 4rem}
+    .admin-hero{background:linear-gradient(135deg,#101f35,#1c3555);color:#fff;border-radius:22px;padding:clamp(1.5rem,4vw,3rem);margin:1.5rem 0 2rem}
+    .admin-hero .eyebrow{color:#d5b779;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;font-weight:700}
+    .admin-hero h1{color:#fff;margin:.4rem 0 1rem;font-size:clamp(2rem,4vw,3.2rem)}
+    .admin-hero p{color:#e5eaf1;max-width:65ch}
+    .admin-toolbar{display:flex;gap:.75rem;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:1rem 0}
+    .admin-actions{display:flex;gap:.6rem;flex-wrap:wrap}
+    .admin-btn{border:1px solid #c7a66a;border-radius:9px;padding:.72rem 1rem;font-weight:700;cursor:pointer;background:#c7a66a;color:#101f35}
+    .admin-btn.secondary{background:#fff;color:#101f35;border-color:#d8dce2}
+    .admin-btn.danger{background:#fff;color:#8a302d;border-color:#d8a09d}
+    .admin-status{padding:.9rem 1rem;border-radius:10px;background:#f4f1e9;color:#26364a;margin:1rem 0;overflow-wrap:anywhere}
+    .admin-status.error{background:#fff0ef;color:#842c28}
+    .admin-status.success{background:#eaf6ee;color:#245c36}
+    .admin-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+    .admin-filter{border:1px solid #d8dce2;background:white;padding:.6rem .85rem;border-radius:999px;cursor:pointer}
+    .admin-filter.active{background:#101f35;color:white;border-color:#101f35}
+    .admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+    .submission-card{background:#fff;border:1px solid #e0e3e8;border-radius:16px;padding:1.2rem;box-shadow:0 8px 24px rgba(16,31,53,.06);min-width:0}
+    .submission-card h3{margin:.35rem 0 .75rem;overflow-wrap:anywhere}
+    .submission-meta{font-size:.88rem;color:#626d7c;line-height:1.65;overflow-wrap:anywhere}
+    .submission-description{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65;margin:1rem 0}
+    .status-pill{display:inline-block;border-radius:999px;padding:.25rem .6rem;font-size:.78rem;font-weight:700;background:#f7edd5;color:#785719}
+    .status-pill.approved{background:#e3f4e8;color:#23633a} .status-pill.rejected{background:#fde8e7;color:#8a302d}
+    .admin-empty{padding:2rem;border:1px dashed #c8cdd5;border-radius:14px;text-align:center;color:#626d7c}
+    .admin-hidden{display:none!important}
+    .admin-login-box{background:#fff;border:1px solid #e0e3e8;border-radius:16px;padding:1.4rem;max-width:560px}
+    @media(max-width:600px){.admin-toolbar{align-items:stretch}.admin-actions{width:100%}.admin-btn{flex:1}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="Legal Lounge Live home">LEGAL LOUNGE <strong>LIVE</strong></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="careers.html">Careers &amp; Internships</a>
+      </nav>
+    </div>
+  </header>
+  <main class="admin-shell">
+    <section class="admin-hero">
+      <p class="eyebrow">Restricted area · Authorized editors only</p>
+      <h1>Admin Dashboard</h1>
+      <p>Review submissions received by Legal Lounge Live. Only accounts assigned the <strong>LegalLounge.Owner</strong> role can access moderation actions. Approval changes the submission status; it does not automatically publish content.</p>
+    </section>
+    <section id="loginPanel" class="admin-login-box">
+      <h2>Administrator sign in</h2>
+      <p>Sign in with the Microsoft account assigned the LegalLounge.Owner role.</p>
+      <button id="loginButton" class="admin-btn" type="button">Sign in with Microsoft</button>
+    </section>
+    <section id="dashboardPanel" class="admin-hidden">
+      <div class="admin-toolbar">
+        <div><strong id="signedInAs">Signed in</strong><p class="submission-meta">Submission moderation</p></div>
+        <div class="admin-actions">
+          <button id="refreshButton" class="admin-btn secondary" type="button">Refresh</button>
+          <button id="logoutButton" class="admin-btn secondary" type="button">Sign out</button>
+        </div>
+      </div>
+      <div id="notice" class="admin-status" role="status" aria-live="polite">Loading submissions…</div>
+      <div class="admin-filters" role="group" aria-label="Filter submissions">
+        <button class="admin-filter active" data-filter="Pending" type="button">Pending</button>
+        <button class="admin-filter" data-filter="Approved" type="button">Approved</button>
+        <button class="admin-filter" data-filter="Rejected" type="button">Rejected</button>
+        <button class="admin-filter" data-filter="All" type="button">All</button>
+      </div>
+      <div id="submissionsList" class="admin-grid"></div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container"><p>© Legal Lounge Live · Administrative access is monitored. <a href="index.html">Return to homepage</a></p></div>
+  </footer>
+  <script src="https://alcdn.msauth.net/browser/3.28.1/js/msal-browser.min.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
