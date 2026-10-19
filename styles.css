@@ -285,3 +285,80 @@
 .sc-empty{font-size:14px;color:var(--muted);padding:18px 0}
 .sc-source-links{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:6px}
 @media(max-width:820px){.sc-record-grid{grid-template-columns:1fr}}
+
+/* Legal Lounge Live API submission form */
+.submission-panel{margin:34px 0 38px;padding:clamp(22px,4vw,38px);background:#fff;border:1px solid var(--line);box-shadow:0 14px 36px #101f350b;border-top:3px solid var(--gold)}
+.submission-panel .eyebrow{margin:0 0 10px}.submission-panel h2{font:700 clamp(30px,4vw,42px)/1.15 var(--serif);color:var(--navy);margin:0 0 14px}.submission-intro{max-width:760px;color:#667184;font-size:13px;line-height:1.8;margin:0 0 24px}.submission-form{display:grid;gap:17px;max-width:850px}.submission-form label{display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:700;color:#4a5a70}.submission-form label span{display:inline;color:var(--muted);font-weight:500}.submission-form input,.submission-form select,.submission-form textarea{width:100%;padding:12px 13px;border:1px solid #cfc8b8;border-radius:0;background:#fff;color:var(--ink);font:500 14px var(--sans)}.submission-form textarea{resize:vertical;min-height:150px}.submission-form input:focus,.submission-form select:focus,.submission-form textarea:focus{outline:2px solid #c6a56a66;border-color:var(--gold-dark)}.submission-fields-two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.submission-form button{justify-self:start;border:0}.submission-form button:disabled{opacity:.65;cursor:wait;transform:none}.submission-status{min-height:20px;margin:0;font-size:13px;font-weight:600;color:var(--navy);overflow-wrap:anywhere}.submission-status.is-error{color:#9b3026}.submission-status.is-success{color:#2f6b45}.submission-privacy{font-size:11px;line-height:1.7;color:var(--muted);margin:0}.submission-privacy .text-link{font-size:inherit}@media(max-width:700px){.submission-fields-two{grid-template-columns:1fr}.submission-panel{padding:20px 16px}}
+
+
+/* Improved contribution page and accessible document attachment area */
+.contribute-layout{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);align-items:start;gap:clamp(24px,4vw,52px);padding-bottom:64px}
+.contribute-copy{min-width:0}.contribute-copy>p{font-size:16px;line-height:1.85;color:var(--ink-soft,#526176)}
+.contribute-trust-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}.contribute-trust-row span{padding:8px 11px;background:#f6f1e7;border:1px solid #e9dfcb;border-radius:999px;color:#66512e;font-size:11px;font-weight:700;letter-spacing:.02em}
+.contribute-guidelines-grid{display:grid;gap:12px;margin:25px 0}.contribute-guideline{position:relative;padding:18px 18px 17px 62px;background:rgba(255,255,255,.78);border:1px solid var(--line,#e5dfd2);border-radius:12px}.contribute-step{position:absolute;left:17px;top:18px;display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--navy,#101f35);color:#fff;font-size:11px;font-weight:700}.contribute-guideline h2{font:700 17px/1.35 var(--sans,Arial);color:var(--navy,#101f35);margin:0 0 7px}.contribute-guideline p{margin:0;color:#687487;font-size:13px;line-height:1.7}.contribute-confidentiality{padding:15px 17px;border-left:3px solid #b98e4d;background:#f8f3e9;color:#5e574b;font-size:13px;line-height:1.7;border-radius:0 8px 8px 0}
+.submission-panel{min-width:0;margin:0;padding:clamp(22px,3vw,34px);border:1px solid #e4ddcf;border-top:4px solid var(--gold,#c5a46a);border-radius:16px;background:linear-gradient(160deg,#fff 0%,#fffdf9 100%);box-shadow:0 20px 55px rgba(16,31,53,.09)}
+.submission-panel-heading{padding-bottom:20px;margin-bottom:23px;border-bottom:1px solid #eee7da}.submission-panel .eyebrow{font-size:10px;letter-spacing:.16em}.submission-panel h2{font-size:clamp(29px,3vw,38px);letter-spacing:-.025em}.submission-intro{font-size:14px;line-height:1.75;margin:0;max-width:unset}.submission-intro strong{color:var(--navy,#101f35)}
+.submission-form{max-width:none;gap:20px}.submission-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 16px}.submission-form label{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:0;color:#34445b;font-size:12px;font-weight:700;line-height:1.4}.submission-form label .required-label,.submission-form label .optional-label{align-self:flex-start;display:inline-flex;align-items:center;padding:3px 7px;border-radius:999px;background:#f3eee3;color:#82663b;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.submission-form input,.submission-form select,.submission-form textarea{box-sizing:border-box;min-width:0;width:100%;padding:13px 14px;border:1px solid #d8d5cd;border-radius:9px;background:#fff;color:#1f2d42;font:500 14px/1.5 var(--sans,Arial);transition:border-color .15s,box-shadow .15s}.submission-form input,.submission-form select{min-height:48px}.submission-form textarea{min-height:148px;resize:vertical}.submission-form input::placeholder,.submission-form textarea::placeholder{color:#9299a4;font-weight:400}.submission-form input:focus,.submission-form select:focus,.submission-form textarea:focus{outline:none;border-color:#b9985f;box-shadow:0 0 0 3px rgba(185,152,95,.17)}.submission-full-width{grid-column:1/-1}.field-help{display:block;margin:0;color:#7b8491;font-size:11px;font-weight:400;line-height:1.6}.upload-field-wrap{min-width:0}.submission-form .upload-dropzone{position:relative;display:flex;align-items:center;gap:5px;min-height:155px;padding:20px;border:1.5px dashed #c9b58d;border-radius:12px;background:#fcfaf5;text-align:center;cursor:pointer;transition:background .15s,border-color .15s}.submission-form .upload-dropzone:hover{background:#f8f2e5;border-color:#a88a55}.upload-icon{display:grid;place-items:center;width:36px;height:36px;margin:0 auto 5px;border-radius:50%;background:#eee4d1;color:#755a2c;font-size:24px;font-weight:500}.upload-title{color:var(--navy,#101f35);font-size:13px;font-weight:800}.upload-description{color:#737d8b;font-size:11px;font-weight:400}.upload-browse{display:inline-flex;align-items:center;justify-content:center;margin-top:7px;padding:8px 12px;border:1px solid #c9b58d;border-radius:7px;background:#fff;color:#6d5329;font-size:11px;font-weight:800}.submission-form .upload-dropzone input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}.selected-file-name{margin:8px 0 0;color:#356847;font-size:12px;font-weight:700;overflow-wrap:anywhere}.submission-form .submission-submit{min-height:48px;padding:13px 20px;border-radius:8px;box-shadow:0 5px 12px rgba(16,31,53,.1);font-size:13px}.submission-form .submission-submit:focus-visible,.submission-fallback a:focus-visible{outline:3px solid #b9985f;outline-offset:3px}.submission-status{min-height:0;padding:0;font-size:13px;line-height:1.7}.submission-status:not(:empty){padding:12px 14px;border-radius:8px;background:#f4f5f6}.submission-status.is-error{color:#8b2b24;background:#fff0ee}.submission-status.is-success{color:#286340;background:#edf7ef}.submission-privacy{font-size:11px;line-height:1.75;color:#7a8290}.submission-fallback{display:flex;gap:14px;margin-top:22px;padding:18px;border:1px solid #e7d4ad;border-radius:12px;background:#fff8e9}.submission-fallback[hidden]{display:none}.fallback-mark{flex:0 0 34px;display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#f0e2c5;color:#715427;font-size:20px}.submission-fallback h3{margin:0 0 6px;color:var(--navy,#101f35);font-size:16px}.submission-fallback p{margin:0 0 13px;color:#656b75;font-size:12px;line-height:1.7}.submission-fallback .button{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border-radius:7px;font-size:12px}
+@media(max-width:980px){.contribute-layout{grid-template-columns:1fr;max-width:800px}.contribute-copy{order:1}.submission-panel{order:0}}
+@media(max-width:620px){.contribute-layout{gap:24px;padding-bottom:40px}.submission-panel{padding:22px 17px;border-radius:12px}.submission-form-grid{grid-template-columns:1fr;gap:16px}.submission-full-width{grid-column:auto}.submission-form .upload-dropzone{min-height:145px;padding:16px}.contribute-guideline{padding-left:58px}.contribute-trust-row{gap:6px}.contribute-trust-row span{font-size:10px;padding:7px 9px}}
+
+/* Contribution and career posting panels */
+.contribution-callout,
+.career-submit-callout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(230px, .8fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  margin-top: clamp(2rem, 5vw, 4rem);
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: linear-gradient(135deg, #fffdfa 0%, #f5f1e8 100%);
+  box-shadow: 0 16px 40px rgba(16, 31, 53, .07);
+}
+.contribution-callout h2,
+.career-submit-callout h2 {
+  margin: .25rem 0 .75rem;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.65rem);
+  line-height: 1.15;
+}
+.contribution-callout h2 em { color: var(--gold-dark); font-style: normal; }
+.contribution-callout p:not(.eyebrow),
+.career-submit-callout p:not(.eyebrow) {
+  max-width: 62ch;
+  margin-bottom: 0;
+  color: var(--muted);
+}
+.contribution-callout-actions,
+.career-submit-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: .8rem;
+}
+.contribution-callout-actions .button,
+.career-submit-actions .button {
+  justify-content: center;
+  text-align: center;
+}
+.main-nav .nav-home { font-weight: 700; }
+@media (max-width: 760px) {
+  .contribution-callout,
+  .career-submit-callout { grid-template-columns: 1fr; }
+  .contribution-callout-actions,
+  .career-submit-actions { align-items: stretch; }
+}
+
+/* Keep the research-paper CTA clearly visible without requiring hover. */
+.research-submit-button { background: var(--navy); color: #fff; border-color: var(--navy); }
+.research-submit-button:hover, .research-submit-button:focus-visible { background: var(--navy2); color: #fff; border-color: var(--navy2); }
+.research-submit-button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* Research and careers navigation / visible default button contrast */
+.main-nav a[href="research-papers.html"], .main-nav a[href="careers.html"]{white-space:nowrap}
+.button-outline{background:#fffdfa!important;color:var(--navy)!important;border-color:var(--navy)!important}
+.button-outline:hover,.button-outline:focus-visible{background:var(--navy)!important;color:#fff!important;outline:2px solid var(--gold);outline-offset:2px}
+.button:focus-visible,.main-nav a:focus-visible{outline:3px solid var(--gold-dark);outline-offset:3px}
