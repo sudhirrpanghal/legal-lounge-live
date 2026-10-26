@@ -23,7 +23,7 @@
     .admin-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
     .admin-filter{border:1px solid #d8dce2;background:white;padding:.6rem .85rem;border-radius:999px;cursor:pointer}
     .admin-filter.active{background:#101f35;color:white;border-color:#101f35}
-    .admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+    .admin-section-heading{margin:1.5rem 0 .5rem;color:#101f35;font-size:1.05rem}.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
     .submission-card{background:#fff;border:1px solid #e0e3e8;border-radius:16px;padding:1.2rem;box-shadow:0 8px 24px rgba(16,31,53,.06);min-width:0}
     .submission-card h3{margin:.35rem 0 .75rem;overflow-wrap:anywhere}
     .submission-meta{font-size:.88rem;color:#626d7c;line-height:1.65;overflow-wrap:anywhere}
@@ -51,7 +51,7 @@
     <section class="admin-hero">
       <p class="eyebrow">Restricted area · Authorized editors only</p>
       <h1>Admin Dashboard</h1>
-      <p>Review submissions received by Legal Lounge Live. Only accounts assigned the <strong>LegalLounge.Owner</strong> role can access moderation actions. Approval changes the submission status; it does not automatically publish content.</p>
+      <p>Review submissions received by Legal Lounge Live. Only accounts assigned the <strong>LegalLounge.Owner</strong> role can access moderation actions. Review articles and research papers separately from jobs and internships. Approving a job or internship makes it eligible for the public Careers page once the updated API is deployed.</p>
     </section>
     <section id="loginPanel" class="admin-login-box">
       <h2>Administrator sign in</h2>
@@ -67,7 +67,14 @@
         </div>
       </div>
       <div id="notice" class="admin-status" role="status" aria-live="polite">Loading submissions…</div>
-      <div class="admin-filters" role="group" aria-label="Filter submissions">
+      <h2 class="admin-section-heading">Submission category</h2>
+      <div class="admin-filters" role="group" aria-label="Filter by submission category">
+        <button class="admin-filter active" data-category="all" type="button">All categories</button>
+        <button class="admin-filter" data-category="editorial" type="button">Articles &amp; Research Papers</button>
+        <button class="admin-filter" data-category="careers" type="button">Jobs &amp; Internships</button>
+      </div>
+      <h2 class="admin-section-heading">Review status</h2>
+      <div class="admin-filters" role="group" aria-label="Filter submissions by status">
         <button class="admin-filter active" data-filter="Pending" type="button">Pending</button>
         <button class="admin-filter" data-filter="Approved" type="button">Approved</button>
         <button class="admin-filter" data-filter="Rejected" type="button">Rejected</button>

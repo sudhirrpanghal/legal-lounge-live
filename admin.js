@@ -27,6 +27,7 @@
   let account = null;
   let accessToken = null;
   let currentFilter = "Pending";
+  let currentCategory = "all";
   let allSubmissions = [];
 
   function showNotice(message, type = "") {
@@ -70,12 +71,18 @@
     const date = new Date(value);
     return Number.isNaN(date.getTime()) ? String(value) : date.toLocaleString();
   }
+  function typeOf(item) {
+    return String(item.type || item.partitionKey || "submission").toLowerCase();
+  }
+  function categoryOf(item) {
+    return ["job", "internship"].includes(typeOf(item)) ? "careers" : "editorial";
+  }
   function makeCard(item) {
     const card = document.createElement("article");
     card.className = "submission-card";
     const type = document.createElement("p");
     type.className = "eyebrow";
-    type.textContent = (item.type || item.partitionKey || "submission").replace(/-/g, " ");
+    type.textContent = typeOf(item).replace(/-/g, " ");
     const title = document.createElement("h3");
     title.textContent = item.title || "(Untitled submission)";
     const status = document.createElement("span");
@@ -108,11 +115,15 @@
   }
   function render() {
     list.replaceChildren();
-    const filtered = currentFilter === "All" ? allSubmissions : allSubmissions.filter(x => (x.status || "Pending") === currentFilter);
+    const filtered = allSubmissions.filter(item => {
+      const statusMatch = currentFilter === "All" || (item.status || "Pending") === currentFilter;
+      const categoryMatch = currentCategory === "all" || categoryOf(item) === currentCategory;
+      return statusMatch && categoryMatch;
+    });
     if (!filtered.length) {
       const empty = document.createElement("div");
       empty.className = "admin-empty";
-      empty.textContent = `No ${currentFilter === "All" ? "" : currentFilter.toLowerCase() + " "}submissions found.`;
+      empty.textContent = `No matching ${currentCategory === "careers" ? "job or internship" : currentCategory === "editorial" ? "article or research paper" : ""} submissions found for this status filter.`;
       list.append(empty);
       return;
     }
@@ -125,7 +136,9 @@
       const result = await apiFetch("/api/admin/submissions");
       allSubmissions = Array.isArray(result.submissions) ? result.submissions : [];
       render();
-      showNotice(`Loaded ${allSubmissions.length} submission(s).`, "success");
+      const careersCount = allSubmissions.filter(x => categoryOf(x) === "careers").length;
+      const editorialCount = allSubmissions.length - careersCount;
+      showNotice(`Loaded ${allSubmissions.length} submission(s): ${editorialCount} articles/research papers and ${careersCount} jobs/internships.`, "success");
     } catch (err) {
       showNotice(err.message + " If this is a permissions error, confirm the signed-in account has the LegalLounge.Owner app role and the API exposes access_as_user.", "error");
     }
@@ -165,6 +178,12 @@
     list.replaceChildren();
     showNotice("Signed out.");
   });
+  document.querySelectorAll("[data-category]").forEach(button => button.addEventListener("click", () => {
+    document.querySelectorAll("[data-category]").forEach(x => x.classList.toggle("active", x === button));
+    currentCategory = button.dataset.category;
+    render();
+  }));
+
   document.querySelectorAll("[data-filter]").forEach(button => button.addEventListener("click", () => {
     document.querySelectorAll("[data-filter]").forEach(x => x.classList.toggle("active", x === button));
     currentFilter = button.dataset.filter;
