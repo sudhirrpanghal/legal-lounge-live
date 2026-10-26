@@ -160,7 +160,12 @@
 
   document.getElementById("loginButton").addEventListener("click", async () => {
     try {
-      const result = await msalInstance.loginPopup({ scopes: ["openid", "profile", "email", API_SCOPE] });
+      const result = await msalInstance.loginPopup({
+scopes: ["openid", "profile", "email", API_SCOPE],
+authority: `https://login.microsoftonline.com/${TENANT_ID}`,
+prompt: "select_account"
+});
+
       account = result.account;
       msalInstance.setActiveAccount(account);
       setSignedIn(account);
