@@ -61,7 +61,7 @@
 
       accessToken = result.accessToken;
       return accessToken;
-    } catch (err) {
+    } catch (error) {
       const result = await msalInstance.acquireTokenPopup({
         account,
         scopes: [API_SCOPE]
@@ -151,17 +151,17 @@
       approve.className = "admin-btn";
       approve.type = "button";
       approve.textContent = "Approve";
-      approve.addEventListener("click", () =>
-        moderate(item, "Approved", approve)
-      );
+      approve.addEventListener("click", () => {
+        moderate(item, "Approved", approve);
+      });
 
       const reject = document.createElement("button");
       reject.className = "admin-btn danger";
       reject.type = "button";
       reject.textContent = "Reject";
-      reject.addEventListener("click", () =>
-        moderate(item, "Rejected", reject)
-      );
+      reject.addEventListener("click", () => {
+        moderate(item, "Rejected", reject);
+      });
 
       actions.append(approve, reject);
     }
@@ -191,14 +191,16 @@
     if (!filtered.length) {
       const empty = document.createElement("div");
       empty.className = "admin-empty";
+
+      const categoryName =
+        currentCategory === "careers"
+          ? "job or internship"
+          : currentCategory === "editorial"
+            ? "article or research paper"
+            : "";
+
       empty.textContent =
-        `No matching ${
-          currentCategory === "careers"
-            ? "job or internship"
-            : currentCategory === "editorial"
-              ? "article or research paper"
-              : ""
-        } submissions found for this status filter.`;
+        `No matching ${categoryName} submissions found for this status filter.`;
 
       list.append(empty);
       return;
@@ -212,7 +214,6 @@
     list.replaceChildren();
 
     try {
-      // UPDATED: new owner route
       const result = await apiFetch("/api/owner/submissions");
 
       allSubmissions = Array.isArray(result.submissions)
@@ -233,9 +234,9 @@
         `${careersCount} jobs/internships.`,
         "success"
       );
-    } catch (err) {
+    } catch (error) {
       showNotice(
-        err.message +
+        error.message +
         " If this is a permissions error, confirm the signed-in account " +
         "has the LegalLounge.Owner app role and the API exposes access_as_user.",
         "error"
@@ -251,9 +252,10 @@
     button.disabled = true;
 
     try {
-      // UPDATED: new owner route
+      const id = item.rowKey || item.id;
+
       await apiFetch(
-        `/api/owner/submissions/${encodeURIComponent(item.rowKey || item.id)}`,
+        `/api/owner/submissions/${encodeURIComponent(id)}`,
         {
           method: "PATCH",
           body: JSON.stringify({ status })
@@ -262,34 +264,37 @@
 
       showNotice(`Submission marked ${status.toLowerCase()}.`, "success");
       await loadSubmissions();
-    } catch (err) {
+    } catch (error) {
       button.disabled = false;
-      showNotice(err.message, "error");
+      showNotice(error.message, "error");
     }
   }
 
-  document.getElementById("loginButton").addEventListener("click", async () => {
-    try {
-      const result = await msalInstance.loginPopup({
-        scopes: ["openid", "profile", "email", API_SCOPE],
-        authority: `https://login.microsoftonline.com/${TENANT_ID}`,
-        prompt: "select_account"
-      });
+  document.getElementById("loginButton").addEventListener(
+    "click",
+    async () => {
+      try {
+        const result = await msalInstance.loginPopup({
+          scopes: ["openid", "profile", "email", API_SCOPE],
+          authority: `https://login.microsoftonline.com/${TENANT_ID}`,
+          prompt: "select_account"
+        });
 
-      account = result.account;
-      msalInstance.setActiveAccount(account);
+        account = result.account;
+        msalInstance.setActiveAccount(account);
 
-      setSignedIn(account);
-      await loadSubmissions();
-    } catch (err) {
-      showNotice(
-        "Sign-in failed: " +
-        (err.message ||
-          "Please check the Entra app registration and redirect URI."),
-        "error"
-      );
+        setSignedIn(account);
+        await loadSubmissions();
+      } catch (error) {
+        showNotice(
+          "Sign-in failed: " +
+          (error.message ||
+            "Please check the Entra app registration and redirect URI."),
+          "error"
+        );
+      }
     }
-  });
+  );
 
   document.getElementById("refreshButton").addEventListener(
     "click",
@@ -299,20 +304,24 @@
   document.getElementById("logoutButton").addEventListener(
     "click",
     async () => {
-      await msalInstance.logoutPopup({
-        account,
-        postLogoutRedirectUri: window.location.origin + "/"
-      });
+      try {
+        await msalInstance.logoutPopup({
+          account,
+          postLogoutRedirectUri: window.location.origin + "/"
+        });
 
-      account = null;
-      accessToken = null;
-      allSubmissions = [];
+        account = null;
+        accessToken = null;
+        allSubmissions = [];
 
-      dashboardPanel.classList.add("admin-hidden");
-      loginPanel.classList.remove("admin-hidden");
-      list.replaceChildren();
+        dashboardPanel.classList.add("admin-hidden");
+        loginPanel.classList.remove("admin-hidden");
+        list.replaceChildren();
 
-      showNotice("Signed out.");
+        showNotice("Signed out.");
+      } catch (error) {
+        showNotice("Sign-out failed: " + error.message, "error");
+      }
     }
   );
 
@@ -349,9 +358,9 @@
         loadSubmissions();
       }
     })
-    .catch(err => {
+    .catch(error => {
       showNotice(
-        "Authentication initialization failed: " + err.message,
+        "Authentication initialization failed: " + error.message,
         "error"
       );
     });
