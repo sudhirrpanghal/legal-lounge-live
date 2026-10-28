@@ -29,11 +29,17 @@
   const list = document.getElementById("submissionsList");
   const signedInAs = document.getElementById("signedInAs");
 
+  const composePanel = document.getElementById("composePanel");
+  const composeHeading = document.getElementById("composeHeading");
+  const composeNotice = document.getElementById("composeNotice");
+  const cf = id => document.getElementById("cf" + id);
+
   let account = null;
   let accessToken = null;
   let currentFilter = "Pending";
   let currentCategory = "all";
   let allSubmissions = [];
+  let editingItem = null;
 
   function showNotice(message, type = "") {
     notice.textContent = message;
@@ -112,13 +118,284 @@
       : "editorial";
   }
 
+  const TYPE_LABELS = {
+    "article": "Article",
+    "research-paper": "Research paper",
+    "job": "Job",
+    "internship": "Internship"
+  };
+
+  // Which form fields belong to which content type.
+  const FIELDS_BY_TYPE = {
+    "article": ["title", "description", "authorName", "contentUrl"],
+    "research-paper": ["title", "description", "authorName", "pdfUrl", "contentUrl"],
+    "job": ["title", "description", "organisation", "location", "duration", "deadline", "eligibility", "applicationUrl"],
+    "internship": ["title", "description", "organisation", "location", "duration", "deadline", "eligibility", "applicationUrl"]
+  };
+
+  const FIELD_IDS = {
+    title: "Title",
+    description: "Description",
+    authorName: "AuthorName",
+    organisation: "Organisation",
+    location: "Location",
+    duration: "Duration",
+    deadline: "Deadline",
+    eligibility: "Eligibility",
+    applicationUrl: "ApplicationUrl",
+    pdfUrl: "PdfUrl",
+    contentUrl: "ContentUrl"
+  };
+
+  const DESCRIPTION_LABELS = {
+    "article": "Article text",
+    "research-paper": "Abstract or summary",
+    "job": "Job details",
+    "internship": "Internship details"
+  };
+
+  function showComposeNotice(message, type = "", linkHref = "") {
+    composeNotice.className = "admin-status" + (type ? " " + type : "");
+    composeNotice.textContent = message;
+
+    if (linkHref) {
+      const link = document.createElement("a");
+      link.className = "admin-link";
+      link.href = linkHref;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = " View it on the website →";
+      composeNotice.append(link);
+    }
+  }
+
+  function updateFormForType() {
+    const type = cf("Type").value;
+
+    document.querySelectorAll("#contentForm [data-for]").forEach(group => {
+      group.classList.toggle(
+        "admin-hidden",
+        !group.dataset.for.split(" ").includes(type)
+      );
+    });
+
+    cf("DescriptionLabel").textContent = DESCRIPTION_LABELS[type];
+  }
+
+  function collectFields() {
+    const type = cf("Type").value;
+    const values = {};
+
+    FIELDS_BY_TYPE[type].forEach(field => {
+      values[field] = cf(FIELD_IDS[field]).value.trim();
+    });
+
+    return values;
+  }
+
+  function checkFields(values) {
+    if (!values.title) return "Please add a title.";
+    if (!values.description) return "Please add the main text or details.";
+
+    for (const field of ["applicationUrl", "pdfUrl", "contentUrl"]) {
+      if (values[field] && !/^https:\/\//i.test(values[field])) {
+        return "Links must start with https://";
+      }
+    }
+
+    return "";
+  }
+
+  function updateComposeButtons() {
+    const saveDraft = cf("SaveDraft");
+    const publish = cf("Publish");
+    const cancel = cf("Cancel");
+
+    if (!editingItem) {
+      saveDraft.textContent = "Save as draft";
+      publish.textContent = "Publish now";
+      publish.classList.remove("admin-hidden");
+      cancel.classList.add("admin-hidden");
+      composeHeading.textContent = "Add new content";
+      cf("Type").disabled = false;
+      return;
+    }
+
+    const status = editingItem.status || "Pending";
+
+    saveDraft.textContent = "Save changes";
+    publish.textContent = "Save & publish";
+    publish.classList.toggle("admin-hidden", !["Pending", "Draft"].includes(status));
+    cancel.classList.remove("admin-hidden");
+    composeHeading.textContent = "Editing: " + (editingItem.title || "Untitled");
+    cf("Type").disabled = true;
+  }
+
+  function resetForm() {
+    editingItem = null;
+    cf("Type").value = "article";
+
+    Object.values(FIELD_IDS).forEach(suffix => {
+      cf(suffix).value = "";
+    });
+
+    updateFormForType();
+    updateComposeButtons();
+  }
+
+  function startEditing(item) {
+    editingItem = item;
+    cf("Type").value = typeOf(item);
+    updateFormForType();
+
+    Object.entries(FIELD_IDS).forEach(([field, suffix]) => {
+      cf(suffix).value = item[field] || "";
+    });
+
+    updateComposeButtons();
+    composeNotice.className = "admin-status admin-hidden";
+    composePanel.open = true;
+    composePanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    cf("Title").focus({ preventScroll: true });
+  }
+
+  async function saveContent(publish) {
+    const values = collectFields();
+    const problem = checkFields(values);
+
+    if (problem) {
+      showComposeNotice(problem, "error");
+      return;
+    }
+
+    if (publish && !window.confirm("Publish this on the website now?")) {
+      return;
+    }
+
+    const buttons = [cf("SaveDraft"), cf("Publish")];
+    buttons.forEach(button => { button.disabled = true; });
+
+    try {
+      if (editingItem) {
+        const id = editingItem.rowKey || editingItem.id;
+
+        await apiFetch(`/api/owner/content/${encodeURIComponent(id)}`, {
+          method: "PATCH",
+          body: JSON.stringify(values)
+        });
+
+        if (publish) {
+          await apiFetch(`/api/owner/submissions/${encodeURIComponent(id)}`, {
+            method: "PATCH",
+            body: JSON.stringify({ status: "Approved" })
+          });
+        }
+
+        const wasLive = publish || editingItem.status === "Approved";
+
+        showComposeNotice(
+          publish ? "Saved and published." : "Changes saved.",
+          "success",
+          wasLive ? "read.html?id=" + encodeURIComponent(id) : ""
+        );
+        resetForm();
+      } else {
+        const result = await apiFetch("/api/owner/content", {
+          method: "POST",
+          body: JSON.stringify({
+            type: cf("Type").value,
+            publishNow: publish,
+            ...values
+          })
+        });
+
+        showComposeNotice(
+          publish ? "Published." : "Saved as a draft. Publish it from the Drafts list when ready.",
+          "success",
+          publish ? "read.html?id=" + encodeURIComponent(result.id) : ""
+        );
+        resetForm();
+      }
+
+      await loadSubmissions();
+    } catch (error) {
+      showComposeNotice(error.message, "error");
+    } finally {
+      buttons.forEach(button => { button.disabled = false; });
+    }
+  }
+
+  function actionButton(label, className, handler) {
+    const button = document.createElement("button");
+    button.className = "admin-btn " + className;
+    button.type = "button";
+    button.textContent = label;
+    button.addEventListener("click", () => handler(button));
+    return button;
+  }
+
+  function makeDescription(text) {
+    const wrap = document.createElement("div");
+    const desc = document.createElement("p");
+    desc.className = "submission-description";
+    const full = text || "";
+    const short = full.length > 320 ? full.slice(0, 320).trimEnd() + "…" : full;
+    desc.textContent = short;
+    wrap.append(desc);
+
+    if (full.length > 320) {
+      const toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "admin-more";
+      toggle.textContent = "Show full text";
+      let open = false;
+      toggle.addEventListener("click", () => {
+        open = !open;
+        desc.textContent = open ? full : short;
+        toggle.textContent = open ? "Show less" : "Show full text";
+      });
+      wrap.append(toggle);
+    }
+
+    return wrap;
+  }
+
+  function detailLines(item) {
+    const lines = [];
+
+    if (item.submitterName || item.submitterEmail) {
+      lines.push(
+        `From: ${item.submitterName || "Name not provided"} · ` +
+        `${item.submitterEmail || "Email not provided"}`
+      );
+    } else {
+      lines.push("Created in this dashboard");
+    }
+
+    if (categoryOf(item) === "careers") {
+      const bits = [item.organisation, item.location, item.duration].filter(Boolean);
+      if (bits.length) lines.push(bits.join(" · "));
+      if (item.deadline) lines.push(`Apply by: ${item.deadline}`);
+    } else if (item.authorName) {
+      lines.push(`Author: ${item.authorName}`);
+    }
+
+    lines.push(`Created: ${safeDate(item.submittedAt)}`);
+    if (item.status === "Approved" && item.publishedAt) {
+      lines.push(`Published: ${safeDate(item.publishedAt)}`);
+    }
+    lines.push(`Reference: ${item.rowKey || item.id || "Unavailable"}`);
+
+    return lines.join("\n");
+  }
+
   function makeCard(item) {
     const card = document.createElement("article");
     card.className = "submission-card";
 
     const type = document.createElement("p");
     type.className = "eyebrow";
-    type.textContent = typeOf(item).replace(/-/g, " ");
+    type.textContent = (TYPE_LABELS[typeOf(item)] || typeOf(item)).toUpperCase();
 
     const title = document.createElement("h3");
     title.textContent = item.title || "(Untitled submission)";
@@ -126,48 +403,55 @@
     const status = document.createElement("span");
     status.className =
       "status-pill " + String(item.status || "Pending").toLowerCase();
-    status.textContent = item.status || "Pending";
+    status.textContent = item.status === "Approved" ? "Published" : (item.status || "Pending");
 
     const meta = document.createElement("div");
     meta.className = "submission-meta";
-    meta.textContent =
-      `From: ${item.submitterName || "Name not provided"} · ` +
-      `${item.submitterEmail || "Email not provided"}\n` +
-      `Submitted: ${safeDate(item.submittedAt)}\n` +
-      `Reference: ${item.rowKey || item.id || "Unavailable"}`;
+    meta.style.whiteSpace = "pre-line";
+    meta.textContent = detailLines(item);
 
-    const desc = document.createElement("p");
-    desc.className = "submission-description";
-    desc.textContent = item.description || "";
+    card.append(type, title, status, meta, makeDescription(item.description));
 
-    card.append(type, title, status, meta, desc);
-
+    const current = item.status || "Pending";
     const actions = document.createElement("div");
-    actions.className = "admin-actions";
+    actions.className = "admin-card-actions";
 
-    if (item.status === "Pending") {
-      const approve = document.createElement("button");
-      approve.className = "admin-btn";
-      approve.type = "button";
-      approve.textContent = "Approve";
-      approve.addEventListener("click", () => {
-        moderate(item, "Approved", approve);
-      });
-
-      const reject = document.createElement("button");
-      reject.className = "admin-btn danger";
-      reject.type = "button";
-      reject.textContent = "Reject";
-      reject.addEventListener("click", () => {
-        moderate(item, "Rejected", reject);
-      });
-
-      actions.append(approve, reject);
+    if (current === "Pending") {
+      actions.append(
+        actionButton("Approve", "", b => moderate(item, "Approved", b)),
+        actionButton("Reject", "danger", b => moderate(item, "Rejected", b))
+      );
     }
 
-    if (actions.childElementCount) {
-      card.append(actions);
+    if (current === "Draft") {
+      actions.append(actionButton("Publish", "", b => moderate(item, "Approved", b)));
     }
+
+    if (current === "Approved") {
+      actions.append(actionButton("Unpublish", "secondary", b => moderate(item, "Draft", b)));
+    }
+
+    if (current === "Rejected") {
+      actions.append(actionButton("Move to drafts", "secondary", b => moderate(item, "Draft", b)));
+    }
+
+    actions.append(actionButton("Edit", "secondary", () => startEditing(item)));
+
+    if (current === "Draft" || current === "Rejected") {
+      actions.append(actionButton("Delete", "danger", b => remove(item, b)));
+    }
+
+    if (current === "Approved") {
+      const view = document.createElement("a");
+      view.className = "admin-link";
+      view.href = "read.html?id=" + encodeURIComponent(item.rowKey || item.id);
+      view.target = "_blank";
+      view.rel = "noopener";
+      view.textContent = "View live →";
+      actions.append(view);
+    }
+
+    card.append(actions);
 
     return card;
   }
@@ -190,17 +474,7 @@
     if (!filtered.length) {
       const empty = document.createElement("div");
       empty.className = "admin-empty";
-
-      const categoryName =
-        currentCategory === "careers"
-          ? "job or internship"
-          : currentCategory === "editorial"
-            ? "article or research paper"
-            : "";
-
-      empty.textContent =
-        `No matching ${categoryName} submissions found for this status filter.`;
-
+      empty.textContent = "Nothing here yet for this filter.";
       list.append(empty);
       return;
     }
@@ -209,7 +483,7 @@
   }
 
   async function loadSubmissions() {
-    showNotice("Loading submissions…");
+    showNotice("Loading…");
     list.replaceChildren();
 
     try {
@@ -221,16 +495,13 @@
 
       render();
 
-      const careersCount = allSubmissions.filter(
-        item => categoryOf(item) === "careers"
-      ).length;
-
-      const editorialCount = allSubmissions.length - careersCount;
+      const count = status =>
+        allSubmissions.filter(item => (item.status || "Pending") === status).length;
 
       showNotice(
-        `Loaded ${allSubmissions.length} submission(s): ` +
-        `${editorialCount} articles/research papers and ` +
-        `${careersCount} jobs/internships.`,
+        `${allSubmissions.length} item(s): ${count("Pending")} pending, ` +
+        `${count("Draft")} draft, ${count("Approved")} published, ` +
+        `${count("Rejected")} rejected.`,
         "success"
       );
     } catch (error) {
@@ -243,8 +514,20 @@
     }
   }
 
+  const CONFIRMATIONS = {
+    Approved: "Publish this on the website?",
+    Rejected: "Reject this submission?",
+    Draft: "Take this off the website and keep it as a draft?"
+  };
+
+  const DONE_MESSAGES = {
+    Approved: "Published.",
+    Rejected: "Rejected.",
+    Draft: "Moved to drafts."
+  };
+
   async function moderate(item, status, button) {
-    if (!window.confirm(`${status} this submission?`)) {
+    if (!window.confirm(CONFIRMATIONS[status])) {
       return;
     }
 
@@ -261,13 +544,48 @@
         }
       );
 
-      showNotice(`Submission marked ${status.toLowerCase()}.`, "success");
       await loadSubmissions();
+      showNotice(DONE_MESSAGES[status], "success");
     } catch (error) {
       button.disabled = false;
       showNotice(error.message, "error");
     }
   }
+
+  async function remove(item, button) {
+    if (!window.confirm("Delete this permanently? This cannot be undone.")) {
+      return;
+    }
+
+    button.disabled = true;
+
+    try {
+      const id = item.rowKey || item.id;
+
+      await apiFetch(`/api/owner/content/${encodeURIComponent(id)}`, {
+        method: "DELETE"
+      });
+
+      if (editingItem && (editingItem.rowKey || editingItem.id) === id) {
+        resetForm();
+      }
+
+      await loadSubmissions();
+      showNotice("Deleted.", "success");
+    } catch (error) {
+      button.disabled = false;
+      showNotice(error.message, "error");
+    }
+  }
+
+  cf("Type").addEventListener("change", updateFormForType);
+  cf("SaveDraft").addEventListener("click", () => saveContent(false));
+  cf("Publish").addEventListener("click", () => saveContent(true));
+  cf("Cancel").addEventListener("click", () => {
+    resetForm();
+    composeNotice.className = "admin-status admin-hidden";
+  });
+  updateFormForType();
 
   document.getElementById("loginButton").addEventListener(
     "click",
@@ -312,6 +630,7 @@
         account = null;
         accessToken = null;
         allSubmissions = [];
+        resetForm();
 
         dashboardPanel.classList.add("admin-hidden");
         loginPanel.classList.remove("admin-hidden");

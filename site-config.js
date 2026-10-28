@@ -1,5 +1,7 @@
 // Legal Lounge Live: site settings. Edit the values between the quotes, then upload this file.
 window.LL_CONFIG = {
+  // Live content API (jobs, internships, research papers, articles). Change only if the API address changes.
+  apiBase: 'https://legal-lounge-live-api-dbe8fzducefeg8a3.centralindia-01.azurewebsites.net',
   // Author (shown on the About page and in article bylines when a name is set)
   authorName: '',
   authorRole: '',

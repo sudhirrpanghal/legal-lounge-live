@@ -33,20 +33,30 @@
     .admin-empty{padding:2rem;border:1px dashed #c8cdd5;border-radius:14px;text-align:center;color:#626d7c}
     .admin-hidden{display:none!important}
     .admin-login-box{background:#fff;border:1px solid #e0e3e8;border-radius:16px;padding:1.4rem;max-width:560px}
+    .status-pill.draft{background:#e6ebf2;color:#34475f}
+    .admin-compose{background:#fff;border:1px solid #e0e3e8;border-radius:16px;padding:1.2rem 1.4rem;margin:1rem 0 1.8rem}
+    .admin-compose summary{cursor:pointer;font-weight:700;font-size:1.1rem;color:#101f35;list-style:none}
+    .admin-compose summary::-webkit-details-marker{display:none}
+    .admin-compose summary:before{content:'+';display:inline-block;width:1.4rem;color:#9b7840}
+    .admin-compose[open] summary:before{content:'–'}
+    .admin-form{display:grid;gap:1rem;margin-top:1rem}
+    .admin-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+    .admin-field{display:grid;gap:.35rem;min-width:0}
+    .admin-field label{font-size:.85rem;font-weight:700;color:#26364a}
+    .admin-field input,.admin-field select,.admin-field textarea{width:100%;border:1px solid #cfd5dd;border-radius:9px;padding:.65rem .75rem;font:inherit;background:#fff;color:#101f35}
+    .admin-field textarea{min-height:240px;resize:vertical;line-height:1.6}
+    .admin-field small{color:#626d7c;font-size:.8rem}
+    .admin-field input:focus,.admin-field select:focus,.admin-field textarea:focus{outline:3px solid #c7a66a55;border-color:#9b7840}
+    .admin-compose-actions{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+    .admin-card-actions{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:.9rem}
+    .admin-card-actions .admin-btn{padding:.5rem .8rem;font-size:.9rem}
+    .admin-link{font-weight:700;color:#101f35;border-bottom:1px solid #c7a66a;font-size:.9rem}
+    .admin-more{background:none;border:0;padding:0;color:#9b7840;font-weight:700;cursor:pointer;font:inherit;font-size:.88rem}
     @media(max-width:600px){.admin-toolbar{align-items:stretch}.admin-actions{width:100%}.admin-btn{flex:1}}
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="index.html" aria-label="Legal Lounge Live home">LEGAL LOUNGE <strong>LIVE</strong></a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="articles.html">Articles</a>
-        <a href="careers.html">Careers &amp; Internships</a>
-      </nav>
-    </div>
-  </header>
+  <header class="site-header"><a aria-label="Legal Lounge Live home" class="brand" href="index.html"><span class="brand-mark">LL</span><span class="brand-word">LEGAL LOUNGE <b>LIVE</b><small>Understand the Law. Apply the Law.</small></span></a><button aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle" id="menuToggle">☰</button><nav aria-label="Main" class="main-nav" id="mainNav"><a class="nav-home" href="index.html">Home</a><a href="articles.html">Articles</a><a href="case-law.html">Case Law</a><a href="supreme-court-live.html">Supreme Court Live</a><a href="learning.html">Learning Hub</a><a href="research-papers.html">Research Papers</a><a href="careers.html">Careers &amp; Internships</a><a href="decision-room.html">Decision Room</a><a class="nav-cta" href="community.html">Join the Lounge <span>↗</span></a></nav></header>
   <main class="admin-shell">
     <section class="admin-hero">
       <p class="eyebrow">Restricted area · Authorized editors only</p>
@@ -60,12 +70,84 @@
     </section>
     <section id="dashboardPanel" class="admin-hidden">
       <div class="admin-toolbar">
-        <div><strong id="signedInAs">Signed in</strong><p class="submission-meta">Submission moderation</p></div>
+        <div><strong id="signedInAs">Signed in</strong><p class="submission-meta">Content dashboard</p></div>
         <div class="admin-actions">
           <button id="refreshButton" class="admin-btn secondary" type="button">Refresh</button>
           <button id="logoutButton" class="admin-btn secondary" type="button">Sign out</button>
         </div>
       </div>
+      <details class="admin-compose" id="composePanel">
+        <summary id="composeHeading">Add new content</summary>
+        <div class="admin-form" id="contentForm">
+          <div class="admin-row">
+            <div class="admin-field">
+              <label for="cfType">Content type</label>
+              <select id="cfType">
+                <option value="article">Article</option>
+                <option value="research-paper">Research paper</option>
+                <option value="job">Job</option>
+                <option value="internship">Internship</option>
+              </select>
+            </div>
+            <div class="admin-field" data-for="article research-paper">
+              <label for="cfAuthorName">Author</label>
+              <input id="cfAuthorName" maxlength="200" type="text" autocomplete="off">
+            </div>
+            <div class="admin-field" data-for="job internship">
+              <label for="cfOrganisation">Organisation</label>
+              <input id="cfOrganisation" maxlength="200" type="text" autocomplete="off">
+            </div>
+          </div>
+          <div class="admin-field">
+            <label for="cfTitle">Title</label>
+            <input id="cfTitle" maxlength="250" type="text" autocomplete="off">
+          </div>
+          <div class="admin-row" data-for="job internship">
+            <div class="admin-field">
+              <label for="cfLocation">Location</label>
+              <input id="cfLocation" maxlength="200" type="text" placeholder="e.g. Delhi or Remote">
+            </div>
+            <div class="admin-field">
+              <label for="cfDuration">Duration</label>
+              <input id="cfDuration" maxlength="200" type="text" placeholder="e.g. 2 months">
+            </div>
+            <div class="admin-field">
+              <label for="cfDeadline">Apply by</label>
+              <input id="cfDeadline" type="date">
+              <small>The listing hides itself after this date.</small>
+            </div>
+          </div>
+          <div class="admin-field" data-for="job internship">
+            <label for="cfEligibility">Who can apply</label>
+            <input id="cfEligibility" maxlength="1000" type="text" placeholder="e.g. Law students in their 3rd year or above">
+          </div>
+          <div class="admin-field" data-for="job internship">
+            <label for="cfApplicationUrl">Application link (https://)</label>
+            <input id="cfApplicationUrl" maxlength="2000" type="url" placeholder="https://">
+          </div>
+          <div class="admin-field">
+            <label for="cfDescription" id="cfDescriptionLabel">Article text</label>
+            <textarea id="cfDescription" maxlength="20000"></textarea>
+            <small>Formatting: a blank line starts a new paragraph. Use <code>## Heading</code>, <code>- bullet</code>, <code>**bold**</code> and <code>[text](https://link)</code>.</small>
+          </div>
+          <div class="admin-row">
+            <div class="admin-field" data-for="research-paper">
+              <label for="cfPdfUrl">PDF link (https://)</label>
+              <input id="cfPdfUrl" maxlength="2000" type="url" placeholder="https://">
+            </div>
+            <div class="admin-field" data-for="article research-paper">
+              <label for="cfContentUrl">Original source link (optional, https://)</label>
+              <input id="cfContentUrl" maxlength="2000" type="url" placeholder="https://">
+            </div>
+          </div>
+          <div class="admin-compose-actions">
+            <button class="admin-btn secondary" id="cfSaveDraft" type="button">Save as draft</button>
+            <button class="admin-btn" id="cfPublish" type="button">Publish now</button>
+            <button class="admin-btn secondary admin-hidden" id="cfCancel" type="button">Cancel editing</button>
+          </div>
+          <div class="admin-status admin-hidden" id="composeNotice" role="status" aria-live="polite"></div>
+        </div>
+      </details>
       <div id="notice" class="admin-status" role="status" aria-live="polite">Loading submissions…</div>
       <h2 class="admin-section-heading">Submission category</h2>
       <div class="admin-filters" role="group" aria-label="Filter by submission category">
@@ -73,10 +155,11 @@
         <button class="admin-filter" data-category="editorial" type="button">Articles &amp; Research Papers</button>
         <button class="admin-filter" data-category="careers" type="button">Jobs &amp; Internships</button>
       </div>
-      <h2 class="admin-section-heading">Review status</h2>
+      <h2 class="admin-section-heading">Status</h2>
       <div class="admin-filters" role="group" aria-label="Filter submissions by status">
         <button class="admin-filter active" data-filter="Pending" type="button">Pending</button>
-        <button class="admin-filter" data-filter="Approved" type="button">Approved</button>
+        <button class="admin-filter" data-filter="Draft" type="button">Drafts</button>
+        <button class="admin-filter" data-filter="Approved" type="button">Published</button>
         <button class="admin-filter" data-filter="Rejected" type="button">Rejected</button>
         <button class="admin-filter" data-filter="All" type="button">All</button>
       </div>
@@ -87,6 +170,7 @@
     <div class="container"><p>© Legal Lounge Live · Administrative access is monitored. <a href="index.html">Return to homepage</a></p></div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.1/lib/msal-browser.min.js"></script>
+  <script src="script.js"></script>
   <script src="admin.js"></script>
 </body>
 </html>
