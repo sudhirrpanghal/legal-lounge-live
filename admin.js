@@ -1,4 +1,3 @@
-javascript
 /* Legal Lounge Live admin dashboard.
  * Public client IDs are identifiers, not secrets. Never add client secrets here.
  */
@@ -365,4 +364,3 @@ javascript
       );
     });
 })();
-
