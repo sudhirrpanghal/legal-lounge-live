@@ -40,13 +40,19 @@
     .admin-compose summary:before{content:'+';display:inline-block;width:1.4rem;color:#9b7840}
     .admin-compose[open] summary:before{content:'–'}
     .admin-form{display:grid;gap:1rem;margin-top:1rem}
-    .admin-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+    .admin-row{align-items:start;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
     .admin-field{display:grid;gap:.35rem;min-width:0}
     .admin-field label{font-size:.85rem;font-weight:700;color:#26364a}
     .admin-field input,.admin-field select,.admin-field textarea{width:100%;border:1px solid #cfd5dd;border-radius:9px;padding:.65rem .75rem;font:inherit;background:#fff;color:#101f35}
     .admin-field textarea{min-height:240px;resize:vertical;line-height:1.6}
     .admin-field small{color:#626d7c;font-size:.8rem}
     .admin-field input:focus,.admin-field select:focus,.admin-field textarea:focus{outline:3px solid #c7a66a55;border-color:#9b7840}
+    .admin-preview{border-top:1px solid #e0e3e8;padding-top:1rem;margin-top:.5rem}
+    .admin-preview h4{margin:1.2rem 0 .6rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#9b7840}
+    .admin-preview-note{background:#f7f2e8;border:1px solid #e8dcc3;padding:.6rem .8rem;border-radius:9px;font-size:.88rem;margin:0}
+    .admin-preview-card{grid-template-columns:minmax(0,440px)!important}
+    .admin-preview a{pointer-events:none}
+    .admin-preview .read-page{padding:1.4rem;border:1px solid #e0e3e8;border-radius:12px;background:#fffdf9;max-width:none}
     .admin-compose-actions{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
     .admin-card-actions{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:.9rem}
     .admin-card-actions .admin-btn{padding:.5rem .8rem;font-size:.9rem}
@@ -143,9 +149,11 @@
           <div class="admin-compose-actions">
             <button class="admin-btn secondary" id="cfSaveDraft" type="button">Save as draft</button>
             <button class="admin-btn" id="cfPublish" type="button">Publish now</button>
+            <button class="admin-btn secondary" id="cfPreview" type="button">Preview</button>
             <button class="admin-btn secondary admin-hidden" id="cfCancel" type="button">Cancel editing</button>
           </div>
           <div class="admin-status admin-hidden" id="composeNotice" role="status" aria-live="polite"></div>
+          <div class="admin-preview admin-hidden" id="cfPreviewBox"><p class="admin-preview-note">Preview: this is how it will look on the website. Links are switched off here.</p><h4>On the listing page</h4><div class="article-grid admin-preview-card" id="cfPreviewCard"></div><h4>Full page</h4><article class="read-page" id="cfPreviewPage"></article></div>
         </div>
       </details>
       <div id="notice" class="admin-status" role="status" aria-live="polite">Loading submissions…</div>
@@ -171,6 +179,8 @@
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.1/lib/msal-browser.min.js"></script>
   <script src="script.js"></script>
+  <script src="site-config.js"></script>
+  <script src="live-content.js"></script>
   <script src="admin.js"></script>
 </body>
 </html>

@@ -48,14 +48,28 @@
     return !isNaN(t) && t < Date.now();
   }
 
-  function excerpt(text, max) {
-    var plain = String(text || '')
-      .replace(/^#{1,3}\s+/gm, '')
-      .replace(/^[-*]\s+/gm, '')
+  function stripMarks(line) {
+    return String(line)
       .replace(/\*\*([^*]+)\*\*/g, '$1')
+      .replace(/\*([^*\s][^*]*)\*/g, '$1')
       .replace(/\[([^\]]+)\]\(https:\/\/[^)]+\)/g, '$1')
       .replace(/\s+/g, ' ')
       .trim();
+  }
+
+  // Short summary for cards: the first normal paragraph; if there is none, the first bullets.
+  function excerpt(text, max) {
+    var blocks = String(text || '').replace(/\r\n?/g, '\n').split(/\n{2,}/);
+    var plain = '';
+    for (var i = 0; i < blocks.length && !plain; i++) {
+      var lines = blocks[i].split('\n').filter(function (l) { return l.trim(); });
+      if (lines.length && !/^#{1,3}\s/.test(lines[0]) && !/^[-*]\s/.test(lines[0])) plain = stripMarks(lines.join(' '));
+    }
+    if (!plain) {
+      var bullets = String(text || '').split('\n').filter(function (l) { return /^[-*]\s+/.test(l); });
+      plain = bullets.map(function (l) { return stripMarks(l.replace(/^[-*]\s+/, '')); }).join(' · ');
+    }
+    if (!plain) plain = stripMarks(String(text || '').replace(/^#{1,3}\s+/gm, ''));
     return plain.length > max ? plain.slice(0, max - 1).replace(/\s+\S*$/, '') + '…' : plain;
   }
 
@@ -160,6 +174,7 @@
   function inline(text) {
     var out = esc(text);
     out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*\s][^*]*)\*/g, '<em>$1</em>');
     out = out.replace(/\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
     return out;
   }
@@ -182,11 +197,50 @@
     return value ? '<div><dt>' + esc(label) + '</dt><dd>' + esc(value) + '</dd></div>' : '';
   }
 
+  var SKELETON =
+    '<p class="eyebrow" data-r="type"></p><h1 data-r="title"></h1>' +
+    '<div class="read-meta" data-r="meta"></div><dl class="read-facts" data-r="facts" hidden></dl>' +
+    '<div class="read-actions" data-r="actions"></div><div class="read-body" data-r="body"></div>';
+
+  // Fills a reader skeleton (see SKELETON / read.html) with one item. Also used by the dashboard preview.
+  function fillReader(root, item) {
+    var part = function (name) { return root.querySelector('[data-r="' + name + '"]'); };
+    var career = isCareer(item);
+
+    part('type').textContent = (LABELS[item.type] || 'Published').toUpperCase() + (career && item.organisation ? ' · ' + item.organisation.toUpperCase() : '');
+    part('title').textContent = item.title;
+
+    var bits = [];
+    if (!career && item.authorName) bits.push('By ' + item.authorName);
+    if (item.publishedAt) bits.push('Published ' + formatDate(item.publishedAt));
+    part('meta').textContent = bits.join(' · ');
+
+    var facts = part('facts');
+    if (career) {
+      var closed = deadlineClosed(item.deadline);
+      facts.innerHTML =
+        fact('Organisation', item.organisation) + fact('Location', item.location) +
+        fact('Duration', item.duration) + fact('Eligibility', item.eligibility) +
+        fact('Apply by', item.deadline ? formatDate(item.deadline) + (closed ? ' (closed)' : '') : '');
+      facts.hidden = !facts.innerHTML;
+    } else {
+      facts.hidden = true;
+    }
+
+    part('body').innerHTML = renderBody(item.description);
+
+    var html = '';
+    var apply = httpsUrl(item.applicationUrl), pdf = httpsUrl(item.pdfUrl), orig = httpsUrl(item.contentUrl);
+    if (apply && !(career && deadlineClosed(item.deadline))) html += '<a class="button button-gold" href="' + esc(apply) + '" target="_blank" rel="noopener">Apply now <span aria-hidden="true">↗</span></a>';
+    if (pdf) html += '<a class="button button-gold" href="' + esc(pdf) + '" target="_blank" rel="noopener">Download PDF <span aria-hidden="true">↓</span></a>';
+    if (orig) html += '<a class="button button-outline" href="' + esc(orig) + '" target="_blank" rel="noopener">View original source <span aria-hidden="true">↗</span></a>';
+    part('actions').innerHTML = html;
+  }
+
   function loadReader(root) {
     var id = new URLSearchParams(window.location.search).get('id') || '';
-    var $ = function (sel) { return root.querySelector(sel); };
-    var title = $('#readTitle'), kicker = $('#readType'), meta = $('#readMeta'), facts = $('#readFacts');
-    var actions = $('#readActions'), body = $('#readBody'), status = $('#readStatus'), back = $('#readBack');
+    var status = root.querySelector('#readStatus'), back = root.querySelector('#readBack');
+    var title = root.querySelector('[data-r="title"]');
 
     function fail(message) {
       title.textContent = 'This page is not available';
@@ -203,34 +257,8 @@
       })
       .then(function (data) {
         var item = data.item;
-        var career = isCareer(item);
         document.title = item.title + ' | Legal Lounge Live';
-        kicker.textContent = (LABELS[item.type] || 'Published').toUpperCase() + (career && item.organisation ? ' · ' + item.organisation.toUpperCase() : '');
-        title.textContent = item.title;
-
-        var bits = [];
-        if (!career && item.authorName) bits.push('By ' + item.authorName);
-        if (item.publishedAt) bits.push('Published ' + formatDate(item.publishedAt));
-        meta.textContent = bits.join(' · ');
-
-        if (career) {
-          var closed = deadlineClosed(item.deadline);
-          facts.innerHTML =
-            fact('Organisation', item.organisation) + fact('Location', item.location) +
-            fact('Duration', item.duration) + fact('Eligibility', item.eligibility) +
-            fact('Apply by', item.deadline ? formatDate(item.deadline) + (closed ? ' (closed)' : '') : '');
-          facts.hidden = !facts.innerHTML;
-        }
-
-        body.innerHTML = renderBody(item.description);
-
-        var html = '';
-        var apply = httpsUrl(item.applicationUrl), pdf = httpsUrl(item.pdfUrl), orig = httpsUrl(item.contentUrl);
-        if (apply && !(career && deadlineClosed(item.deadline))) html += '<a class="button button-gold" href="' + esc(apply) + '" target="_blank" rel="noopener">Apply now <span aria-hidden="true">↗</span></a>';
-        if (pdf) html += '<a class="button button-gold" href="' + esc(pdf) + '" target="_blank" rel="noopener">Download PDF <span aria-hidden="true">↓</span></a>';
-        if (orig) html += '<a class="button button-outline" href="' + esc(orig) + '" target="_blank" rel="noopener">View original source <span aria-hidden="true">↗</span></a>';
-        actions.innerHTML = html;
-
+        fillReader(root, item);
         var b = BACK[item.type] || BACK.article;
         back.href = b[0];
         back.textContent = '← ' + b[1];
@@ -238,6 +266,8 @@
       })
       .catch(function (err) { fail(err.message || 'This item could not be loaded.'); });
   }
+
+  window.LLLive = { card: card, fillReader: fillReader, skeleton: SKELETON };
 
   function init() {
     Array.prototype.forEach.call(document.querySelectorAll('[data-live-feed]'), loadFeed);

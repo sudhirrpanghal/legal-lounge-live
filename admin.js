@@ -239,6 +239,7 @@
       cf(suffix).value = "";
     });
 
+    document.getElementById("cfPreviewBox").classList.add("admin-hidden");
     updateFormForType();
     updateComposeButtons();
   }
@@ -578,6 +579,40 @@
     }
   }
 
+  function showPreview() {
+    const values = collectFields();
+
+    if (!values.title && !values.description) {
+      showComposeNotice("Add a title and some text first, then click Preview.", "error");
+      return;
+    }
+
+    if (!window.LLLive) {
+      showComposeNotice("Preview is unavailable: live-content.js did not load.", "error");
+      return;
+    }
+
+    const item = {
+      id: "preview",
+      type: cf("Type").value,
+      publishedAt: new Date().toISOString(),
+      ...values,
+      title: values.title || "(Untitled)",
+      description: values.description || ""
+    };
+
+    document.getElementById("cfPreviewCard").innerHTML = window.LLLive.card(item);
+
+    const page = document.getElementById("cfPreviewPage");
+    page.innerHTML = window.LLLive.skeleton;
+    window.LLLive.fillReader(page, item);
+
+    const box = document.getElementById("cfPreviewBox");
+    box.classList.remove("admin-hidden");
+    box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  cf("Preview").addEventListener("click", showPreview);
   cf("Type").addEventListener("change", updateFormForType);
   cf("SaveDraft").addEventListener("click", () => saveContent(false));
   cf("Publish").addEventListener("click", () => saveContent(true));
