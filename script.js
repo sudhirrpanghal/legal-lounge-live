@@ -25,7 +25,16 @@
 
   // Current page in navigation
   var file = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-  if (file.indexOf('article-') === 0) file = 'articles.html';
+  // Some pages belong under another menu item.
+  var BELONGS_TO = {
+    'blogs.html': ['write-blog.html', 'articles.html'],
+    'journal.html': ['research-papers.html', 'legal-articles.html', 'case-notes.html', 'case-law.html', 'sample-paper-legal-compliance.html', 'sample-article-state-exemptions.html'],
+    'bare-acts.html': ['bns-guide.html', 'bnss-guide.html', 'bsa-guide.html', 'criminal-codes.html']
+  };
+  if (file.indexOf('article-') === 0) file = 'blogs.html';
+  Object.keys(BELONGS_TO).forEach(function (item) {
+    if (BELONGS_TO[item].indexOf(file) > -1) file = item;
+  });
   $$('.main-nav a').forEach(function (a) {
     if ((a.getAttribute('href') || '').toLowerCase() === file) {
       a.setAttribute('aria-current', 'page');

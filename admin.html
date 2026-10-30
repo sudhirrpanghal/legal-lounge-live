@@ -62,7 +62,7 @@
   </style>
 </head>
 <body>
-  <header class="site-header"><a aria-label="Legal Lounge Live home" class="brand" href="index.html"><span class="brand-mark">LL</span><span class="brand-word">LEGAL LOUNGE <b>LIVE</b><small>Understand the Law. Apply the Law.</small></span></a><button aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle" id="menuToggle">☰</button><nav aria-label="Main" class="main-nav" id="mainNav"><a class="nav-home" href="index.html">Home</a><a href="articles.html">Articles</a><a href="case-law.html">Case Law</a><a href="supreme-court-live.html">Supreme Court Live</a><a href="learning.html">Learning Hub</a><a href="research-papers.html">Research Papers</a><a href="careers.html">Careers &amp; Internships</a><a href="decision-room.html">Decision Room</a><a class="nav-cta" href="community.html">Join the Lounge <span>↗</span></a></nav></header>
+  <header class="site-header"><a aria-label="Legal Lounge Live home" class="brand" href="index.html"><span class="brand-mark">LL</span><span class="brand-word">LEGAL LOUNGE <b>LIVE</b><small>Understand the Law. Apply the Law.</small></span></a><button aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle" id="menuToggle">☰</button><nav aria-label="Main" class="main-nav" id="mainNav"><a class="nav-home" href="index.html">Home</a><a href="blogs.html">Blogs</a><a href="journal.html">Journal</a><a href="bare-acts.html">Bare Acts</a><a href="supreme-court-live.html">Supreme Court Live</a><a href="learning.html">Learning Hub</a><a href="careers.html">Careers &amp; Internships</a><a href="decision-room.html">Decision Room</a><a class="nav-cta" href="community.html">Join the Lounge <span>↗</span></a></nav></header>
   <main class="admin-shell">
     <section class="admin-hero">
       <p class="eyebrow">Restricted area · Authorized editors only</p>
@@ -88,14 +88,9 @@
           <div class="admin-row">
             <div class="admin-field">
               <label for="cfType">Content type</label>
-              <select id="cfType">
-                <option value="article">Article</option>
-                <option value="research-paper">Research paper</option>
-                <option value="job">Job</option>
-                <option value="internship">Internship</option>
-              </select>
+              <select id="cfType"><option value="blog">Blog</option><optgroup label="Journal"><option value="research-paper">Research paper</option><option value="legal-article">Legal article</option><option value="case-note">Case note</option></optgroup><optgroup label="Careers"><option value="job">Job</option><option value="internship">Internship</option></optgroup><option value="lounge-opening">Legal Lounge opening</option><option value="article" hidden>Blog (older item)</option></select>
             </div>
-            <div class="admin-field" data-for="article research-paper">
+            <div class="admin-field" data-for="blog article research-paper legal-article case-note">
               <label for="cfAuthorName">Author</label>
               <input id="cfAuthorName" maxlength="200" type="text" autocomplete="off">
             </div>
@@ -108,7 +103,7 @@
             <label for="cfTitle">Title</label>
             <input id="cfTitle" maxlength="250" type="text" autocomplete="off">
           </div>
-          <div class="admin-row" data-for="job internship">
+          <div class="admin-row" data-for="job internship lounge-opening">
             <div class="admin-field">
               <label for="cfLocation">Location</label>
               <input id="cfLocation" maxlength="200" type="text" placeholder="e.g. Delhi or Remote">
@@ -123,12 +118,12 @@
               <small>The listing hides itself after this date.</small>
             </div>
           </div>
-          <div class="admin-field" data-for="job internship">
+          <div class="admin-field" data-for="job internship lounge-opening">
             <label for="cfEligibility">Who can apply</label>
             <input id="cfEligibility" maxlength="1000" type="text" placeholder="e.g. Law students in their 3rd year or above">
           </div>
-          <div class="admin-field" data-for="job internship">
-            <label for="cfApplicationUrl">Application link (https://)</label>
+          <div class="admin-field" data-for="job internship lounge-opening">
+            <label for="cfApplicationUrl">Application link (https:// or mailto:)</label>
             <input id="cfApplicationUrl" maxlength="2000" type="url" placeholder="https://">
           </div>
           <div class="admin-field">
@@ -137,11 +132,11 @@
             <small>Formatting: a blank line starts a new paragraph. Use <code>## Heading</code>, <code>- bullet</code>, <code>**bold**</code> and <code>[text](https://link)</code>.</small>
           </div>
           <div class="admin-row">
-            <div class="admin-field" data-for="research-paper">
+            <div class="admin-field" data-for="research-paper legal-article case-note">
               <label for="cfPdfUrl">PDF link (https://)</label>
               <input id="cfPdfUrl" maxlength="2000" type="url" placeholder="https://">
             </div>
-            <div class="admin-field" data-for="article research-paper">
+            <div class="admin-field" data-for="blog article research-paper legal-article case-note">
               <label for="cfContentUrl">Original source link (optional, https://)</label>
               <input id="cfContentUrl" maxlength="2000" type="url" placeholder="https://">
             </div>
@@ -160,8 +155,10 @@
       <h2 class="admin-section-heading">Submission category</h2>
       <div class="admin-filters" role="group" aria-label="Filter by submission category">
         <button class="admin-filter active" data-category="all" type="button">All categories</button>
-        <button class="admin-filter" data-category="editorial" type="button">Articles &amp; Research Papers</button>
+        <button class="admin-filter" data-category="blogs" type="button">Blogs</button>
+        <button class="admin-filter" data-category="journal" type="button">Journal</button>
         <button class="admin-filter" data-category="careers" type="button">Jobs &amp; Internships</button>
+        <button class="admin-filter" data-category="lounge" type="button">Lounge openings</button>
       </div>
       <h2 class="admin-section-heading">Status</h2>
       <div class="admin-filters" role="group" aria-label="Filter submissions by status">

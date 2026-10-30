@@ -14,12 +14,32 @@
   var cfg = window.LL_CONFIG || {};
   var API = String(cfg.apiBase || 'https://legal-lounge-live-api-dbe8fzducefeg8a3.centralindia-01.azurewebsites.net').replace(/\/+$/, '');
 
-  var LABELS = { 'article': 'Article', 'research-paper': 'Research paper', 'job': 'Job', 'internship': 'Internship' };
+  var LABELS = {
+    'blog': 'Blog',
+    'article': 'Blog',
+    'research-paper': 'Research paper',
+    'legal-article': 'Legal article',
+    'case-note': 'Case note',
+    'job': 'Job',
+    'internship': 'Internship',
+    'lounge-opening': 'Opening'
+  };
+  var READ_LABELS = {
+    'blog': 'Read the blog',
+    'article': 'Read the blog',
+    'research-paper': 'Read the paper',
+    'legal-article': 'Read the article',
+    'case-note': 'Read the case note'
+  };
   var BACK = {
-    'article': ['articles.html', 'Back to articles'],
+    'blog': ['blogs.html', 'Back to blogs'],
+    'article': ['blogs.html', 'Back to blogs'],
     'research-paper': ['research-papers.html', 'Back to research papers'],
+    'legal-article': ['legal-blogs.html', 'Back to legal articles'],
+    'case-note': ['case-notes.html', 'Back to case notes'],
     'job': ['careers.html#latest-opportunities', 'Back to careers & internships'],
-    'internship': ['careers.html#latest-opportunities', 'Back to careers & internships']
+    'internship': ['careers.html#latest-opportunities', 'Back to careers & internships'],
+    'lounge-opening': ['community.html', 'Back to Join the Lounge']
   };
 
   function esc(value) {
@@ -31,6 +51,16 @@
   function httpsUrl(value) {
     var v = String(value || '').trim();
     return /^https:\/\//i.test(v) ? v : '';
+  }
+
+  // Apply links may be a web link or an email link.
+  function linkUrl(value) {
+    var v = String(value || '').trim();
+    return /^(https:\/\/|mailto:)/i.test(v) ? v : '';
+  }
+
+  function newTab(url) {
+    return /^mailto:/i.test(url) ? '' : ' target="_blank" rel="noopener"';
   }
 
   function formatDate(value) {
@@ -78,7 +108,11 @@
   }
 
   function isCareer(item) {
-    return item.type === 'job' || item.type === 'internship';
+    return ['job', 'internship', 'lounge-opening'].indexOf(item.type) > -1;
+  }
+
+  function organisationOf(item) {
+    return item.organisation || (item.type === 'lounge-opening' ? 'Legal Lounge Live' : '');
   }
 
   /* ---------- cards ---------- */
@@ -86,7 +120,7 @@
   function card(item) {
     var career = isCareer(item);
     var meta = [LABELS[item.type] || 'Published'];
-    if (career && item.organisation) meta.push(item.organisation);
+    if (career && organisationOf(item)) meta.push(organisationOf(item));
     if (!career && item.authorName) meta.push(item.authorName);
     if (!career && item.publishedAt) meta.push(formatDate(item.publishedAt));
 
@@ -103,13 +137,13 @@
 
     var actions = '';
     if (career) {
-      var apply = httpsUrl(item.applicationUrl);
+      var apply = linkUrl(item.applicationUrl);
       if (apply) {
-        actions += '<a class="button button-gold" href="' + esc(apply) + '" target="_blank" rel="noopener">Apply <span aria-hidden="true">↗</span></a>';
+        actions += '<a class="button button-gold" href="' + esc(apply) + '"' + newTab(apply) + '>Apply <span aria-hidden="true">↗</span></a>';
       }
       actions += '<a class="read-link" href="' + esc(readHref(item)) + '">Full details <span>→</span></a>';
     } else {
-      actions += '<a class="read-link" href="' + esc(readHref(item)) + '">' + (item.type === 'research-paper' ? 'Read the paper' : 'Read the article') + ' <span>→</span></a>';
+      actions += '<a class="read-link" href="' + esc(readHref(item)) + '">' + (READ_LABELS[item.type] || 'Read more') + ' <span>→</span></a>';
       var pdf = httpsUrl(item.pdfUrl);
       if (pdf) actions += '<a class="read-link" href="' + esc(pdf) + '" target="_blank" rel="noopener">Download PDF <span>↓</span></a>';
     }
@@ -207,7 +241,7 @@
     var part = function (name) { return root.querySelector('[data-r="' + name + '"]'); };
     var career = isCareer(item);
 
-    part('type').textContent = (LABELS[item.type] || 'Published').toUpperCase() + (career && item.organisation ? ' · ' + item.organisation.toUpperCase() : '');
+    part('type').textContent = (LABELS[item.type] || 'Published').toUpperCase() + (career && organisationOf(item) ? ' · ' + organisationOf(item).toUpperCase() : '');
     part('title').textContent = item.title;
 
     var bits = [];
@@ -219,7 +253,7 @@
     if (career) {
       var closed = deadlineClosed(item.deadline);
       facts.innerHTML =
-        fact('Organisation', item.organisation) + fact('Location', item.location) +
+        fact('Organisation', organisationOf(item)) + fact('Location', item.location) +
         fact('Duration', item.duration) + fact('Eligibility', item.eligibility) +
         fact('Apply by', item.deadline ? formatDate(item.deadline) + (closed ? ' (closed)' : '') : '');
       facts.hidden = !facts.innerHTML;
@@ -230,8 +264,8 @@
     part('body').innerHTML = renderBody(item.description);
 
     var html = '';
-    var apply = httpsUrl(item.applicationUrl), pdf = httpsUrl(item.pdfUrl), orig = httpsUrl(item.contentUrl);
-    if (apply && !(career && deadlineClosed(item.deadline))) html += '<a class="button button-gold" href="' + esc(apply) + '" target="_blank" rel="noopener">Apply now <span aria-hidden="true">↗</span></a>';
+    var apply = linkUrl(item.applicationUrl), pdf = httpsUrl(item.pdfUrl), orig = httpsUrl(item.contentUrl);
+    if (apply && !(career && deadlineClosed(item.deadline))) html += '<a class="button button-gold" href="' + esc(apply) + '"' + newTab(apply) + '>Apply now <span aria-hidden="true">↗</span></a>';
     if (pdf) html += '<a class="button button-gold" href="' + esc(pdf) + '" target="_blank" rel="noopener">Download PDF <span aria-hidden="true">↓</span></a>';
     if (orig) html += '<a class="button button-outline" href="' + esc(orig) + '" target="_blank" rel="noopener">View original source <span aria-hidden="true">↗</span></a>';
     part('actions').innerHTML = html;
@@ -259,7 +293,7 @@
         var item = data.item;
         document.title = item.title + ' | Legal Lounge Live';
         fillReader(root, item);
-        var b = BACK[item.type] || BACK.article;
+        var b = BACK[item.type] || BACK.blog;
         back.href = b[0];
         back.textContent = '← ' + b[1];
         status.textContent = '';
@@ -267,7 +301,7 @@
       .catch(function (err) { fail(err.message || 'This item could not be loaded.'); });
   }
 
-  window.LLLive = { card: card, fillReader: fillReader, skeleton: SKELETON };
+  window.LLLive = { card: card, fillReader: fillReader, skeleton: SKELETON, renderBody: renderBody };
 
   function init() {
     Array.prototype.forEach.call(document.querySelectorAll('[data-live-feed]'), loadFeed);

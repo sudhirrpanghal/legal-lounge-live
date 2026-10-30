@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://legallounge.live/</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://legallounge.live/articles.html</loc><lastmod>2026-10-17</lastmod></url>
+  <url><loc>https://legallounge.live/blogs.html</loc><lastmod>2026-10-17</lastmod></url>
   <url><loc>https://legallounge.live/article-peaceful-protest.html</loc><lastmod>2026-10-17</lastmod></url>
   <url><loc>https://legallounge.live/article-freelancer-contracts.html</loc><lastmod>2026-10-17</lastmod></url>
   <url><loc>https://legallounge.live/article-digital-evidence.html</loc><lastmod>2026-10-17</lastmod></url>
@@ -58,4 +58,8 @@
   <url><loc>https://legallounge.live/search.html</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://legallounge.live/sample-paper-legal-compliance.html</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://legallounge.live/sample-article-state-exemptions.html</loc><lastmod>2026-10-29</lastmod></url>
+  <url><loc>https://legallounge.live/journal.html</loc><lastmod>2026-10-29</lastmod></url>
+  <url><loc>https://legallounge.live/legal-articles.html</loc><lastmod>2026-10-29</lastmod></url>
+  <url><loc>https://legallounge.live/case-notes.html</loc><lastmod>2026-10-29</lastmod></url>
+  <url><loc>https://legallounge.live/write-blog.html</loc><lastmod>2026-10-29</lastmod></url>
 </urlset>

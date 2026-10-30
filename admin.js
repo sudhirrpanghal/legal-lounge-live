@@ -113,24 +113,39 @@
   }
 
   function categoryOf(item) {
-    return ["job", "internship"].includes(typeOf(item))
-      ? "careers"
-      : "editorial";
+    const type = typeOf(item);
+
+    if (["blog", "article"].includes(type)) return "blogs";
+    if (["research-paper", "legal-article", "case-note"].includes(type)) return "journal";
+    if (["job", "internship"].includes(type)) return "careers";
+    if (type === "lounge-opening") return "lounge";
+    return "other";
   }
 
   const TYPE_LABELS = {
-    "article": "Article",
-    "research-paper": "Research paper",
+    "blog": "Blog",
+    "article": "Blog",
+    "research-paper": "Journal: Research paper",
+    "legal-article": "Journal: Legal article",
+    "case-note": "Journal: Case note",
     "job": "Job",
-    "internship": "Internship"
+    "internship": "Internship",
+    "lounge-opening": "Legal Lounge opening"
   };
+
+  const EDITORIAL_FIELDS = ["title", "description", "authorName", "contentUrl"];
+  const OPENING_FIELDS = ["title", "description", "location", "duration", "deadline", "eligibility", "applicationUrl"];
 
   // Which form fields belong to which content type.
   const FIELDS_BY_TYPE = {
-    "article": ["title", "description", "authorName", "contentUrl"],
-    "research-paper": ["title", "description", "authorName", "pdfUrl", "contentUrl"],
-    "job": ["title", "description", "organisation", "location", "duration", "deadline", "eligibility", "applicationUrl"],
-    "internship": ["title", "description", "organisation", "location", "duration", "deadline", "eligibility", "applicationUrl"]
+    "blog": EDITORIAL_FIELDS,
+    "article": EDITORIAL_FIELDS,
+    "research-paper": [...EDITORIAL_FIELDS, "pdfUrl"],
+    "legal-article": [...EDITORIAL_FIELDS, "pdfUrl"],
+    "case-note": [...EDITORIAL_FIELDS, "pdfUrl"],
+    "job": [...OPENING_FIELDS, "organisation"],
+    "internship": [...OPENING_FIELDS, "organisation"],
+    "lounge-opening": OPENING_FIELDS
   };
 
   const FIELD_IDS = {
@@ -148,10 +163,14 @@
   };
 
   const DESCRIPTION_LABELS = {
-    "article": "Article text",
+    "blog": "Blog text",
+    "article": "Blog text",
     "research-paper": "Abstract or summary",
+    "legal-article": "Article text",
+    "case-note": "Case note text",
     "job": "Job details",
-    "internship": "Internship details"
+    "internship": "Internship details",
+    "lounge-opening": "Role details"
   };
 
   function showComposeNotice(message, type = "", linkHref = "") {
@@ -198,8 +217,12 @@
     if (!values.description) return "Please add the main text or details.";
 
     for (const field of ["applicationUrl", "pdfUrl", "contentUrl"]) {
-      if (values[field] && !/^https:\/\//i.test(values[field])) {
-        return "Links must start with https://";
+      const allowed = field === "applicationUrl" ? /^(https:\/\/|mailto:)/i : /^https:\/\//i;
+
+      if (values[field] && !allowed.test(values[field])) {
+        return field === "applicationUrl"
+          ? "The application link must start with https:// or mailto:"
+          : "Links must start with https://";
       }
     }
 
@@ -233,7 +256,7 @@
 
   function resetForm() {
     editingItem = null;
-    cf("Type").value = "article";
+    cf("Type").value = "blog";
 
     Object.values(FIELD_IDS).forEach(suffix => {
       cf(suffix).value = "";
@@ -373,7 +396,7 @@
       lines.push("Created in this dashboard");
     }
 
-    if (categoryOf(item) === "careers") {
+    if (["careers", "lounge"].includes(categoryOf(item))) {
       const bits = [item.organisation, item.location, item.duration].filter(Boolean);
       if (bits.length) lines.push(bits.join(" · "));
       if (item.deadline) lines.push(`Apply by: ${item.deadline}`);
