@@ -25,3 +25,7 @@ Use the *Blogs / Journal / Jobs & Internships / Lounge openings* filters and the
 **Menu and footer:** edit the `MENU` list in `tools/sync-nav.py` and run `python3 tools/sync-nav.py`.
 
 **Visitor counter:** shown at the bottom of the homepage. It counts one visit per browser per day. If the service is unreachable the counter hides itself.
+
+**If a page looks unstyled after an upload:** your browser is showing an old saved copy of the stylesheet. Press Ctrl+F5 (Cmd+Shift+R on Mac). To avoid this, run `python3 tools/sync-nav.py` before uploading: it refreshes the version tags (`styles.css?v=…`) on every page so browsers fetch the newest files.
+
+**Glossary:** the glossary page was folded into Legal Maxims. `glossary.html` now redirects to `maxims.html`.
