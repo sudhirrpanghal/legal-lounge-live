@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Keep the main menu, the footer links and the stylesheet/script version tags identical on every page.
+"""Keep the main menu, the footer links and the stylesheet/script version tags and the Google Analytics tag and the welcome pop-up identical on every page.
 
 Edit the MENU list below, then run:   python3 tools/sync-nav.py
 from the repository root. Every .html page gets the same menu, the current
@@ -12,6 +12,27 @@ import datetime, glob, os, re
 # browsers fetch the newest files instead of showing an old cached copy. It changes every day this tool runs.
 ASSET_VERSION = datetime.date.today().strftime("%Y%m%d")
 ASSET_RE = re.compile(r'((?:href|src)=")([A-Za-z0-9_.-]+\.(?:css|js))(?:\?v=[0-9A-Za-z.-]+)?(")')
+
+# Google Analytics tag, placed straight after <head> on every public page.
+# Skipped on the private admin dashboard and on the two redirect stubs.
+ANALYTICS_ID = "G-FNQ5QP15F7"
+NO_ANALYTICS = {"admin.html", "articles.html", "glossary.html"}
+ANALYTICS = """
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '%s');
+</script>
+""" % (ANALYTICS_ID, ANALYTICS_ID)
+HEAD_RE = re.compile(r"<head>")
+
+# Welcome pop-up (Join the Lounge + social accounts). Not on pages that already show those links.
+NO_POPUP = {"admin.html", "articles.html", "glossary.html", "community.html", "join.html", "newsletter.html", "404.html"}
+POPUP_TAG = '<script src="welcome-popup.js" defer></script>'
 
 NEWSLETTER = "https://www.linkedin.com/newsletters/the-legal-lounge-weekly-7520867793827880961"
 
@@ -106,7 +127,11 @@ def main():
         else:
             no_nav.append(path)
         new = FOOTER_RE.sub(lambda m: fix_footer(m.group(0)), new, count=1)
+        if path not in NO_POPUP and "welcome-popup.js" not in new:
+            new = new.replace("</body>", POPUP_TAG + "</body>", 1)
         new = version_assets(new)
+        if path not in NO_ANALYTICS and ANALYTICS_ID not in new:
+            new = HEAD_RE.sub(lambda m: "<head>" + ANALYTICS, new, count=1)
         if new != text:
             open(path, "w", encoding="utf-8").write(new)
             changed += 1
