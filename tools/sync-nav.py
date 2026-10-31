@@ -21,9 +21,10 @@ MENU = [
     ("blogs.html", "Blogs", ""),
     ("journal.html", "Journal", ""),
     ("bare-acts.html", "Bare Acts", ""),
+    ("events.html", "Events", ""),
     ("supreme-court-live.html", "Supreme Court Live", ""),
     ("learning.html", "Learning Hub", ""),
-    ("careers.html", "Careers &amp; Internships", ""),
+    ("careers.html", "Careers", ""),
     ("decision-room.html", "Decision Room", ""),
 ]
 CTA = ("community.html", "Join the Lounge")
