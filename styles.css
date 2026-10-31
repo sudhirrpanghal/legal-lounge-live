@@ -363,8 +363,8 @@
 .button-outline:hover,.button-outline:focus-visible{background:var(--navy)!important;color:#fff!important;outline:2px solid var(--gold);outline-offset:2px}
 .button:focus-visible,.main-nav a:focus-visible{outline:3px solid var(--gold-dark);outline-offset:3px}
 
-/* Menu has 9 links: switch to the hamburger menu at 1280px and below so nothing wraps or overflows. */
-@media(max-width:1280px){.menu-toggle{display:block}.main-nav{display:none;position:absolute;top:86px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 24px;flex-direction:column;align-items:stretch;gap:0}.main-nav.open{display:flex}.main-nav a{padding:12px}.main-nav .nav-cta{text-align:center;margin-top:8px}}
+/* Menu links stay visible down to 1200px wide; below that they fold into the hamburger button. */
+@media(max-width:1200px){.menu-toggle{display:block}.main-nav{display:none;position:absolute;top:86px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 24px;flex-direction:column;align-items:stretch;gap:0}.main-nav.open{display:flex}.main-nav a{padding:12px}.main-nav .nav-cta{text-align:center;margin-top:8px}}
 @media(max-width:700px){.main-nav{top:72px;padding:16px 20px}}
 
 /* ---- Live content (articles, research papers, jobs, internships) ---- */
@@ -391,7 +391,7 @@
 .read-body a{color:var(--gold-dark);text-decoration:underline}
 .read-status{color:var(--muted);margin:18px 0}
 .read-back{display:inline-block;margin-top:28px}
-@media(min-width:1281px){.main-nav{gap:clamp(12px,1.3vw,24px)}.main-nav a{white-space:nowrap}.main-nav .nav-home{display:none}.brand small{display:none}}
+@media(min-width:1201px){.main-nav{gap:clamp(14px,1.4vw,24px);font-size:13px}.main-nav a{white-space:nowrap}.main-nav .nav-home{display:none}.brand small{display:none}}
 
 /* ---- Journal, openings, blog editor, visitor counter ---- */
 .intro-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:20px}
