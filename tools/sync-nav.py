@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-"""Keep the main menu and the footer links identical on every page.
+"""Keep the main menu, the footer links and the stylesheet/script version tags identical on every page.
 
 Edit the MENU list below, then run:   python3 tools/sync-nav.py
 from the repository root. Every .html page gets the same menu, the current
 page is marked, and the footers get the same content links and the LinkedIn
 newsletter link. Safe to run repeatedly.
 """
-import glob, os, re
+import datetime, glob, os, re
+
+# Added to every local stylesheet and script address (styles.css?v=...). When the number changes,
+# browsers fetch the newest files instead of showing an old cached copy. It changes every day this tool runs.
+ASSET_VERSION = datetime.date.today().strftime("%Y%m%d")
+ASSET_RE = re.compile(r'((?:href|src)=")([A-Za-z0-9_.-]+\.(?:css|js))(?:\?v=[0-9A-Za-z.-]+)?(")')
 
 NEWSLETTER = "https://www.linkedin.com/newsletters/the-legal-lounge-weekly-7520867793827880961"
 
@@ -66,8 +71,19 @@ def build_nav(filename):
     return "".join(parts)
 
 
+def version_assets(text):
+    def add(m):
+        name = m.group(2)
+        return m.group(1) + name + "?v=" + ASSET_VERSION + m.group(3) if os.path.exists(name) else m.group(0)
+    return ASSET_RE.sub(add, text)
+
+
 def fix_footer(footer):
     footer = SOCIAL_RE.sub("", footer)
+    # The glossary was folded into the maxims page.
+    if 'href="glossary.html"' in footer:
+        footer = footer.replace('<a href="glossary.html">Glossary</a>',
+                                "" if 'href="maxims.html"' in footer else '<a href="maxims.html">Legal Maxims</a>')
     if "linkedin.com/newsletters" not in footer:
         footer = LINKEDIN_RE.sub(
             lambda m: m.group(1) + '<a href="%s" rel="noopener" target="_blank">LinkedIn Newsletter ↗</a>' % NEWSLETTER,
@@ -89,6 +105,7 @@ def main():
         else:
             no_nav.append(path)
         new = FOOTER_RE.sub(lambda m: fix_footer(m.group(0)), new, count=1)
+        new = version_assets(new)
         if new != text:
             open(path, "w", encoding="utf-8").write(new)
             changed += 1
