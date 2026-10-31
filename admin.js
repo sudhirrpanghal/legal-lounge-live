@@ -119,6 +119,8 @@
     if (["research-paper", "legal-article", "case-note"].includes(type)) return "journal";
     if (["job", "internship"].includes(type)) return "careers";
     if (type === "lounge-opening") return "lounge";
+    if (type === "lounge-event") return "events-ours";
+    if (type === "worldwide-event") return "events-world";
     return "other";
   }
 
@@ -130,10 +132,13 @@
     "case-note": "Journal: Case note",
     "job": "Job",
     "internship": "Internship",
-    "lounge-opening": "Legal Lounge opening"
+    "lounge-opening": "Legal Lounge opening",
+    "lounge-event": "Legal Lounge event",
+    "worldwide-event": "Worldwide event"
   };
 
   const EDITORIAL_FIELDS = ["title", "description", "authorName", "contentUrl"];
+  const EVENT_FIELDS = ["title", "description", "category", "deadline", "applicationUrl"];
   const OPENING_FIELDS = ["title", "description", "location", "duration", "deadline", "eligibility", "applicationUrl"];
 
   // Which form fields belong to which content type.
@@ -145,7 +150,9 @@
     "case-note": [...EDITORIAL_FIELDS, "pdfUrl"],
     "job": [...OPENING_FIELDS, "organisation"],
     "internship": [...OPENING_FIELDS, "organisation"],
-    "lounge-opening": OPENING_FIELDS
+    "lounge-opening": OPENING_FIELDS,
+    "lounge-event": EVENT_FIELDS,
+    "worldwide-event": EVENT_FIELDS
   };
 
   const FIELD_IDS = {
@@ -159,7 +166,8 @@
     eligibility: "Eligibility",
     applicationUrl: "ApplicationUrl",
     pdfUrl: "PdfUrl",
-    contentUrl: "ContentUrl"
+    contentUrl: "ContentUrl",
+    category: "Category"
   };
 
   const DESCRIPTION_LABELS = {
@@ -170,7 +178,9 @@
     "case-note": "Case note text",
     "job": "Job details",
     "internship": "Internship details",
-    "lounge-opening": "Role details"
+    "lounge-opening": "Role details",
+    "lounge-event": "Event details",
+    "worldwide-event": "Event details"
   };
 
   function showComposeNotice(message, type = "", linkHref = "") {
@@ -199,6 +209,12 @@
     });
 
     cf("DescriptionLabel").textContent = DESCRIPTION_LABELS[type];
+
+    const isEvent = ["lounge-event", "worldwide-event"].includes(type);
+    document.getElementById("cfDeadlineLabel").textContent = isEvent ? "Last date" : "Apply by";
+    document.getElementById("cfApplicationUrlLabel").textContent = isEvent
+      ? "Event link (https://)"
+      : "Application link (https:// or mailto:)";
   }
 
   function collectFields() {
@@ -400,6 +416,9 @@
       const bits = [item.organisation, item.location, item.duration].filter(Boolean);
       if (bits.length) lines.push(bits.join(" · "));
       if (item.deadline) lines.push(`Apply by: ${item.deadline}`);
+    } else if (["events-ours", "events-world"].includes(categoryOf(item))) {
+      if (item.category) lines.push(`Category: ${item.category}`);
+      if (item.deadline) lines.push(`Last date: ${item.deadline}`);
     } else if (item.authorName) {
       lines.push(`Author: ${item.authorName}`);
     }

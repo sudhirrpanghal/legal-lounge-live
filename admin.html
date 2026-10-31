@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Admin Dashboard | Legal Lounge Live</title>
-  <link rel="stylesheet" href="styles.css?v=20261030">
+  <link rel="stylesheet" href="styles.css?v=20261031">
   <style>
     .admin-shell{max-width:1180px;margin:0 auto;padding:clamp(1.25rem,4vw,3rem) 1rem 4rem}
     .admin-hero{background:linear-gradient(135deg,#101f35,#1c3555);color:#fff;border-radius:22px;padding:clamp(1.5rem,4vw,3rem);margin:1.5rem 0 2rem}
@@ -88,7 +88,7 @@
           <div class="admin-row">
             <div class="admin-field">
               <label for="cfType">Content type</label>
-              <select id="cfType"><option value="blog">Blog</option><optgroup label="Journal"><option value="research-paper">Research paper</option><option value="legal-article">Legal article</option><option value="case-note">Case note</option></optgroup><optgroup label="Careers"><option value="job">Job</option><option value="internship">Internship</option></optgroup><option value="lounge-opening">Legal Lounge opening</option><option value="article" hidden>Blog (older item)</option></select>
+              <select id="cfType"><option value="blog">Blog</option><optgroup label="Journal"><option value="research-paper">Research paper</option><option value="legal-article">Legal article</option><option value="case-note">Case note</option></optgroup><optgroup label="Careers"><option value="job">Job</option><option value="internship">Internship</option></optgroup><optgroup label="Events"><option value="lounge-event">Legal Lounge event</option><option value="worldwide-event">Worldwide event</option></optgroup><option value="lounge-opening">Legal Lounge opening</option><option value="article" hidden>Blog (older item)</option></select>
             </div>
             <div class="admin-field" data-for="blog article research-paper legal-article case-note">
               <label for="cfAuthorName">Author</label>
@@ -103,6 +103,11 @@
             <label for="cfTitle">Title</label>
             <input id="cfTitle" maxlength="250" type="text" autocomplete="off">
           </div>
+          <div class="admin-field" data-for="lounge-event worldwide-event">
+            <label for="cfCategory">Category</label>
+            <input id="cfCategory" maxlength="60" type="text" autocomplete="off" placeholder="e.g. Moot court competition, Essay writing, Drafting">
+            <small>Free text. It appears in gold at the top of the event card.</small>
+          </div>
           <div class="admin-row" data-for="job internship lounge-opening">
             <div class="admin-field">
               <label for="cfLocation">Location</label>
@@ -112,18 +117,18 @@
               <label for="cfDuration">Duration</label>
               <input id="cfDuration" maxlength="200" type="text" placeholder="e.g. 2 months">
             </div>
-            <div class="admin-field">
-              <label for="cfDeadline">Apply by</label>
-              <input id="cfDeadline" type="date">
-              <small>The listing hides itself after this date.</small>
-            </div>
+          </div>
+          <div class="admin-field" data-for="job internship lounge-opening lounge-event worldwide-event">
+            <label for="cfDeadline" id="cfDeadlineLabel">Apply by</label>
+            <input id="cfDeadline" type="date">
+            <small>The listing hides itself after this date.</small>
           </div>
           <div class="admin-field" data-for="job internship lounge-opening">
             <label for="cfEligibility">Who can apply</label>
             <input id="cfEligibility" maxlength="1000" type="text" placeholder="e.g. Law students in their 3rd year or above">
           </div>
-          <div class="admin-field" data-for="job internship lounge-opening">
-            <label for="cfApplicationUrl">Application link (https:// or mailto:)</label>
+          <div class="admin-field" data-for="job internship lounge-opening lounge-event worldwide-event">
+            <label for="cfApplicationUrl" id="cfApplicationUrlLabel">Application link (https:// or mailto:)</label>
             <input id="cfApplicationUrl" maxlength="2000" type="url" placeholder="https://">
           </div>
           <div class="admin-field">
@@ -159,6 +164,8 @@
         <button class="admin-filter" data-category="journal" type="button">Journal</button>
         <button class="admin-filter" data-category="careers" type="button">Jobs &amp; Internships</button>
         <button class="admin-filter" data-category="lounge" type="button">Lounge openings</button>
+        <button class="admin-filter" data-category="events-ours" type="button">Our events</button>
+        <button class="admin-filter" data-category="events-world" type="button">Worldwide events</button>
       </div>
       <h2 class="admin-section-heading">Status</h2>
       <div class="admin-filters" role="group" aria-label="Filter submissions by status">
@@ -175,9 +182,9 @@
     <div class="container"><p>© Legal Lounge Live · Administrative access is monitored. <a href="index.html">Return to homepage</a></p></div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.1/lib/msal-browser.min.js"></script>
-  <script src="script.js?v=20261030"></script>
-  <script src="site-config.js?v=20261030"></script>
-  <script src="live-content.js?v=20261030"></script>
-  <script src="admin.js?v=20261030"></script>
+  <script src="script.js?v=20261031"></script>
+  <script src="site-config.js?v=20261031"></script>
+  <script src="live-content.js?v=20261031"></script>
+  <script src="admin.js?v=20261031"></script>
 </body>
 </html>

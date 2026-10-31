@@ -22,7 +22,9 @@
     'case-note': 'Case note',
     'job': 'Job',
     'internship': 'Internship',
-    'lounge-opening': 'Opening'
+    'lounge-opening': 'Opening',
+    'lounge-event': 'Legal Lounge event',
+    'worldwide-event': 'Worldwide event'
   };
   var READ_LABELS = {
     'blog': 'Read the blog',
@@ -39,7 +41,9 @@
     'case-note': ['case-notes.html', 'Back to case notes'],
     'job': ['careers.html#latest-opportunities', 'Back to careers & internships'],
     'internship': ['careers.html#latest-opportunities', 'Back to careers & internships'],
-    'lounge-opening': ['community.html', 'Back to Join the Lounge']
+    'lounge-opening': ['community.html', 'Back to Join the Lounge'],
+    'lounge-event': ['events.html', 'Back to events'],
+    'worldwide-event': ['events.html', 'Back to events']
   };
 
   function esc(value) {
@@ -117,7 +121,43 @@
 
   /* ---------- cards ---------- */
 
+  function isEvent(item) {
+    return item.type === 'lounge-event' || item.type === 'worldwide-event';
+  }
+
+  // Event card: the category (free text, e.g. "Moot court competition") sits on top in gold.
+  function eventCard(item) {
+    var chips = item.deadline ? '<ul class="live-chips"><li>Last date: ' + esc(formatDate(item.deadline)) + '</li></ul>' : '';
+    var link = linkUrl(item.applicationUrl);
+    var actions = '';
+    if (link) actions += '<a class="button button-gold" href="' + esc(link) + '"' + newTab(link) + '>View event <span aria-hidden="true">↗</span></a>';
+    actions += '<a class="read-link" href="' + esc(readHref(item)) + '">Event details <span>→</span></a>';
+    return '<article class="article-card live-card event-card"><div class="article-content">' +
+      '<div class="meta event-category">' + esc(item.category || 'Event').toUpperCase() + '</div>' +
+      '<h3>' + esc(item.title) + '</h3>' + chips +
+      '<p>' + esc(excerpt(item.description, 200)) + '</p>' +
+      '<div class="live-actions">' + actions + '</div></div></article>';
+  }
+
+  function fillEvent(root, item) {
+    var part = function (name) { return root.querySelector('[data-r="' + name + '"]'); };
+    var closed = deadlineClosed(item.deadline);
+    part('type').textContent = (item.category || 'Event').toUpperCase() + ' · ' + (LABELS[item.type] || 'Event').toUpperCase();
+    part('title').textContent = item.title;
+    part('meta').textContent = item.publishedAt ? 'Posted ' + formatDate(item.publishedAt) : '';
+    var facts = part('facts');
+    facts.innerHTML = fact('Category', item.category) +
+      fact('Organised by', item.type === 'lounge-event' ? 'Legal Lounge Live' : '') +
+      fact('Last date', item.deadline ? formatDate(item.deadline) + (closed ? ' (closed)' : '') : '');
+    facts.hidden = !facts.innerHTML;
+    part('body').innerHTML = renderBody(item.description);
+    var link = linkUrl(item.applicationUrl);
+    part('actions').innerHTML = link && !closed
+      ? '<a class="button button-gold" href="' + esc(link) + '"' + newTab(link) + '>View event <span aria-hidden="true">↗</span></a>' : '';
+  }
+
   function card(item) {
+    if (isEvent(item)) return eventCard(item);
     var career = isCareer(item);
     var meta = [LABELS[item.type] || 'Published'];
     if (career && organisationOf(item)) meta.push(organisationOf(item));
@@ -194,7 +234,8 @@
         }
         root.innerHTML = items.map(card).join('');
         if (section) section.hidden = false;
-        setStatus(root, items.length + ' published item' + (items.length === 1 ? '' : 's') + '.');
+        var noun = root.getAttribute('data-live-noun') || 'published item';
+        setStatus(root, items.length + ' ' + noun + (items.length === 1 ? '' : 's') + '.');
       })
       .catch(function (err) {
         if (window.console) console.warn('Live content unavailable:', err);
@@ -238,6 +279,7 @@
 
   // Fills a reader skeleton (see SKELETON / read.html) with one item. Also used by the dashboard preview.
   function fillReader(root, item) {
+    if (isEvent(item)) { fillEvent(root, item); return; }
     var part = function (name) { return root.querySelector('[data-r="' + name + '"]'); };
     var career = isCareer(item);
 

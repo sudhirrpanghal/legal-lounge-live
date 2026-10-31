@@ -431,3 +431,11 @@
 .social-icon svg{width:22px;height:22px;fill:currentColor}
 .social-card b{display:block;font-size:15px}
 .social-card small{display:block;margin-top:2px;color:var(--muted);font-size:12.5px}
+
+/* ---- Homepage "Jump to" strip (top of page) and event cards ---- */
+.quick-strip{background:#fff;border-bottom:1px solid #ece5d6}
+.quick-strip .quick-nav{margin:0 auto;padding-top:13px;padding-bottom:13px;gap:8px 10px}
+.quick-strip .quick-label{flex-basis:auto;margin:0 8px 0 0}
+.quick-strip .quick-nav a{font-size:13px;padding:9px 16px}
+@media(max-width:700px){.quick-strip .quick-nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.quick-strip .quick-nav::-webkit-scrollbar{display:none}.quick-strip .quick-nav a{flex:none;white-space:nowrap}.quick-strip .quick-label{display:none}}
+.event-card .event-category{color:var(--gold-dark);font-size:11.5px;font-weight:800;letter-spacing:.14em}

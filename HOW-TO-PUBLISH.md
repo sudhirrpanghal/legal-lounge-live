@@ -10,6 +10,8 @@ Sign in at `https://legallounge.live/admin.html` with Microsoft, open **Add new 
 | Case note | Journal › Case Notes |
 | Job / Internship | Careers & Internships page (hidden automatically after the "Apply by" date) |
 | Legal Lounge opening | Top of the Join the Lounge page (`community.html`) |
+| Legal Lounge event | Events page › "Legal Lounge events" |
+| Worldwide event | Events page › "Other worldwide events" |
 
 Every published item also gets its own page (`read.html?id=…`) with the full text and Apply / PDF buttons.
 
@@ -29,3 +31,5 @@ Use the *Blogs / Journal / Jobs & Internships / Lounge openings* filters and the
 **If a page looks unstyled after an upload:** your browser is showing an old saved copy of the stylesheet. Press Ctrl+F5 (Cmd+Shift+R on Mac). To avoid this, run `python3 tools/sync-nav.py` before uploading: it refreshes the version tags (`styles.css?v=…`) on every page so browsers fetch the newest files.
 
 **Glossary:** the glossary page was folded into Legal Maxims. `glossary.html` now redirects to `maxims.html`.
+
+**Events:** choose *Legal Lounge event* (our own) or *Worldwide event* (others). Fill in the title, description, **Category** (free text such as "Moot court competition", "Essay writing" or "Drafting": it appears in gold at the top of the card), **Last date** and **Event link**. Events are listed soonest last date first and disappear automatically after their last date (leave it empty to keep an event listed). Visitors can send events from the form at the bottom of the Events page; those arrive as *Worldwide event* / Pending, and you can edit and approve them under the *Worldwide events* filter.
