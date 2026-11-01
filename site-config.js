@@ -1,6 +1,10 @@
 // Legal Lounge Live: site settings. Edit the values between the quotes, then upload this file.
 window.LL_CONFIG = {
   // Live content API (jobs, internships, research papers, articles). Change only if the API address changes.
+  // Google AdSense. Create "Display ads" units in AdSense, then paste each unit's data-ad-slot number below.
+  // Empty = that spot stays hidden, so the page never shows an empty box.
+  adClient: 'ca-pub-3772899819656140',
+  adSlots: { article: '', listing: '' },
   apiBase: 'https://legal-lounge-live-api-dbe8fzducefeg8a3.centralindia-01.azurewebsites.net',
   // Author (shown on the About page and in article bylines when a name is set)
   authorName: '',

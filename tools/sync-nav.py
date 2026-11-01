@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Keep the main menu, the footer links and the stylesheet/script version tags and the Google Analytics tag and the welcome pop-up identical on every page.
+"""Keep the main menu, the footer links and the stylesheet/script version tags and the Google Analytics and AdSense tags and the welcome pop-up consistent on every page.
 
 Edit the MENU list below, then run:   python3 tools/sync-nav.py
 from the repository root. Every .html page gets the same menu, the current
@@ -33,6 +33,20 @@ HEAD_RE = re.compile(r"<head>")
 # Welcome pop-up (Join the Lounge + social accounts). Not on pages that already show those links.
 NO_POPUP = {"admin.html", "articles.html", "glossary.html", "community.html", "join.html", "newsletter.html", "404.html"}
 POPUP_TAG = '<script src="welcome-popup.js" defer></script>'
+
+# Google AdSense tag, added before </head> on content pages only. Not on forms, quizzes and tools,
+# the admin dashboard, redirect stubs, or thin pages (ads next to buttons risk accidental clicks).
+ADSENSE_ID = "ca-pub-3772899819656140"
+ADSENSE = ('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=%s"\n'
+           '     crossorigin="anonymous"></script>\n') % ADSENSE_ID
+NO_ADS = {
+    "admin.html", "articles.html", "glossary.html", "404.html",
+    "community.html", "join.html", "newsletter.html", "search.html", "my-study.html",
+    "contribute.html", "write-blog.html", "contact.html", "privacy.html", "disclaimer.html",
+    "corrections.html", "careers.html", "events.html", "read.html",
+    "quiz.html", "mock-test.html", "case-flashcards.html", "decision-room.html",
+    "cite-it.html", "writing-planner.html", "section-finder.html",
+}
 
 NEWSLETTER = "https://www.linkedin.com/newsletters/the-legal-lounge-weekly-7520867793827880961"
 
@@ -129,7 +143,11 @@ def main():
         new = FOOTER_RE.sub(lambda m: fix_footer(m.group(0)), new, count=1)
         if path not in NO_POPUP and "welcome-popup.js" not in new:
             new = new.replace("</body>", POPUP_TAG + "</body>", 1)
+        if 'class="ad-slot"' in new and "ad-slots.js" not in new:
+            new = new.replace("</body>", '<script src="ad-slots.js" defer></script></body>', 1)
         new = version_assets(new)
+        if path not in NO_ADS and ADSENSE_ID not in new:
+            new = new.replace("</head>", ADSENSE + "</head>", 1)
         if path not in NO_ANALYTICS and ANALYTICS_ID not in new:
             new = HEAD_RE.sub(lambda m: "<head>" + ANALYTICS, new, count=1)
         if new != text:
