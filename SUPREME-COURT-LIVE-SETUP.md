@@ -20,6 +20,6 @@ This folder is based on the supplied latest project ZIP. Existing site pages, as
 ## Known limitations
 - This is not an official API integration. It parses publicly visible HTML and may need maintenance if the source markup changes.
 - It does not bypass CAPTCHA, access restricted case-status services, or guarantee instant updates.
-- The collector intentionally fails without overwriting the last good JSON when no records are extracted.
+- The collector never overwrites the last good JSON when it finds nothing. If the court's own pages say "No records found" it finishes with a warning (green run) and updates automatically once the court lists items again. If the pages look blocked or changed, the run fails and the log shows what was received.
 - Feed entries are an unofficial convenience index. Verify every detail against the official court record.
 - The workflow's automatic schedule is once daily at 07:50 India Standard Time. It can also be run manually.

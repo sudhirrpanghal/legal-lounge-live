@@ -30,7 +30,9 @@
       const data=await r.json();
       items=Array.isArray(data.items)?data.items.filter(x=>x&&x.title&&x.url&&/^https:\/\/(www\.)?sci\.gov\.in\//i.test(x.url)):[];
       const when=data.fetched_at_utc?new Date(data.fetched_at_utc).toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Kolkata'}):null;
-      status.textContent=items.length?(items.length+' records · Last refreshed'+(when?' '+when+' IST':'')):'The feed has not been populated yet. Run the GitHub Actions update workflow.';
+      const ageDays=data.fetched_at_utc?(Date.now()-new Date(data.fetched_at_utc).getTime())/86400000:0;
+      const staleNote=ageDays>3?' · No newer items have been collected since then. This list updates automatically when the Supreme Court website lists new judgments and orders.':'';
+      status.textContent=items.length?(items.length+' records · Last refreshed'+(when?' '+when+' IST':'')+staleNote):'The feed has not been populated yet. Run the GitHub Actions update workflow.';
       render();
     }catch(e){status.textContent='The saved feed is temporarily unavailable. Use the official Supreme Court links below.';items=[];render();console.error('Supreme Court feed:',e);}
     finally{refresh.disabled=false;}
