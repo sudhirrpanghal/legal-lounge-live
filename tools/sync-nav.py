@@ -92,25 +92,25 @@ def current_item(filename):
     return name
 
 
-def build_nav(filename):
+def build_nav(filename, prefix=""):
     current = current_item(filename)
     parts = ['<nav aria-label="Main" class="main-nav" id="mainNav">']
     for href, label, cls in MENU:
         attrs = ""
         if cls:
             attrs += ' class="%s"' % cls
-        attrs += ' href="%s"' % href
+        attrs += ' href="%s%s"' % (prefix, href)
         if href == current:
             attrs += ' aria-current="page"'
         parts.append("<a%s>%s</a>" % (attrs, label))
-    parts.append('<a class="nav-cta" href="%s">%s <span>↗</span></a></nav>' % CTA)
+    parts.append('<a class="nav-cta" href="%s%s">%s <span>↗</span></a></nav>' % ((prefix,) + CTA))
     return "".join(parts)
 
 
-def version_assets(text):
+def version_assets(text, folder=""):
     def add(m):
         name = m.group(2)
-        return m.group(1) + name + "?v=" + ASSET_VERSION + m.group(3) if os.path.exists(name) else m.group(0)
+        return m.group(1) + name + "?v=" + ASSET_VERSION + m.group(3) if os.path.exists(os.path.join(folder, name)) else m.group(0)
     return ASSET_RE.sub(add, text)
 
 
@@ -131,22 +131,31 @@ def fix_footer(footer):
     return footer
 
 
+# The Bare Acts Library lives in its own folder; it shares the site menu and analytics tag.
+LIBRARY_PAGE = "bare-acts/index.html"
+LIBRARY_AS = "bare-acts.html"      # the menu item that is highlighted on the library page
+
+
 def main():
     changed, no_nav = 0, []
-    for path in sorted(glob.glob("*.html")):
+    targets = [(p, p, "", "") for p in sorted(glob.glob("*.html"))]
+    if os.path.exists(LIBRARY_PAGE):
+        targets.append((LIBRARY_PAGE, LIBRARY_AS, "../", "bare-acts"))
+    for path, name, prefix, folder in targets:
         text = open(path, encoding="utf-8").read()
         new = text
         if NAV_RE.search(new):
-            new = NAV_RE.sub(lambda m: build_nav(path), new, count=1)
+            new = NAV_RE.sub(lambda m: build_nav(name, prefix), new, count=1)
         else:
             no_nav.append(path)
-        new = FOOTER_RE.sub(lambda m: fix_footer(m.group(0)), new, count=1)
-        if path not in NO_POPUP and "welcome-popup.js" not in new:
-            new = new.replace("</body>", POPUP_TAG + "</body>", 1)
-        if 'class="ad-slot"' in new and "ad-slots.js" not in new:
-            new = new.replace("</body>", '<script src="ad-slots.js" defer></script></body>', 1)
-        new = version_assets(new)
-        if path not in NO_ADS and ADSENSE_ID not in new:
+        if not folder:
+            new = FOOTER_RE.sub(lambda m: fix_footer(m.group(0)), new, count=1)
+            if path not in NO_POPUP and "welcome-popup.js" not in new:
+                new = new.replace("</body>", POPUP_TAG + "</body>", 1)
+            if 'class="ad-slot"' in new and "ad-slots.js" not in new:
+                new = new.replace("</body>", '<script src="ad-slots.js" defer></script></body>', 1)
+        new = version_assets(new, folder)
+        if not folder and path not in NO_ADS and ADSENSE_ID not in new:
             new = new.replace("</head>", ADSENSE + "</head>", 1)
         if path not in NO_ANALYTICS and ANALYTICS_ID not in new:
             new = HEAD_RE.sub(lambda m: "<head>" + ANALYTICS, new, count=1)

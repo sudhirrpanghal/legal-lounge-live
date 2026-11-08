@@ -1,38 +1,68 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FNQ5QP15F7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FNQ5QP15F7');
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bare Acts Library</title>
-<meta name="description" content="Central Acts of India in clean, searchable text.">
-<meta name="color-scheme" content="light dark">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2312294a'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23d4a74a' font-family='Georgia,serif'%3E%C2%A7%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css">
+<title>Bare Acts Library | Legal Lounge Live</title>
+<meta name="description" content="Read the bare text of Central Acts of India section by section, with search by Act name or section number. BNS, BNSS, BSA, Contract Act, Companies Act and more.">
+<link rel="canonical" href="https://legallounge.live/bare-acts/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Legal Lounge Live">
+<meta property="og:title" content="Bare Acts Library | Legal Lounge Live">
+<meta property="og:description" content="Central Acts of India in clean, searchable text.">
+<meta property="og:url" content="https://legallounge.live/bare-acts/">
+<meta property="og:image" content="https://legallounge.live/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site-chrome.css?v=20261103">
+<link rel="stylesheet" href="style.css?v=20261103">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="announcement">LEGAL KNOWLEDGE <span>✦</span> PRACTICAL LEARNING <span>✦</span> COMMUNITY</div>
+<header class="site-header"><a aria-label="Legal Lounge Live home" class="brand" href="../index.html"><span class="brand-mark">LL</span><span class="brand-word">LEGAL LOUNGE <b>LIVE</b><small>Understand the Law. Apply the Law.</small></span></a><button aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle" id="menuToggle">☰</button><nav aria-label="Main" class="main-nav" id="mainNav"><a class="nav-home" href="../index.html">Home</a><a href="../blogs.html">Blogs</a><a href="../journal.html">Journal</a><a href="../bare-acts.html" aria-current="page">Bare Acts</a><a href="../events.html">Events</a><a href="../supreme-court-live.html">Supreme Court Live</a><a href="../learning.html">Learning Hub</a><a href="../careers.html">Careers</a><a href="../decision-room.html">Decision Room</a><a class="nav-cta" href="../community.html">Join the Lounge <span>↗</span></a></nav></header>
 
-<header class="site-head" id="head">
-  <div class="head-in">
-    <a class="brand" href="#/" id="brand"><span class="mark">&sect;</span><span id="brand-name">Bare Acts Library</span></a>
+<div class="lib-bar" id="libbar">
+  <div class="lib-in">
+    <a class="lib-title" href="#/" id="brand"><span class="lib-mark">&sect;</span><span id="brand-name">Bare Acts Library</span></a>
     <div class="searchbox head-search" id="head-search" hidden>
       <input id="q-head" type="search" placeholder="Search: BNS 103, Article 21, contract" autocomplete="off" aria-label="Search Acts and sections">
       <div class="results" id="r-head" role="listbox" hidden></div>
     </div>
     <button class="icon-btn" id="theme" type="button" aria-label="Switch light or dark theme" title="Light / dark">&#9680;</button>
   </div>
-</header>
+</div>
 
 <main id="main" tabindex="-1">
-  <noscript><p class="notice">This site needs JavaScript to display the Acts.</p></noscript>
+  <noscript><p class="notice">This library needs JavaScript to display the Acts.</p></noscript>
   <div id="app"><p class="loading">Loading&hellip;</p></div>
 </main>
 
-<footer class="site-foot">
+<div class="lib-foot">
   <p id="disclaimer"></p>
   <p class="small" id="foot-meta"></p>
-</footer>
+</div>
 
-<script src="app.js"></script>
+<footer class="site-footer"><div class="container footer-inner"><a class="brand footer-brand" href="../index.html"><span class="brand-mark">LL</span><span class="brand-word">LEGAL LOUNGE <b>LIVE</b><small>Understand the Law. Apply the Law.</small></span></a><p>Educational content only. This website does not provide legal advice or create a lawyer-client relationship. Laws and outcomes depend on jurisdiction and facts.</p><span class="copyright">© <span id="year"></span> Legal Lounge Live</span></div><div class="container footer-links"><nav aria-label="Footer"><a href="../about.html">About</a><a href="../blogs.html">Blogs</a><a href="../journal.html">Journal</a><a href="../bare-acts.html">Bare Acts</a><a href="../maxims.html">Legal Maxims</a><a href="../events.html">Events</a><a href="../careers.html">Careers</a><a href="../contact.html">Contact</a><a href="../privacy.html">Privacy</a><a href="../disclaimer.html">Disclaimer &amp; Terms</a></nav></div></footer>
+
+<script>
+(function () {
+  var t = document.getElementById('menuToggle'), n = document.getElementById('mainNav'), y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+  if (t && n) t.addEventListener('click', function () { var o = n.classList.toggle('open'); t.setAttribute('aria-expanded', String(o)); });
+})();
+</script>
+<script src="app.js?v=20261103"></script>
 </body>
 </html>

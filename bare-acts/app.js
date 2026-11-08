@@ -140,6 +140,22 @@
     return p.length ? { view: "act", id: p[0], anchor: p[1] || null } : { view: "home" };
   }
 
+  /* ---------------------------------------------------------- grade gate */
+  // Acts whose quality grade is in cfg.hideGrades (default: "C") are never shown, searched or loaded.
+  function applyGradeGate(catalogue, cfg) {
+    var hide = ((cfg && cfg.hideGrades) || ["C"]).map(function (g) { return String(g).toUpperCase(); });
+    var hidden = {}, kept = [];
+    (catalogue.acts || []).forEach(function (a) {
+      if (hide.indexOf(String(a.grade || "").toUpperCase()) > -1) hidden[a.id] = 1; else kept.push(a);
+    });
+    var used = {}; kept.forEach(function (a) { used[a.category] = 1; });
+    return Object.assign({}, catalogue, {
+      acts: kept,
+      categories: (catalogue.categories || []).filter(function (c) { return used[c]; }),
+      hiddenIds: hidden
+    });
+  }
+
   /* ----------------------------------------------------------------- search */
   var STOP = { section: 1, sec: 1, s: 1, article: 1, art: 1, of: 1, the: 1, act: 1, under: 1, in: 1 };
   function parseQuery(q) {
@@ -156,11 +172,13 @@
     var hay = function (a) { return (a.name + " " + (a.shortName || "") + " " + a.year).toLowerCase(); };
     var actHits = words.length ? catalogue.acts.filter(function (a) { return words.every(function (w) { return hay(a).indexOf(w) > -1; }); }) : [];
     var ids = {}; actHits.forEach(function (a) { ids[a.id] = 1; });
+    var hiddenIds = catalogue.hiddenIds || {};
     var constitution = {};            // "article 21" means the Constitution, not section 21 of some Act
     if (pq.article) catalogue.acts.forEach(function (a) { if (/constitution/i.test(a.name)) constitution[a.id] = 1; });
     var sections = [];
     for (var i = 0; i < idx.rows.length && sections.length < 40; i++) {
       var r = idx.rows[i], id = idx.acts[r[0]][0], num = String(r[1]).toLowerCase(), t = String(r[2] || "").toLowerCase();
+      if (hiddenIds[id]) continue;
       if (pq.article && !constitution[id]) continue;
       if (nums.length) {
         if (nums.indexOf(num) < 0) continue;
@@ -220,12 +238,19 @@
     document.addEventListener("click", function (e) { if (!box.contains(e.target) && e.target !== input) close(); });
   }
 
+  function heroTitle(name) {            // "Bare Acts Library" -> "Bare Acts <em>Library.</em>"
+    var parts = String(name || "").trim().split(/\s+/);
+    if (parts.length < 2) return esc(name);
+    var last = parts.pop();
+    return esc(parts.join(" ")) + " <em>" + esc(last) + ".</em>";
+  }
+
   function renderHome() {
-    document.title = S.cfg.siteName + " - " + S.cfg.tagline;
+    document.title = S.cfg.siteName + " | Legal Lounge Live";
     $("#head-search").hidden = true;
     var total = S.catalogue.acts.reduce(function (n, a) { return n + (a.sectionCount || 0); }, 0);
     var cats = ["All"].concat(S.catalogue.categories);
-    $("#app").innerHTML = '<section class="hero"><h1>' + esc(S.cfg.siteName) + "</h1><p>" + esc(S.cfg.tagline) +
+    $("#app").innerHTML = '<section class="hero"><p class="eyebrow">Legal Lounge Live / Bare Acts</p><h1>' + heroTitle(S.cfg.siteName) + "</h1><p>" + esc(S.cfg.tagline) +
       '</p><div class="searchbox"><input id="q-hero" type="search" placeholder="Search Acts or sections: BNS 103, Article 21, contract" autocomplete="off" aria-label="Search Acts and sections"><div class="results" id="r-hero" role="listbox" hidden></div></div>' +
       '<p class="stat">' + S.catalogue.acts.length + " Acts &middot; " + total.toLocaleString("en-IN") + " sections</p></section>" +
       '<div class="wrap"><div class="filters" role="group" aria-label="Filter by category">' +
@@ -249,7 +274,7 @@
 
   function showAct(route) {
     var cat = S.catalogue.acts.filter(function (a) { return a.id === route.id; })[0];
-    if (!cat) { $("#app").innerHTML = '<p class="notice">This Act is not available on the site yet. <a href="#/">Browse all Acts</a>.</p>'; document.title = S.cfg.siteName; return; }
+    if (!cat) { $("#app").innerHTML = '<p class="notice">This Act is not available on the site yet. <a href="#/">Browse all Acts</a>.</p>'; document.title = S.cfg.siteName + " | Legal Lounge Live"; return; }
     var same = S.current === route.id && $("#act");
     if (same) return scrollToAnchor(route.anchor);
     $("#app").innerHTML = '<p class="loading">Loading ' + esc(cat.name) + "&hellip;</p>";
@@ -257,7 +282,7 @@
     p.then(function (act) {
       if (location.hash.indexOf("#/" + route.id) !== 0) return;       // user navigated away while loading
       S.current = route.id;
-      document.title = act.name + " - " + S.cfg.siteName;
+      document.title = act.name + " | " + S.cfg.siteName + " | Legal Lounge Live";
       var md = $('meta[name="description"]'); if (md) md.setAttribute("content", (act.longTitle || act.name) + " - bare Act text.");
       $("#head-search").hidden = false;
       $("#app").innerHTML = renderAct(act, cat, S.cfg, S.catalogue);
@@ -274,12 +299,15 @@
     if (!el) return;
     document.body.classList.remove("toc-open");
     el.scrollIntoView({ behavior: instant ? "instant" : "smooth", block: "start" });
-    if (instant) {      // long Acts change height while they lay out: re-aim once things settle
+    // Long Acts change height while they lay out, so re-aim after the scroll settles:
+    // the section must end up just below the sticky bars, not under them.
+    (instant ? [300, 900] : [1000, 1900]).forEach(function (delay) {
       setTimeout(function () {
-        var top = el.getBoundingClientRect().top;
-        if (Math.abs(top - 72) > 40) el.scrollIntoView({ behavior: "instant", block: "start" });
-      }, 300);
-    }
+        if (!document.body.contains(el)) return;
+        var want = parseFloat(getComputedStyle(el).scrollMarginTop) || 72;
+        if (Math.abs(el.getBoundingClientRect().top - want) > 8) el.scrollIntoView({ behavior: "instant", block: "start" });
+      }, delay);
+    });
     if (el.classList.contains("sec")) { el.classList.add("flash"); setTimeout(function () { el.classList.remove("flash"); }, 2600); }
   }
 
@@ -298,7 +326,12 @@
         document.documentElement.style.setProperty("--read", font + "px"); store("ba-font", String(font));
       }
     });
-    var tg = $("#toc-toggle"); if (tg) tg.addEventListener("click", function () { document.body.classList.toggle("toc-open"); });
+    var tg = $("#toc-toggle"); if (tg) tg.addEventListener("click", function () {
+      // the contents panel starts exactly under the site header, wherever the page is scrolled
+      var h = document.querySelector(".site-header");
+      document.documentElement.style.setProperty("--toc-top", (h ? Math.max(0, Math.round(h.getBoundingClientRect().bottom)) : 0) + "px");
+      document.body.classList.toggle("toc-open");
+    });
     $("#toc").addEventListener("click", function (e) { if (e.target.closest("a")) document.body.classList.remove("toc-open"); });
     $("#toc-q").addEventListener("input", function (e) {
       var q = e.target.value.trim().toLowerCase();
@@ -326,7 +359,7 @@
   }
 
   function boot() {
-    var th = store("ba-theme") || (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    var th = store("ba-theme") || "light";
     document.documentElement.setAttribute("data-theme", th);
     var tb = $("#theme");
     var paint = function (t) { tb.textContent = t === "dark" ? "\u2600" : "\u263E"; };
@@ -344,7 +377,7 @@
       $("#foot-meta").textContent = "Data generated " + fmtDate(m.generatedAt) + ".";
       return getJSON("data/catalogue.json");
     }).then(function (c) {
-      S.catalogue = c;
+      S.catalogue = applyGradeGate(c, S.cfg);
       window.addEventListener("hashchange", onRoute);
       onRoute();
     }).catch(function (e) {
@@ -353,5 +386,5 @@
   }
 
   return { esc: esc, fmtDate: fmtDate, classifyPara: classifyPara, renderSection: renderSection, renderToc: renderToc, renderBody: renderBody,
-    renderAct: renderAct, cardHtml: cardHtml, parseHash: parseHash, parseQuery: parseQuery, searchAll: searchAll, resultsHtml: resultsHtml, boot: boot };
+    renderAct: renderAct, cardHtml: cardHtml, applyGradeGate: applyGradeGate, parseHash: parseHash, parseQuery: parseQuery, searchAll: searchAll, resultsHtml: resultsHtml, boot: boot };
 });
