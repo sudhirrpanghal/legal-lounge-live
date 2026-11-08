@@ -1,0 +1,181 @@
+{
+ "schemaVersion": 1,
+ "id": "limitation-act-1963",
+ "name": "Limitation Act, 1963",
+ "shortName": "Limitation Act",
+ "year": 1963,
+ "actNumber": null,
+ "type": "act",
+ "category": "Civil Law & Procedure",
+ "status": "in-force",
+ "replacedBy": null,
+ "longTitle": null,
+ "enactmentDate": null,
+ "enforcementDate": null,
+ "ministry": null,
+ "preamble": [
+  "THE LIMITATION ACT, 1963 ACT NO. 36 OF 1963",
+  "[5th October, 1963.] An Act to consolidate and amend the law for the limitation of suits and other proceedings and for purposes connected therewith. BE it enacted by Parliament in the Fourteenth Year of the Republic of India as follows:— PART I PRELIMINARY"
+ ],
+ "source": {
+  "name": "Uploaded PDF (v9 library)",
+  "url": null,
+  "pdfUrl": null,
+  "retrievedAt": "2026-10-29",
+  "sha256": null,
+  "lastUpdatedBySource": null
+ },
+ "verification": {
+  "level": "auto",
+  "grade": "B",
+  "issues": [
+   "Imported from v9 text: PDF provenance unconfirmed - replace with the India Code version.",
+   "1 sections have no heading: 32"
+  ],
+  "amendedUpTo": null,
+  "lastVerified": null,
+  "reviewer": null
+ },
+ "chapters": [
+  {
+   "id": "part-i",
+   "kind": "part",
+   "number": "I",
+   "title": "PRELIMINARY",
+   "sectionRange": [
+    "1",
+    "2"
+   ]
+  },
+  {
+   "id": "part-ii",
+   "kind": "part",
+   "number": "II",
+   "title": "LIMITATION OF SUITS, APPEALS AND APPLICATIONS",
+   "sectionRange": [
+    "3",
+    "11"
+   ]
+  },
+  {
+   "id": "part-iii",
+   "kind": "part",
+   "number": "III",
+   "title": "COMPUTATION OF PERIOD OF LIMITATION",
+   "sectionRange": [
+    "12",
+    "24"
+   ]
+  },
+  {
+   "id": "part-iv",
+   "kind": "part",
+   "number": "IV",
+   "title": "ACQUISITION OF OWNERSHIP BY POSSESSION",
+   "sectionRange": [
+    "25",
+    "27"
+   ]
+  },
+  {
+   "id": "part-v",
+   "kind": "part",
+   "number": "V",
+   "title": "MISCELLANEOUS",
+   "sectionRange": [
+    "28",
+    "32"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "id": "s-1",
+   "number": "1",
+   "title": "Short title, extent and commencement",
+   "chapterId": "part-i",
+   "status": "in-force",
+   "paragraphs": [
+    "(1) This Act may be called the Limitation Act, 1963.",
+    "(2) It extends to the whole of India except the State of Jammu and Kashmir.",
+    "(3) It shall come into force on such date1 as the Central Government may, by notification in the Official Gazette, appoint."
+   ],
+   "footnotes": [],
+   "amended": false
+  },
+  {
+   "id": "s-2",
+   "number": "2",
+   "title": "Definitions",
+   "chapterId": "part-i",
+   "status": "in-force",
+   "paragraphs": [
+    "In this Act, unless the context otherwise requires,—",
+    "(a) “applicant” includes—",
+    "(i) a petitioner;",
+    "(ii) any person from or through whom an applicant derives his right to apply;",
+    "(iii) any person whose estate is represented by the applicant as executor, administrator or other representative;",
+    "(b) “application” includes a petition;",
+    "(c) “bill of exchange” includes a hundi and a cheque;",
+    "(d) “bond” includes any instrument whereby a person obliges himself to pay money to another, on condition that the obligation shall be void if a specified act is performed, or is not performed, as the case may be;",
+    "(e) “defendant” includes—",
+    "(i) any person from or through whom a defendant derives his liability to be sued;",
+    "(ii) any person whose estate is represented by the defendant as executor, administrator or other representative;",
+    "(f) “easement” includes a right not arising from contract, by which one person is entitled to remove and appropriate for his own profit any part of the soil belonging to another or anything growing in, or attached to, or subsisting upon, the land of another;",
+    "(g) “foreign country” means any country other than India;",
+    "(h) “good faith”—nothing shall be deemed to be done in good faith which is not done with due care and attention;",
+    "(i) “plaintiff” includes—",
+    "(i) any person from or through whom a plaintiff derives his right to sue;",
+    "(ii) any person whose estate is represented by the plaintiff as executor, administrator or other representative;",
+    "(j) “period of limitation” means the period of limitation prescribed for any suit, appeal or application by the Schedule, and “prescribed period” means the period of limitation computed in accordance with the provisions of this Act;",
+    "1. 1st January, 1964, vide notification No. S.O. 3118, dated 29th October, 1963, see Gazette of India, Part II, sec. 3 (ii). Amended in West Bengal by W.B. Act 18 of 1977. 1st September, 1984, vide notification No. S.O. 647(C), in respect of the State of Sikkim dated 24th August, 1984, see Gazette of India, Part II, sec. 3(ii).",
+    "(k) “promissory note” means any instrument whereby the maker engages absolutely to pay a specified sum of money to another at a time therein limited, or on demand, or at sight;",
+    "(l) “suit” does not include an appeal or an application;",
+    "(m) “tort\" means a civil wrong which is not exclusively the breach of a contract or the breach of a trust;",
+    "(n) “trustee” does not include a benamidar, a mortgagee remaining in possession after the mortgage has been satisfied or a person in wrongful possession without title.",
+    "LIMITATION OF SUITS, APPEALS AND APPLICATIONS"
+   ],
+   "footnotes": [],
+   "amended": false
+  },
+  {
+   "id": "s-3",
+   "number": "3",
+   "title": "Bar of limitation",
+   "chapterId": "part-ii",
+   "status": "in-force",
+   "paragraphs": [
+    "(1) Subject to the provisions contained in sections 4 to 24 (inclusive), every suit instituted, appeal preferred, and application made after the prescribed period shall be dismissed, although limitation has not been set up as a defence.",
+    "(2) For the purposes of this Act,—",
+    "(a) a suit is instituted,—",
+    "(i) in an ordinary case, when the plaint is presented to the proper officer;",
+    "(ii) in the case of a pauper, when his application for leave to sue as a pauper is made; and",
+    "(iii) in the case of a claim against a company which is being wound up by the court, when the claimant first sends in his claim to the official liquidator;",
+    "(b) any claim by way of a set off or a counter claim, shall be treated as a separate suit and shall be deemed to have been instituted—",
+    "(i) in the case of a set off, on the same date as the suit in which the set off is pleaded;",
+    "(ii) in the case of a counter claim, on the date on which the counter claim is made in court;",
+    "(c) an application by notice of motion in a High Court is made when the application is presented to the proper officer of that court."
+   ],
+   "footnotes": [],
+   "amended": false
+  }
+ ],
+ "schedules": [
+  {
+   "id": "schedule-1",
+   "title": "THE SCHEDULE",
+   "paragraphs": [
+    "(PERIODS OF LIMITATION) [See sections 2(j) and 3] FIRST DIVISION—SUITS",
+    "PART I.—SUITS RELATING TO ACCOUNTS",
+    "1. For the balance due on a mutual, Three years. The close of the year in which the last open and current account, where item admitted or proved is entered in there have been reciprocal the account; such year to be computed demands between the parties. as in the account."
+   ]
+  }
+ ],
+ "stats": {
+  "sectionCount": 32,
+  "chapterCount": 5,
+  "scheduleCount": 1,
+  "pageCount": 24,
+  "wordCount": 4898
+ }
+}
