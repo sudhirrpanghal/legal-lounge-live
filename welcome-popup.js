@@ -7,25 +7,22 @@
 (function () {
   'use strict';
 
-  var KEY = 'll_welcome_seen';
-  var REPEAT_DAYS = 14;       // how long it stays away after being closed
-  var DELAY_MS = 6000;        // wait before showing
+  var KEY = 'll_welcome_seen_day';
+  var today = new Date().toISOString().slice(0, 10);
   var forced = /(?:\?|&)welcome=1(?:&|$)/.test(window.location.search);
 
-  /* ---- remember that it was shown (localStorage, with a session fallback) ---- */
+  /* ---- daily visit check: shows once per day per visitor ---- */
   function readSeen() {
     var v = null;
     try { v = window.localStorage.getItem(KEY); } catch (e) { /* storage blocked */ }
     if (!v) { try { v = window.sessionStorage.getItem(KEY); } catch (e2) { /* ignore */ } }
-    return v ? parseInt(v, 10) : 0;
+    return v === today;
   }
   function markSeen() {
-    var now = String(Date.now());
-    try { window.localStorage.setItem(KEY, now); } catch (e) { /* ignore */ }
-    try { window.sessionStorage.setItem(KEY, now); } catch (e2) { /* ignore */ }
+    try { window.localStorage.setItem(KEY, today); } catch (e) { /* ignore */ }
+    try { window.sessionStorage.setItem(KEY, today); } catch (e2) { /* ignore */ }
   }
-  var seenAt = readSeen();
-  if (!forced && seenAt && Date.now() - seenAt < REPEAT_DAYS * 86400000) return;
+  if (!forced && readSeen()) return;
 
   var URLS = {
     join: 'community.html',
@@ -145,12 +142,59 @@
   }
 
   function schedule() {
-    window.setTimeout(function () {
-      if (document.hidden) {   // visitor is on another tab: wait until they are back
-        var back = function () { if (!document.hidden) { document.removeEventListener('visibilitychange', back); window.setTimeout(open, 1200); } };
-        document.addEventListener('visibilitychange', back);
-      } else { open(); }
-    }, forced ? 300 : DELAY_MS);
+    if (forced) {
+      window.setTimeout(open, 300);
+      return;
+    }
+
+    var opened = false;
+
+    function tryOpen(trigger) {
+      if (opened) return;
+      opened = true;
+      cleanup();
+      track('trigger_' + trigger);
+      open();
+    }
+
+    // Scroll trigger (after user scrolls 25% down the page)
+    function onScroll() {
+      var total = document.documentElement.scrollHeight - window.innerHeight;
+      if (total > 200 && (window.pageYOffset || document.documentElement.scrollTop) / total >= 0.25) {
+        tryOpen('scroll_25');
+      }
+    }
+
+    // Exit intent trigger (desktop: mouse moving towards top browser bar)
+    function onMouseLeave(e) {
+      if (e.clientY <= 10) {
+        tryOpen('exit_intent');
+      }
+    }
+
+    // Daily first-visit timer: triggers 3.5 seconds after page loads
+    var timerId = window.setTimeout(function () {
+      if (!document.hidden) {
+        tryOpen('daily_visit');
+      } else {
+        var onVisible = function () {
+          if (!document.hidden) {
+            document.removeEventListener('visibilitychange', onVisible);
+            window.setTimeout(function () { tryOpen('daily_visit'); }, 800);
+          }
+        };
+        document.addEventListener('visibilitychange', onVisible);
+      }
+    }, 3500);
+
+    function cleanup() {
+      window.clearTimeout(timerId);
+      window.removeEventListener('scroll', onScroll);
+      document.removeEventListener('mouseleave', onMouseLeave);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('mouseleave', onMouseLeave);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule); else schedule();
