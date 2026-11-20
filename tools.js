@@ -159,7 +159,7 @@
       $('#qzCount').textContent = (subject === 'Mixed' ? 'MIXED' : subject.toUpperCase()) + ' · QUESTION ' + (idx + 1) + ' OF ' + cur.length;
       $('#qzQuestion').hidden = false; $('#qzOptions').hidden = false;
       $('#qzQuestion').textContent = item.q;
-      $('#qzFeedback').textContent = ''; $('#qzNext').hidden = true;
+      $('#qzFeedback').textContent = ''; $('#qzFeedback').className = 'quiz-feedback'; $('#qzNext').hidden = true;
       var box = $('#qzOptions'); box.innerHTML = '';
       item.o.forEach(function (opt) {
         var b = document.createElement('button'); b.type = 'button'; b.textContent = opt.t;
@@ -174,7 +174,7 @@
         if (item.o[i].ok) b.classList.add('correct');
       });
       if (opt.ok) score++; else { btn.classList.add('incorrect'); missed.push(item); }
-      $('#qzFeedback').textContent = (opt.ok ? 'Correct. ' : 'Not quite. ') + item.e;
+      var fb2 = $('#qzFeedback'); fb2.textContent = (opt.ok ? '✓ Correct! ' : '✗ Not quite. ') + item.e; fb2.className = 'quiz-feedback ' + (opt.ok ? 'is-correct' : 'is-incorrect');
       var n = $('#qzNext'); n.textContent = idx === cur.length - 1 ? 'See your score →' : 'Next question →'; n.hidden = false;
     };
     var finish = function () {

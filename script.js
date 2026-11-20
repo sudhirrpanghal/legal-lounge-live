@@ -101,7 +101,7 @@
     var item = quiz[qi], opts = $('#quizOptions');
     $('#quizCount').textContent = 'QUESTION ' + (qi + 1) + ' OF ' + quiz.length + ' (From ' + allQuizQuestions.length + '+ Judiciary Questions)';
     $('#quizQuestion').textContent = item.q;
-    $('#quizFeedback').textContent = '';
+    $('#quizFeedback').textContent = ''; $('#quizFeedback').className = 'quiz-feedback';
     $('#nextQuiz').hidden = true;
     opts.innerHTML = '';
     item.o.forEach(function (text, i) {
@@ -119,7 +119,7 @@
       else if (idx === i) b.classList.add('incorrect');
     });
     if (i === item.a) score++;
-    $('#quizFeedback').textContent = (i === item.a ? 'Correct. ' : 'Not quite. ') + item.e;
+    var fb = $('#quizFeedback'); fb.textContent = (i === item.a ? '✓ Correct! ' : '✗ Not quite. ') + item.e; fb.className = 'quiz-feedback ' + (i === item.a ? 'is-correct' : 'is-incorrect');
     var next = $('#nextQuiz');
     next.textContent = qi === quiz.length - 1 ? 'See your score →' : 'Next question →';
     next.hidden = false;
@@ -167,7 +167,7 @@
       $('#scenarioTitle').textContent = s.title;
       $('#scenarioText').textContent = s.text;
       $('#scenarioQuestion').textContent = s.q;
-      resBox.textContent = ''; resBox.classList.remove('caution'); resetBtn.hidden = true;
+      resBox.innerHTML = ''; resBox.className = 'scenario-result'; resetBtn.hidden = true;
       optsBox.innerHTML = '';
       s.o.forEach(function (opt, i) {
         var b = document.createElement('button');
@@ -175,10 +175,21 @@
         b.innerHTML = letters[i] + ' <span></span><b>→</b>';
         b.querySelector('span').textContent = opt.t;
         b.addEventListener('click', function () {
-          $('button', optsBox).forEach(function (x) { x.classList.remove('selected'); });
+          // Disable all option buttons
+          $('button', optsBox).forEach(function (x) {
+            x.disabled = true;
+            x.classList.remove('selected');
+          });
+          // Mark correct option green
+          s.o.forEach(function (op2, j) {
+            if (op2.ok) $('button', optsBox)[j].classList.add('correct');
+          });
+          // If wrong, mark clicked button red
+          if (!opt.ok) b.classList.add('incorrect');
           b.classList.add('selected');
-          resBox.textContent = opt.f;
-          resBox.classList.toggle('caution', !opt.ok);
+          // Show rich result badge + explanation
+          resBox.innerHTML = '<div class="scenario-result-badge ' + (opt.ok ? 'is-correct' : 'is-incorrect') + '">' + (opt.ok ? '✓ CORRECT LEGAL DECISION' : '✗ INCORRECT / RISKY LEGAL CHOICE') + '</div><p class="scenario-result-text">' + (opt.f || '') + '</p>';
+          resBox.className = 'scenario-result ' + (opt.ok ? 'is-correct-result' : 'is-incorrect-result');
           resetBtn.hidden = false;
         });
         optsBox.appendChild(b);

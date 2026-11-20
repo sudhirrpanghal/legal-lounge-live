@@ -11,7 +11,7 @@
   var preview = document.getElementById('blogPreview'), previewTitle = document.getElementById('blogPreviewTitle');
   var count = document.getElementById('blogCount'), status = document.getElementById('blogStatus');
   var saved = document.getElementById('blogSaved'), button = document.getElementById('blogSubmit');
-  var KEY = 'll_blog_draft', MIN_WORDS = 150, timer = null;
+  var KEY = 'll_blog_draft', MIN_WORDS = 50, timer = null;
 
   function words(text) { var m = text.trim().match(/\S+/g); return m ? m.length : 0; }
   function say(message, kind) { status.textContent = message; status.className = 'submission-status' + (kind ? ' is-' + kind : ''); }
@@ -67,7 +67,7 @@
     var name = el.submitterName.value.trim(), email = el.submitterEmail.value.trim(), t = title.value.trim(), text = body.value.trim();
     if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('Please enter your name and a valid email address.', 'error'); return; }
     if (t.length < 5) { say('Please add a clear title (at least 5 characters).', 'error'); return; }
-    if (words(text) < MIN_WORDS) { say('Your blog has ' + words(text) + ' words. Please write at least ' + MIN_WORDS + ' so editors have enough to review.', 'error'); return; }
+    /* Word minimum reduced to advisory only */ if (words(text) < MIN_WORDS) { if (!confirm('Your blog has ' + words(text) + ' words, which is quite short. Submit anyway?')) return; }
     if (!el.consent.checked) { say('Please confirm that this is your original work.', 'error'); return; }
     button.disabled = true; button.textContent = 'Sending…'; say('Sending your blog to the editors…', '');
     fetch(API + '/api/submissions', {
