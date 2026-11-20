@@ -27,9 +27,36 @@
   listFilter({ input: '#caseSearch', group: '#caseFilters', items: '#caseList details', empty: '#caseEmpty', count: '#caseCount', attr: 'data-subject' });
   listFilter({ input: '#finderSearch', group: '#finderFilters', items: '#finderBody tr', empty: '#finderEmpty', count: '#finderCount', attr: 'data-law' });
 
+  /* ---- 3 Interactive Tiles Sync for Section Finder ---- */
+  var finderTiles = $('#finderTiles .finder-tile');
+  var finderFilterBtns = $('#finderFilters .filter');
+  if (finderTiles.length && finderFilterBtns.length) {
+    finderTiles.forEach(function (tile) {
+      tile.addEventListener('click', function () {
+        var filterVal = tile.getAttribute('data-filter');
+        finderTiles.forEach(function (t) { t.classList.toggle('active', t === tile); });
+        finderFilterBtns.forEach(function (btn) {
+          var isMatch = btn.getAttribute('data-filter') === filterVal;
+          btn.classList.toggle('active', isMatch);
+          btn.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+          if (isMatch) btn.click();
+        });
+      });
+    });
+    finderFilterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var filterVal = btn.getAttribute('data-filter');
+        finderTiles.forEach(function (t) {
+          t.classList.toggle('active', t.getAttribute('data-filter') === filterVal);
+        });
+      });
+    });
+  }
+
+
   /* ---- Quiz bank ---- */
   var C = 'Constitutional Law', K = 'Criminal Law and Procedure', T = 'Contract Law', M = 'Legal Maxims', N = 'New Criminal Codes';
-  var BANK = [
+  var BANK = (window.JUDICIARY_QUIZ && window.JUDICIARY_QUIZ.length) ? window.JUDICIARY_QUIZ : [
     { s: C, q: 'Which Article of the Constitution of India protects life and personal liberty?', o: ['Article 14', 'Article 19', 'Article 21', 'Article 25'], a: 2, e: 'Article 21 protects life and personal liberty. Its meaning has been widened by many judgments, such as Maneka Gandhi.' },
     { s: C, q: 'Fundamental Duties are found in which Part of the Constitution?', o: ['Part III', 'Part IV', 'Part IVA', 'Part V'], a: 2, e: 'Fundamental Duties are in Part IVA (Article 51A), added by the 42nd Amendment.' },
     { s: C, q: 'Which Article abolishes untouchability?', o: ['Article 15', 'Article 16', 'Article 17', 'Article 18'], a: 2, e: 'Article 17 abolishes untouchability and forbids its practice in any form.' },

@@ -80,19 +80,26 @@
     });
   }
 
-  // Quiz
-  var quiz = [
-    { q: 'Which Article of the Constitution of India guarantees equality before the law and equal protection of the laws?', o: ['Article 19', 'Article 14', 'Article 21', 'Article 32'], a: 1, e: 'Article 14 guarantees equality before the law and equal protection of the laws.' },
-    { q: 'The writ of habeas corpus is used to examine the legality of what?', o: ['A government notification', 'A person’s detention', 'An appointment to public office', 'A lower court’s order'], a: 1, e: 'Habeas corpus requires a detained person to be brought before the court so the legality of the detention can be examined.' },
-    { q: 'Which Article gives the right to move the Supreme Court for enforcement of Fundamental Rights?', o: ['Article 14', 'Article 226', 'Article 32', 'Article 368'], a: 2, e: 'Article 32 is the right to constitutional remedies in the Supreme Court. Article 226 gives High Courts a similar power, and a wider one.' },
-    { q: 'In criminal law, “mens rea” refers to which of the following?', o: ['The physical act', 'The mental element of an offence', 'The punishment', 'The place of the offence'], a: 1, e: 'Mens rea is generally the mental element of an offence. What is required depends on the particular offence and statute.' },
-    { q: 'What does the principle of res judicata generally prevent?', o: ['Appeals to a higher court', 'Re-litigating a matter already finally decided between the same parties', 'Arrests without a warrant', 'Contracts made orally'], a: 1, e: 'Subject to its requirements and exceptions, res judicata stops the same matter between the same parties from being tried again.' },
-    { q: 'Which provision protects the right to assemble peaceably and without arms?', o: ['Article 19(1)(a)', 'Article 19(1)(b)', 'Article 19(1)(c)', 'Article 19(1)(d)'], a: 1, e: 'Article 19(1)(b) protects peaceful assembly, subject to reasonable restrictions under Article 19(3).' }
+  
+  // Quiz (Judiciary Exam Question Bank)
+  var allQuizQuestions = window.JUDICIARY_QUIZ || [
+    { q: 'Which Article of the Constitution of India guarantees equality before the law and equal protection of the laws?', o: ['Article 19', 'Article 14', 'Article 21', 'Article 32'], a: 1, e: 'Article 14 guarantees equality before the law and equal protection of the laws.' }
   ];
+
+  function getShuffledQuiz(num) {
+    var copy = allQuizQuestions.slice();
+    for (var i = copy.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = copy[i]; copy[i] = copy[j]; copy[j] = temp;
+    }
+    return copy.slice(0, Math.min(num || 10, copy.length));
+  }
+
+  var quiz = getShuffledQuiz(10);
   var quizPanel = $('#quizPanel'), qi = 0, score = 0;
   function renderQuestion() {
     var item = quiz[qi], opts = $('#quizOptions');
-    $('#quizCount').textContent = 'QUESTION ' + (qi + 1) + ' OF ' + quiz.length;
+    $('#quizCount').textContent = 'QUESTION ' + (qi + 1) + ' OF ' + quiz.length + ' (From ' + allQuizQuestions.length + '+ Judiciary Questions)';
     $('#quizQuestion').textContent = item.q;
     $('#quizFeedback').textContent = '';
     $('#nextQuiz').hidden = true;
@@ -105,7 +112,7 @@
     });
   }
   function answer(i) {
-    var item = quiz[qi], btns = $$('#quizOptions button');
+    var item = quiz[qi], btns = $('#quizOptions button');
     btns.forEach(function (b, idx) {
       b.disabled = true;
       if (idx === item.a) b.classList.add('correct');
@@ -121,38 +128,32 @@
     $('#quizCount').textContent = 'QUIZ COMPLETE';
     $('#quizQuestion').textContent = 'You scored ' + score + ' out of ' + quiz.length + '.';
     $('#quizOptions').innerHTML = '';
-    $('#quizFeedback').textContent = score === quiz.length ? 'Excellent. Try a case note or a Decision Room scenario next.' : 'Good effort. Review the glossary or read an explainer, then try again.';
-    var next = $('#nextQuiz'); next.textContent = 'Take the quiz again ↺'; next.hidden = false; next.dataset.restart = '1';
+    $('#quizFeedback').textContent = score >= 8 ? 'Outstanding score! Your judicial exam concepts are sharp.' : 'Good effort. Review landmark judgments, then try another fresh practice set.';
+    var next = $('#nextQuiz'); next.textContent = 'Take another 10 questions ↺'; next.hidden = false; next.dataset.restart = '1';
   }
   if (quizPanel) {
     var start = $('#startQuiz');
     if (start) start.addEventListener('click', function () {
+      quiz = getShuffledQuiz(10);
       qi = 0; score = 0; $('#nextQuiz').dataset.restart = '';
       renderQuestion(); quizPanel.hidden = false;
       quizPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
     $('#closeQuiz').addEventListener('click', function () { quizPanel.hidden = true; });
     $('#nextQuiz').addEventListener('click', function () {
-      if (this.dataset.restart) { qi = 0; score = 0; this.dataset.restart = ''; renderQuestion(); return; }
+      if (this.dataset.restart) {
+        quiz = getShuffledQuiz(10);
+        qi = 0; score = 0; this.dataset.restart = ''; renderQuestion(); return;
+      }
       if (qi === quiz.length - 1) { finishQuiz(); return; }
       qi++; renderQuestion();
     });
   }
 
+  
   // Decision Room scenarios
-  var scenarios = [
-    { type: 'EMPLOYMENT', title: 'An employee is terminated without notice.', text: 'A worker says their employment ended suddenly. The contract, reason for termination, and applicable law have not yet been reviewed.', q: 'What should be examined first?', o: [
-      { t: 'Review the contract, facts, and applicable law.', ok: true, f: 'A careful first step. The contract, the reason for termination, the facts and the applicable law help identify rights and possible remedies. The answer may vary with the worker’s status and the jurisdiction.' },
-      { t: 'Assume every termination without notice is unlawful.', f: 'That conclusion is too broad. Notice requirements and lawful grounds depend on the contract, the type of employment, the applicable legislation and the facts. Avoid deciding the outcome before reviewing them.' },
-      { t: 'Ignore the contract and go straight to a conclusion.', f: 'Skipping the documents risks missing important legal conditions. A sound analysis identifies the contract, the timeline, the employment status and the governing law before reaching a view.' } ] },
-    { type: 'BUSINESS', title: 'A client refuses to pay after a project is delivered.', text: 'A freelancer completed a design project. The client now says the work was “not what we wanted” and has stopped replying. There is a short written agreement and an email thread.', q: 'What is a sensible first step?', o: [
-      { t: 'Threaten criminal action immediately to force payment.', f: 'A payment dispute is usually a contractual matter first. Threatening criminal action without a legal basis can create risks of its own. Start from the agreement and the facts.' },
-      { t: 'Gather the agreement, invoices, deliverables and messages, then check the payment and acceptance terms.', ok: true, f: 'A good start. The scope, acceptance process, payment terms and dispute clause usually shape the options, such as a reminder, a notice or a formal process. Keep records organised.' },
-      { t: 'Delete the email thread and restart negotiations.', f: 'Deleting records removes useful evidence. Keep the full communication history, then decide how to approach the client.' } ] },
-    { type: 'CRIMINAL / DIGITAL', title: 'You receive threatening messages from an unknown account.', text: 'A user sends you threatening messages on social media. You want to keep proof of what was sent.', q: 'What should you do with the messages?', o: [
-      { t: 'Crop and edit the screenshots so they look cleaner.', f: 'Editing can raise doubts about authenticity. Keep the original files and capture the full context, including the account name, link, date and time.' },
-      { t: 'Post the messages publicly to expose the sender.', f: 'Public posting can create privacy and defamation concerns and may complicate a later complaint. Report the account to the platform and consider approaching the appropriate authorities.' },
-      { t: 'Preserve the originals, note the account, link and date, and seek advice on the proper steps.', ok: true, f: 'A sound approach. Keep the original content, record where and when it appeared, avoid altering it, and get qualified advice on reporting and proving it. Requirements depend on the applicable law.' } ] }
+  var scenarios = window.DECISION_SCENARIOS || [
+    { type: 'EMPLOYMENT', title: 'An employee is terminated without notice.', text: 'Review contract and law.', q: 'What to examine?', o: [{ t: 'Review contract', ok: true, f: 'Good.' }] }
   ];
   var optsBox = $('#scenarioOptions');
   if (optsBox) {
@@ -160,7 +161,8 @@
     var resBox = $('#scenarioResult'), resetBtn = $('#resetScenario');
     var renderScenario = function () {
       var s = scenarios[si];
-      $('#scenarioNum').textContent = 'SCENARIO 0' + (si + 1);
+      var displayNum = (si + 1) < 10 ? '0' + (si + 1) : (si + 1);
+      $('#scenarioNum').textContent = 'SCENARIO ' + displayNum + ' OF ' + scenarios.length;
       $('#scenarioType').textContent = s.type;
       $('#scenarioTitle').textContent = s.title;
       $('#scenarioText').textContent = s.text;
@@ -173,7 +175,7 @@
         b.innerHTML = letters[i] + ' <span></span><b>→</b>';
         b.querySelector('span').textContent = opt.t;
         b.addEventListener('click', function () {
-          $$('button', optsBox).forEach(function (x) { x.classList.remove('selected'); });
+          $('button', optsBox).forEach(function (x) { x.classList.remove('selected'); });
           b.classList.add('selected');
           resBox.textContent = opt.f;
           resBox.classList.toggle('caution', !opt.ok);
@@ -183,7 +185,10 @@
       });
     };
     resetBtn.addEventListener('click', renderScenario);
-    $('#nextScenario').addEventListener('click', function () { si = (si + 1) % scenarios.length; renderScenario(); });
+    var nextBtn = $('#nextScenario');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () { si = (si + 1) % scenarios.length; renderScenario(); });
+    }
     renderScenario();
   }
 

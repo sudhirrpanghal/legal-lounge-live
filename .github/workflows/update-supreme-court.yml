@@ -53,4 +53,4 @@ jobs:
         if: steps.commit.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run static.yml --ref main
+        run: gh workflow run static.yml --ref main || true
