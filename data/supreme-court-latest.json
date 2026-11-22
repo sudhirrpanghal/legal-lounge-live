@@ -1,7 +1,7 @@
 {
   "source_name": "Supreme Court of India",
   "source_url": "https://www.sci.gov.in/",
-  "fetched_at_utc": "2026-11-21T09:51:43.137687+00:00",
+  "fetched_at_utc": "2026-11-22T09:48:16.922620+00:00",
   "count": 100,
   "notice": "Unofficial index of links collected from publicly visible pages. Verify the original court record. This is not an official Supreme Court publication.",
   "items": [
@@ -157,153 +157,369 @@
     },
     {
       "type": "order",
+      "title": "COMMISSIONER OF CUSTOMS VS. SUBHASH IYAPPAN - - Diary Number 58919 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:15:29)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=589192026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "MS ARYA CONSTRUCTION COMPANY PARTNERSHIP FIRM VS. THE STATE OF CHHATTISGARH - SLP(C) No. 40597/2026 - Diary Number 62143 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:15:25)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=621432026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "THE UNION OF INDIA VS. HIMAGIRI GREEN FIELDS PVT LTD - - Diary Number 62230 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:15:20)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=622302026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "PRINCIPAL COMMISSIONER OF CUSTOMS (PORT) VS. M/S J.R.D. INDUSTRIES - - Diary Number 62513 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:15:15)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=625132026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "WELCOME COOPERATIVE SOCIETY VS. SHEERAZ AHMED - SLP(C) No. 40598/2026 - Diary Number 63096 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:15:10)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=630962026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "DIPANKAR VISHWAS VS. THE STATE OF CHHATTISGARH - SLP(Crl) No. 22506/2026 - Diary Number 63207 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:15:06)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=632072026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "COMMISSIONER OF CUSTOMS PORT KOLKATA VS. M/S R.K. IMPEX AND CO INDIA - - Diary Number 63242 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:15:01)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=632422026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "RAN VIJAY SINGH VS. STATE OF UTTAR PRADESH - SLP(Crl) No. 22507/2026 - Diary Number 63269 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:56)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=632692026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "ASHOK MENDIRATTA VS. STATE OF M.P. - SLP(Crl) No. 21301/2026 - Diary Number 63691 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:52)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=636912026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "PARAM PAL SINGH @ PARAM WALIA VS. STATE OF PUNJAB - SLP(Crl) No. 22605/2026 - Diary Number 64106 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:47)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=641062026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "NATIONAL HIGHWAY AUTHORITY OF INDIA VS. PRAVINSINH PRABHATSINH GOHIL - - Diary Number 64261 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:42)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=642612026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "DHANJIBHAI TRIKAMBHAI JADAV VS. STATE OF GUJARAT - SLP(Crl) No. 21336/2026 - Diary Number 64725 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:37)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=647252026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "COMMISSIONER OF CUSTOMS VS. M/S. HMD EXIM PVT LTD - - Diary Number 65713 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:33)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=657132026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "NEERAJ KUMAR SINGH VS. STATE OF U.P. - SLP(Crl) No. 21253/2026 - Diary Number 65723 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:28)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=657232026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "MUNICIPAL COUNCIL/CORPORATION, HOSHIARPUR VS. TREVEDI LAL - SLP(C) No. 40599-40600/2026 - Diary Number 65998 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:23)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=659982026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "HARDEEP SINGH VS. M/S VCA ESTATE PRIVATE LIMITED - SLP(C) No. 40601/2026 - Diary Number 67101 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:19)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=671012026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "ASIAN CONSTRUCTION COMPANY VS. STATE OF MAHARASHTRA - SLP(Crl) No. 20855/2026 - Diary Number 67352 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:14)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=673522026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "BAJAJ GENERAL INSURANCE LIMITED VS. THE STATE OF MAHARASHTRA - SLP(C) No. 320/2026 - Diary Number 73397 / 2025 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:09)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=733972025&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "SECRETARY, BIHAR CRICKET ASSOCIATION VS. BIHAR CRICKET ASSOCIATION - MA 1930-1931/2025 in SLP(C) No. 21132-21133/2025 - Diary Number 57260 / 2025 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:05)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=572602025&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "TUMMALA SURESH CHANDRA CHATTERJEE VS. G SITA RAM CHANDER - SLP(C) No. 36245-36249/2026 - Diary Number 61370 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 15:14:00)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=613702026&type=o&order_date=2026-11-20&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "THE STATE OF JHARKHAND VS. SHAHNAZ KHATOON - C.A. No. 11994/2026 - Diary Number 23648 / 2022 - 19-Nov-2026 (Uploaded On 21-11-2026 15:12:13)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=236482022&type=o&order_date=2026-11-19&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "PRADEEP YADAV VS. THE STATE OF BIHAR - Crl.A. No. 2241/2026 - Diary Number 20172 / 2026 - 19-Nov-2026 (Uploaded On 21-11-2026 15:12:08)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=201722026&type=o&order_date=2026-11-19&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "GOLAP HUSSAIN VS. THE STATE OF ASSAM - Crl.A. No. 4333/2026 - Diary Number 38652 / 2026 - 19-Nov-2026 (Uploaded On 21-11-2026 15:12:03)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=386522026&type=o&order_date=2026-11-19&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "GOLAP HUSSAIN VS. THE STATE OF ASSAM - Crl.A. No. 4333/2026 - Diary Number 38652 / 2026 - 19-Nov-2026 (Uploaded On 21-11-2026 15:13:11)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=386522026&type=fo&order_date=2026-11-19&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "THE STATE OF JHARKHAND VS. SHAHNAZ KHATOON - C.A. No. 11994/2026 - Diary Number 23648 / 2022 - 19-Nov-2026 (Uploaded On 21-11-2026 15:12:49)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=236482022&type=fo&order_date=2026-11-19&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/"
+    },
+    {
+      "type": "order",
+      "title": "GOPALBHAI BUDHABHAI AHIR VS. UNION OF INDIA - C.A. No. 9045/2026 - Diary Number 30850 / 2026 - 19-Nov-2026 (Uploaded On 21-11-2026 15:11:31)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=308502026&type=o&order_date=2026-11-19&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/latest-orders/"
+    },
+    {
+      "type": "order",
+      "title": "APPROPRIATE AUTHORITY VS. SASMITA INVESTMENTS LTD. - C.A. No. 14706/2025 - Diary Number 59348 / 2025 - 19-Nov-2026 (Uploaded On 21-11-2026 15:11:26)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=593482025&type=o&order_date=2026-11-19&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/latest-orders/"
+    },
+    {
+      "type": "order",
+      "title": "V VIJAYAKUMAR VS. ARUVIPURAM SNDP YOGAM - SLP(C) No. 7387/2026 - Diary Number 8846 / 2026 - 19-Nov-2026 (Uploaded On 21-11-2026 15:11:21)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=88462026&type=o&order_date=2026-11-19&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/latest-orders/"
+    },
+    {
+      "type": "order",
+      "title": "M/S JDA PROJECTS VS. M/S JAMNADAS MORAJEE FINANCE PVT. LTD. - MA 74/2026 in SLP(Crl) No. 2018/2024 - Diary Number 75059 / 2025 - 18-Nov-2026 (Uploaded On 21-11-2026 15:05:04)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=750592025&type=o&order_date=2026-11-18&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/latest-orders/"
+    },
+    {
+      "type": "order",
       "title": "NOWHERA SHAIK VS. UNION OF INDIA - MA 2227/2024 in W.P.(Crl.) No. 31/2020 - Diary Number 49487 / 2024 - 18-Nov-2026 (Uploaded On 21-11-2026 15:03:53)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=494872024&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
+    },
+    {
+      "type": "order",
+      "title": "ANDHRA PRADESH POWER DEVELOPMENT COMPANY LIMITED (APPDCL), VS. ANDHRA PRADESH ELECTRICITY REGULATORY COMMISSION, - - Diary Number 37808 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 15:03:18)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=378082026&type=o&order_date=2026-11-18&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/latest-orders/"
+    },
+    {
+      "type": "order",
+      "title": "BAPI MONDAL VS. MERLIN PROJECTS LIMITED - R.P.(C) No. 11015/2026 in C.A. No. 10762-10763/2026 - Diary Number 57552 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 15:03:14)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=575522026&type=o&order_date=2026-11-18&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/latest-orders/"
+    },
+    {
+      "type": "order",
+      "title": "STATE OF U.P. VS. HIMANSHU SRIVASTAVA - R.P.(Crl.) No. 687/2026 in Crl.A. No. 3980/2026 - Diary Number 58426 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 15:03:09)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=584262026&type=o&order_date=2026-11-18&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/latest-orders/"
+    },
+    {
+      "type": "order",
+      "title": "M/S. JAJODIA FINANCE LIMITED VS. PRINCIPAL COMMISSIONER OF INCOME TAX (CENTRAL)-2, KOLKATA - - Diary Number 59503 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 15:03:04)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=595032026&type=o&order_date=2026-11-18&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/latest-orders/"
+    },
+    {
+      "type": "order",
+      "title": "M/S. OM SIDDHAKALA ASSOCIATES VS. DEPUTY COMMISSIONER OF INCOME TAX, CPC - - Diary Number 59688 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 15:02:59)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=596882026&type=o&order_date=2026-11-18&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/latest-orders/"
+    },
+    {
+      "type": "order",
+      "title": "JOSEPH RAJ B VS. STATE OF KERALA - R.P.(Crl.) No. 660/2026 in SLP(Crl) No. 15829/2026 - Diary Number 62144 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 15:02:54)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=621442026&type=o&order_date=2026-11-18&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/latest-orders/"
+    },
+    {
+      "type": "order",
+      "title": "GUDE HARIBABU VS. THE STATE OF ANDHRA PRADESH - R.P.(Crl.) No. 643-644/2026 in SLP(Crl) No. 16852-16853/2026 - Diary Number 63080 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 15:02:50)",
+      "url": "https://www.sci.gov.in/view-pdf/?diary_no=630802026&type=o&order_date=2026-11-18&from=latest_judgements_order",
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "R. K. ABHISHEK VS. EKTA PANJWANI - - Diary Number 36634 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 15:02:17)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=366342026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "SHEIKH ABEDIN VS. IQBAL AHMED - - Diary Number 52974 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 15:02:12)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=529742026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "UTTAR PRADESH STATE INDUSTRIAL DEVELOPMENT AUTHORITY VS. JAYSI RAM DOHARE - SLP(C) No. 6233/2026 - Diary Number 69484 / 2025 - 20-Nov-2026 (Uploaded On 21-11-2026 14:20:08)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=694842025&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "M/S. EVERSMILE PROPERTIES PRIVATE LTD. VS. SRISHTI SECTOR II COOP.. HOUSING SOCIETY FEDERATION LIMITED - SLP(C) No. 9685/2026 - Diary Number 13184 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 14:20:03)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=131842026&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "RAJASTHAN URJA VIKAS AND IT SERVICES LIMITED (FORMERLY KNOWN AS RAJASTHAN URJA VIKAS NIGAM LIMITED) VS. M/S FORTUM SOLAR PLUS PRIVATE LIMITED - C.A. No. 11096-11099/2024 - Diary Number 45496 / 2024 - 20-Nov-2026 (Uploaded On 21-11-2026 14:19:58)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=454962024&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "SHEMI MUSTHFA VS. JAMIL MOHAMMED - SLP(Crl) No. 15508-15511/2024 - Diary Number 49125 / 2024 - 17-Nov-2026 (Uploaded On 21-11-2026 14:18:55)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=491252024&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "PRASHANTH KOTTURI THROUGH SPA HOLDER MR. RAJA SEKHAR KOTTURI VS. UNION OF INDIA - W.P.(C) No. 297/2024 - Diary Number 19820 / 2024 - 20-Nov-2026 (Uploaded On 21-11-2026 14:18:44)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=198202024&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "ALL INDIA OPHTHALMOLOGICAL SOCIETY VS. UNION OF INDIA - W.P.(C) No. 214/2024 - Diary Number 15181 / 2024 - 20-Nov-2026 (Uploaded On 21-11-2026 14:18:38)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=151812024&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "STATE OF KERALA VS. M/S. MJBR MARKETING AND FINANCIAL SERVICES PVT. LTD. - SLP(C) No. 37821-37830/2026 - Diary Number 27182 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 14:18:33)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=271822026&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "M/S NEELKANTH ENTREPRENEURS PRIVATE LIMITED VS. STATE OF U.P. - SLP(C) No. 34742/2026 - Diary Number 60315 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 14:18:28)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=603152026&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "INDIAN BANK VS. CHET LAL MAHTO - - Diary Number 54045 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 14:18:23)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=540452026&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "INFOPLUS TECHNOLOGY PRIVATE LIMITED VS. THE BHARAT SANCHAR NIGAM LIMITED - SLP(C) No. 30993/2026 - Diary Number 49543 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 14:18:18)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=495432026&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "GUJARAT ENERGY LIMITED (FORMERLY GUJARAT STATE PETROLEUM CORPORATION LIMITED) VS. M/S. PMP INFRATECH LIMITED - SLP(C) No. 27108/2026 - Diary Number 41068 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 14:18:13)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=410682026&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "HARIOM INDUSTRIES TH. PROPRIETOR PALAKBEN DEVENDRAKUMAR PATEL VS. STATE OF GUJARAT - - Diary Number 24984 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 14:18:08)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=249842026&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "NEW MILLENIUM INDIA DEVELOPERS PRIVATE LIMITED VS. EMERALD BUILDCON PVT. LTD - SLP(C) No. 13896/2026 - Diary Number 22910 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 14:18:03)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=229102026&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "ANJALI KUMARI VS. ARCHANA KUMARI - SLP(C) No. 12696/2024 - Diary Number 22730 / 2024 - 20-Nov-2026 (Uploaded On 21-11-2026 14:17:58)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=227302024&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "BISHNUPRIYA NAIK ALIAS NAYAK VS. INDRADEBI NAIK - - Diary Number 5626 / 2025 - 20-Nov-2026 (Uploaded On 21-11-2026 14:17:53)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=56262025&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "THE JHARKHAND BIJLI VITRAN NIGAM LIMITED VS. SRI GOPIKRISHNA INFRASTRUCTURE PVT LTD AUTHORIZED SIGNATORY - C.A. No. 9651/2024 - Diary Number 22319 / 2024 - 20-Nov-2026 (Uploaded On 21-11-2026 14:17:48)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=223192024&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "MANTOLA CO-OPERATIVE THRIFT AND CREDIT SOCIETY LTD VS. COMMISSIONER OF INCOME TAX 21 - C.A. No. 666/2016 - Diary Number 42815 / 2015 - 20-Nov-2026 (Uploaded On 21-11-2026 14:17:43)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=428152015&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "RAJKUMARI VS. STATE OF MADHYA PADESH - SLP(Crl) No. 16845/2026 - Diary Number 52419 / 2026 - 16-Nov-2026 (Uploaded On 21-11-2026 14:17:33)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=524192026&type=o&order_date=2026-11-16&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "PATEL RAMESHKUMAR MANJIBHAI VS. STATE OF GUJARAT - SLP(Crl) No. 22574/2026 - Diary Number 61398 / 2026 - 16-Nov-2026 (Uploaded On 21-11-2026 14:17:28)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=613982026&type=o&order_date=2026-11-16&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "CHANDANI DEVI CHOUDHARY VS. MANIK NANDAN SINGH - R.P.(C) No. 10823/2026 in SLP(C) No. 34054/2025 - Diary Number 73409 / 2025 - 18-Nov-2026 (Uploaded On 21-11-2026 14:14:55)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=734092025&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "SECURITIES AND EXCHANGE BOARD OF INDIA VS. HARINARAYAN G. BAJAJ. - C.A. No. 1778/2008 - Diary Number 36176 / 2007 - 19-Nov-2026 (Uploaded On 21-11-2026 14:14:40)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=361762007&type=o&order_date=2026-11-19&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
       "title": "JANAKAMMA VS. STATE OF KARNATAKA - SLP(Crl) No. 10853/2024 - Diary Number 22584 / 2024 - 19-Nov-2026 (Uploaded On 21-11-2026 14:11:50)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=225842024&type=o&order_date=2026-11-19&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/"
+      "source": "https://www.sci.gov.in/latest-orders/"
     },
     {
       "type": "order",
@@ -387,222 +603,6 @@
       "type": "order",
       "title": "STATE (NOW UT) OF JAMMU AND KASHMIR VS. ULFAT ARA - - Diary Number 71918 / 2025 - 17-Nov-2026 (Uploaded On 21-11-2026 14:08:07)",
       "url": "https://www.sci.gov.in/view-pdf/?diary_no=719182025&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "THE STATE OF RAJASTHAN VS. ANJANA KAKKAR - - Diary Number 54481 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 14:08:02)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=544812026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "RAM BHAGWAN PATHAK VS. STATE OF MADHYA PRADESH - - Diary Number 51996 / 2025 - 17-Nov-2026 (Uploaded On 21-11-2026 14:07:57)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=519962025&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "JINATBEN BHIKHUBHAI KURESHI VS. GEBANSHA PIR DARGAH TRUST - - Diary Number 41277 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 14:07:52)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=412772026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "AKSHAY VS. THE STATE OF MAHARASHTRA - R.P.(C) No. 11206/2026 - Diary Number 40683 / 2025 - 17-Nov-2026 (Uploaded On 21-11-2026 14:07:47)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=406832025&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "CHIEF GENERAL MANAGER,B.S.N.L. VS. COLLECTOR OF CENTRAL EXCISE BHOPAL - - Diary Number 39091 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 14:07:42)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=390912026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "S S OVERSEAS VS. UNION OF INDIA - - Diary Number 38066 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 14:07:37)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=380662026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "M/S SHYAMA CHARAN AGARWALA AND SONS VS. UNION OF INDIA - - Diary Number 31983 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 14:07:32)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=319832026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "SOHAN (DEAD) THROUGH LR RATI RAM(DEAD THROUGH LRS KELA DEVI VS. THE STATE OF UP - - Diary Number 17081 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 14:07:27)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=170812026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "RAM SAGAR VS. STATE OF UTTAR PRADESH - - Diary Number 9963 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 14:07:23)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=99632026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "JASTI SANDHYA VS. JASTI NAGARJUNA - T.P.(C) No. 3457/2026 - Diary Number 70162 / 2025 - 16-Nov-2026 (Uploaded On 21-11-2026 14:03:24)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=701622025&type=o&order_date=2026-11-16&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "AJAY VERMA (DECEASED) THROUGH LR. ETC. VS. ASHUTOSH MOHAN AGNIHOTRI - R.P.(C) No. 2671-2674/2025 in C.A. No. 13250-13253/2024 - Diary Number 21286 / 2025 - 02-Nov-2026 (Uploaded On 21-11-2026 13:36:17)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=212862025&type=o&order_date=2026-11-02&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "M/S SANDEEP STEELS VS. STATE OF MAHARASHTRA - SLP(Crl) No. 6038/2026 - Diary Number 1552 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 13:29:36)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=15522026&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "GURDEEP SINGH VS. STATE OF PUNJAB - SLP(Crl) No. 14030/2026 - Diary Number 22056 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 13:29:31)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=220562026&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "RAJENDER KUMAR VS. THE STATE OF HARYANA - C.A. No. 6520/2014 - Diary Number 15543 / 2012 - 18-Nov-2026 (Uploaded On 21-11-2026 13:29:26)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=155432012&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "THE SUPERINTENDENT OF ENGINEER VS. MAHESH - SLP(C) No. 27030/2026 - Diary Number 21571 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 13:29:21)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=215712026&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "L. MUNI REDDY VS. KONDHANDA REDDY - SLP(C) No. 29298/2026 - Diary Number 16247 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 13:29:17)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=162472026&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "KAMAL JASWANTHLAL SHETH VS. MANGESH TUKARAM SAWANT - SLP(Crl) No. 16810/2026 - Diary Number 43405 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 13:29:12)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=434052026&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "BALJIT KAUR VS. STATE OF PUNJAB - SLP(Crl) No. 10348/2026 - Diary Number 31767 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 13:29:07)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=317672026&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "DINESH KUMAR VS. MOHD USMAN - SLP(Crl) No. 17907-17908/2026 - Diary Number 52064 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 13:29:02)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=520642026&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "HARVINDER KAUR VS. THE STATE OF PUNJAB - SLP(Crl) No. 17126/2026 - Diary Number 51246 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 13:28:57)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=512462026&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "IMRAN @ MURGI CHOR VS. STATE (GOVT. OF NCT OF DELHI) - SLP(Crl) No. 19169/2026 - Diary Number 41503 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 13:28:52)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=415032026&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "RANVEER SHARMA VS. NARESH KUMAR - SLP(Crl) No. 18296/2026 - Diary Number 55220 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 13:28:48)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=552202026&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "HARYANA STATE INDUSTRIAL DEVELOPMENT CORPORATION, (NOW HARYANA STATE INDUSTRIAL AND INFRASTRUCTURE D VS. BHAGWAT SARUP - SLP(C) No. 22571-22632/2018 - Diary Number 24937 / 2018 - 18-Nov-2026 (Uploaded On 21-11-2026 13:28:43)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=249372018&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "JITENDER KUMAR VS. KRISHAN - SLP(C) No. 27569/2026 - Diary Number 40050 / 2026 - 18-Nov-2026 (Uploaded On 21-11-2026 13:28:38)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=400502026&type=o&order_date=2026-11-18&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "PREM KUMAR VS. PARKASH CHAND SHARMA - - Diary Number 65421 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 13:27:08)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=654212026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "JASWINDER SINGH VS. STATE OF PUNJAB - SLP(Crl) No. 21434/2026 - Diary Number 67326 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 13:27:04)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=673262026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "MANOWOARA BIBI VS. SITARA BEGUM @ NAZMA BEGUM - SLP(C) No. 27704/2026 - Diary Number 42611 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 13:26:59)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=426112026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "GYANENDRA SINGH VS. STATE OF UTTAR PRADESH - SLP(Crl) No. 21439/2026 - Diary Number 67113 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 13:26:54)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=671132026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "NAGENDR KUMAR VS. THE STATE OF PUNJAB - - Diary Number 66464 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 13:26:50)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=664642026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "K. DEVASENAPATHY VS. THE REGIONAL TRANSPORT OFFICER - SLP(C) No. 38292/2026 - Diary Number 63563 / 2026 - 17-Nov-2026 (Uploaded On 21-11-2026 13:26:45)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=635632026&type=o&order_date=2026-11-17&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "SRIJITA MITRA VS. SAHIL SARPAL - T.P.(C) No. 2951/2025 - Diary Number 53331 / 2025 - 16-Nov-2026 (Uploaded On 21-11-2026 13:24:31)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=533312025&type=o&order_date=2026-11-16&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "TULSIRAM LOWANSHI VS. THE STATE OF MADHYA PRADESH - SLP(Crl) No. 18685/2025 - Diary Number 53410 / 2025 - 20-Nov-2026 (Uploaded On 21-11-2026 13:24:01)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=534102025&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "THE STATE REPRESENTED BY THE INSPECTOR OF POLICE VS. D.JOHN JEBAPRAGASAM - SLP(Crl) No. 2090-2091/2026 - Diary Number 133 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 13:23:57)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=1332026&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "ASRAR @ ISRAR @ POPAT VS. STATE (NCT OF DELHI) - SLP(Crl) No. 5470/2025 - Diary Number 15915 / 2025 - 20-Nov-2026 (Uploaded On 21-11-2026 13:23:52)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=159152025&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "R.KUMAR VS. R.PUSHPA - SLP(Crl) No. 2565/2025 - Diary Number 1965 / 2025 - 20-Nov-2026 (Uploaded On 21-11-2026 13:23:47)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=19652025&type=o&order_date=2026-11-20&from=latest_judgements_order",
-      "source": "https://www.sci.gov.in/latest-orders/"
-    },
-    {
-      "type": "order",
-      "title": "GURVINDER SINGH SAINI VS. SIMRANDEEP KAUR - SLP(Crl) No. 5343-5344/2026 - Diary Number 3988 / 2026 - 20-Nov-2026 (Uploaded On 21-11-2026 13:23:42)",
-      "url": "https://www.sci.gov.in/view-pdf/?diary_no=39882026&type=o&order_date=2026-11-20&from=latest_judgements_order",
       "source": "https://www.sci.gov.in/latest-orders/"
     }
   ]
