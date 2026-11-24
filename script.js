@@ -101,56 +101,88 @@
     var item = quiz[qi], opts = $('#quizOptions');
     $('#quizCount').textContent = 'QUESTION ' + (qi + 1) + ' OF ' + quiz.length + ' (From ' + allQuizQuestions.length + '+ Judiciary Questions)';
     $('#quizQuestion').textContent = item.q;
-    $('#quizFeedback').textContent = ''; $('#quizFeedback').className = 'quiz-feedback';
+    var fb = $('#quizFeedback');
+    fb.innerHTML = '';
+    fb.className = 'quiz-feedback';
     $('#nextQuiz').hidden = true;
     opts.innerHTML = '';
+    
+    var allQzButtons = [];
     item.o.forEach(function (text, i) {
       var b = document.createElement('button');
-      b.type = 'button'; b.textContent = text;
-      b.addEventListener('click', function () { answer(i); });
+      b.type = 'button';
+      b.textContent = text;
+      allQzButtons.push(b);
+      b.addEventListener('click', function () {
+        // Disable all option buttons
+        allQzButtons.forEach(function (btn, idx) {
+          btn.disabled = true;
+          if (idx === item.a) {
+            btn.classList.add('correct');
+          } else if (idx === i) {
+            btn.classList.add('incorrect');
+          }
+        });
+        
+        var isCorrect = (i === item.a);
+        if (isCorrect) score++;
+        
+        var correctText = item.o[item.a];
+        fb.innerHTML = '<div class="scenario-result-badge ' + (isCorrect ? 'is-correct' : 'is-incorrect') + '">' +
+          (isCorrect ? '✓ CORRECT ANSWER' : '✗ INCORRECT (Correct: ' + correctText + ')') +
+          '</div><p style="margin:8px 0 0;line-height:1.65;font-size:13.5px;color:#2d3748;">' + (item.e || '') + '</p>';
+        fb.className = 'quiz-feedback ' + (isCorrect ? 'is-correct' : 'is-incorrect');
+        
+        var next = $('#nextQuiz');
+        next.textContent = qi === quiz.length - 1 ? 'See your score →' : 'Next question →';
+        next.hidden = false;
+      });
       opts.appendChild(b);
     });
   }
-  function answer(i) {
-    var item = quiz[qi], btns = $('#quizOptions button');
-    btns.forEach(function (b, idx) {
-      b.disabled = true;
-      if (idx === item.a) b.classList.add('correct');
-      else if (idx === i) b.classList.add('incorrect');
-    });
-    if (i === item.a) score++;
-    var fb = $('#quizFeedback'); fb.textContent = (i === item.a ? '✓ Correct! ' : '✗ Not quite. ') + item.e; fb.className = 'quiz-feedback ' + (i === item.a ? 'is-correct' : 'is-incorrect');
-    var next = $('#nextQuiz');
-    next.textContent = qi === quiz.length - 1 ? 'See your score →' : 'Next question →';
-    next.hidden = false;
-  }
+
   function finishQuiz() {
     $('#quizCount').textContent = 'QUIZ COMPLETE';
     $('#quizQuestion').textContent = 'You scored ' + score + ' out of ' + quiz.length + '.';
     $('#quizOptions').innerHTML = '';
-    $('#quizFeedback').textContent = score >= 8 ? 'Outstanding score! Your judicial exam concepts are sharp.' : 'Good effort. Review landmark judgments, then try another fresh practice set.';
-    var next = $('#nextQuiz'); next.textContent = 'Take another 10 questions ↺'; next.hidden = false; next.dataset.restart = '1';
+    var fb = $('#quizFeedback');
+    fb.className = 'quiz-feedback is-correct';
+    fb.innerHTML = '<div class="scenario-result-badge is-correct">QUIZ FINISHED</div><p style="margin:8px 0 0;font-size:14px;color:#1b5e20;">' + (score >= 8 ? 'Outstanding score! Your judicial exam concepts are sharp.' : 'Good effort! Review landmark judgments, then try another fresh practice set.') + '</p>';
+    var next = $('#nextQuiz');
+    next.textContent = 'Take another 10 questions ↺';
+    next.hidden = false;
+    next.dataset.restart = '1';
   }
+
   if (quizPanel) {
     var start = $('#startQuiz');
     if (start) start.addEventListener('click', function () {
       quiz = getShuffledQuiz(10);
-      qi = 0; score = 0; $('#nextQuiz').dataset.restart = '';
-      renderQuestion(); quizPanel.hidden = false;
-      quizPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      qi = 0; score = 0;
+      var nxt = $('#nextQuiz');
+      if (nxt) nxt.dataset.restart = '';
+      renderQuestion();
+      quizPanel.hidden = false;
+      quizPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
-    $('#closeQuiz').addEventListener('click', function () { quizPanel.hidden = true; });
-    $('#nextQuiz').addEventListener('click', function () {
-      if (this.dataset.restart) {
+    var close = $('#closeQuiz');
+    if (close) close.addEventListener('click', function () { quizPanel.hidden = true; });
+    var next = $('#nextQuiz');
+    if (next) next.addEventListener('click', function () {
+      if (next.dataset.restart === '1') {
         quiz = getShuffledQuiz(10);
-        qi = 0; score = 0; this.dataset.restart = ''; renderQuestion(); return;
+        qi = 0; score = 0;
+        next.dataset.restart = '';
+        renderQuestion();
+      } else if (qi === quiz.length - 1) {
+        finishQuiz();
+      } else {
+        qi++;
+        renderQuestion();
       }
-      if (qi === quiz.length - 1) { finishQuiz(); return; }
-      qi++; renderQuestion();
     });
   }
 
-  
   // Decision Room scenarios
   var scenarios = window.DECISION_SCENARIOS || [
     { type: 'EMPLOYMENT', title: 'An employee is terminated without notice.', text: 'Review contract and law.', q: 'What to examine?', o: [{ t: 'Review contract', ok: true, f: 'Good.' }] }
@@ -162,43 +194,65 @@
     var renderScenario = function () {
       var s = scenarios[si];
       var displayNum = (si + 1) < 10 ? '0' + (si + 1) : (si + 1);
-      $('#scenarioNum').textContent = 'SCENARIO ' + displayNum + ' OF ' + scenarios.length;
-      $('#scenarioType').textContent = s.type;
-      $('#scenarioTitle').textContent = s.title;
-      $('#scenarioText').textContent = s.text;
-      $('#scenarioQuestion').textContent = s.q;
-      resBox.innerHTML = ''; resBox.className = 'scenario-result'; resetBtn.hidden = true;
+      var scNum = $('#scenarioNum'); if (scNum) scNum.textContent = 'SCENARIO ' + displayNum + ' OF ' + scenarios.length;
+      var scType = $('#scenarioType'); if (scType) scType.textContent = s.type;
+      var scTitle = $('#scenarioTitle'); if (scTitle) scTitle.textContent = s.title;
+      var scText = $('#scenarioText'); if (scText) scText.textContent = s.text;
+      var scQ = $('#scenarioQuestion'); if (scQ) scQ.textContent = s.q;
+      
+      resBox.innerHTML = '';
+      resBox.className = 'scenario-result';
+      resetBtn.hidden = true;
       optsBox.innerHTML = '';
+      
+      var allButtons = [];
       s.o.forEach(function (opt, i) {
         var b = document.createElement('button');
         b.type = 'button';
         b.innerHTML = letters[i] + ' <span></span><b>→</b>';
         b.querySelector('span').textContent = opt.t;
+        allButtons.push(b);
+        
         b.addEventListener('click', function () {
-          // Disable all option buttons
-          $('button', optsBox).forEach(function (x) {
-            x.disabled = true;
-            x.classList.remove('selected');
+          // Disable all buttons to prevent re-clicks
+          allButtons.forEach(function (btn) {
+            btn.disabled = true;
+            btn.classList.remove('selected');
           });
-          // Mark correct option green
+          
+          // Reveal the correct option in green
           s.o.forEach(function (op2, j) {
-            if (op2.ok) $('button', optsBox)[j].classList.add('correct');
+            if (op2.ok && allButtons[j]) {
+              allButtons[j].classList.add('correct');
+            }
           });
-          // If wrong, mark clicked button red
-          if (!opt.ok) b.classList.add('incorrect');
+          
+          // If clicked option was wrong, highlight it in red
+          if (!opt.ok) {
+            b.classList.add('incorrect');
+          }
           b.classList.add('selected');
-          // Show rich result badge + explanation
-          resBox.innerHTML = '<div class="scenario-result-badge ' + (opt.ok ? 'is-correct' : 'is-incorrect') + '">' + (opt.ok ? '✓ CORRECT LEGAL DECISION' : '✗ INCORRECT / RISKY LEGAL CHOICE') + '</div><p class="scenario-result-text">' + (opt.f || '') + '</p>';
-          resBox.className = 'scenario-result ' + (opt.ok ? 'is-correct-result' : 'is-incorrect-result');
+          
+          // Display clear, high-contrast result badge and explanation
+          var isOk = !!opt.ok;
+          resBox.innerHTML = '<div class="scenario-result-badge ' + (isOk ? 'is-correct' : 'is-incorrect') + '">' +
+            (isOk ? '✓ CORRECT LEGAL DECISION' : '✗ INCORRECT / RISKY LEGAL CHOICE') +
+            '</div><p class="scenario-result-text">' + (opt.f || '') + '</p>';
+          resBox.className = 'scenario-result ' + (isOk ? 'is-correct-result' : 'is-incorrect-result');
           resetBtn.hidden = false;
         });
+        
         optsBox.appendChild(b);
       });
     };
+    
     resetBtn.addEventListener('click', renderScenario);
     var nextBtn = $('#nextScenario');
     if (nextBtn) {
-      nextBtn.addEventListener('click', function () { si = (si + 1) % scenarios.length; renderScenario(); });
+      nextBtn.addEventListener('click', function () {
+        si = (si + 1) % scenarios.length;
+        renderScenario();
+      });
     }
     renderScenario();
   }

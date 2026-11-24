@@ -159,7 +159,7 @@
       $('#qzCount').textContent = (subject === 'Mixed' ? 'MIXED' : subject.toUpperCase()) + ' · QUESTION ' + (idx + 1) + ' OF ' + cur.length;
       $('#qzQuestion').hidden = false; $('#qzOptions').hidden = false;
       $('#qzQuestion').textContent = item.q;
-      $('#qzFeedback').textContent = ''; $('#qzFeedback').className = 'quiz-feedback'; $('#qzNext').hidden = true;
+      $('#qzFeedback').innerHTML = ''; $('#qzFeedback').className = 'quiz-feedback'; $('#qzNext').hidden = true;
       var box = $('#qzOptions'); box.innerHTML = '';
       item.o.forEach(function (opt) {
         var b = document.createElement('button'); b.type = 'button'; b.textContent = opt.t;
@@ -169,13 +169,28 @@
     };
     var choose = function (btn, opt) {
       var item = cur[idx], btns = $$('#qzOptions button');
+      var correctText = '';
       btns.forEach(function (b, i) {
         b.disabled = true;
-        if (item.o[i].ok) b.classList.add('correct');
+        if (item.o[i].ok) {
+          b.classList.add('correct');
+          correctText = item.o[i].t;
+        }
       });
-      if (opt.ok) score++; else { btn.classList.add('incorrect'); missed.push(item); }
-      var fb2 = $('#qzFeedback'); fb2.textContent = (opt.ok ? '✓ Correct! ' : '✗ Not quite. ') + item.e; fb2.className = 'quiz-feedback ' + (opt.ok ? 'is-correct' : 'is-incorrect');
-      var n = $('#qzNext'); n.textContent = idx === cur.length - 1 ? 'See your score →' : 'Next question →'; n.hidden = false;
+      if (opt.ok) {
+        score++;
+      } else {
+        btn.classList.add('incorrect');
+        missed.push(item);
+      }
+      var fb2 = $('#qzFeedback');
+      fb2.innerHTML = '<div class="scenario-result-badge ' + (opt.ok ? 'is-correct' : 'is-incorrect') + '">' +
+        (opt.ok ? '✓ CORRECT ANSWER' : '✗ INCORRECT (Correct: ' + correctText + ')') +
+        '</div><p style="margin:8px 0 0;line-height:1.65;font-size:13.5px;color:#2d3748;">' + (item.e || '') + '</p>';
+      fb2.className = 'quiz-feedback ' + (opt.ok ? 'is-correct' : 'is-incorrect');
+      var n = $('#qzNext');
+      n.textContent = idx === cur.length - 1 ? 'See your score →' : 'Next question →';
+      n.hidden = false;
     };
     var finish = function () {
       $('#qzQuestion').hidden = true; $('#qzOptions').hidden = true; $('#qzFeedback').textContent = ''; $('#qzNext').hidden = true;
