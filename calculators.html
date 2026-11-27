@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FNQ5QP15F7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FNQ5QP15F7');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Courtroom &amp; Legal Calculators | Legal Lounge Live</title>
+  <meta name="description" content="Free practical legal calculators for law students and practitioners: Limitation Period Calculator, BNSS Sec 479 Undertrial Bail Calculator, and Sec 138 NI Act Cheque Bounce Timeline Tracker.">
+  <meta name="theme-color" content="#101f35">
+  <link rel="canonical" href="https://legallounge.live/calculators.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261127">
+  <style>
+    .calc-tabs { display: flex; gap: 10px; margin: 32px 0 24px; flex-wrap: wrap; }
+    .calc-tab { padding: 12px 20px; font-weight: 700; font-size: 13px; border: 1px solid var(--line); background: #fff; color: var(--navy); cursor: pointer; border-radius: 4px; transition: all .2s; }
+    .calc-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .calc-card { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--gold); border-radius: 6px; padding: 32px; margin-bottom: 40px; box-shadow: 0 4px 14px rgba(16,31,53,0.05); }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    @media(max-width: 800px) { .calc-grid { grid-template-columns: 1fr; } }
+    .calc-form label { display: block; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .calc-form .form-group { margin-bottom: 20px; }
+    .calc-form select, .calc-form input { width: 100%; padding: 11px 14px; border: 1px solid var(--line); border-radius: 4px; font-size: 14px; font-family: var(--sans); }
+    .calc-form select:focus, .calc-form input:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 0 2px rgba(198,165,106,0.2); }
+    .calc-result-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 24px; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+    .calc-result-badge { display: inline-block; padding: 6px 14px; border-radius: 4px; font-size: 12px; font-weight: 800; letter-spacing: 1px; margin-bottom: 12px; }
+    .calc-result-badge.badge-ok { background: #e8f5e9; color: #1b5e20; border: 1px solid #2e7d32; }
+    .calc-result-badge.badge-alert { background: #ffebee; color: #b71c1c; border: 1px solid #c62828; }
+    .calc-result-badge.badge-info { background: #e0f2fe; color: #0369a1; border: 1px solid #0284c7; }
+    .calc-stat-value { font-size: 28px; font-weight: 800; font-family: var(--serif); color: var(--navy); margin: 8px 0; }
+    .calc-meta-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #cbd5e1; font-size: 13px; }
+    .calc-meta-row:last-child { border-bottom: none; }
+    .timeline-steps { margin-top: 20px; position: relative; padding-left: 24px; border-left: 2px solid var(--gold); }
+    .timeline-step { margin-bottom: 16px; position: relative; }
+    .timeline-step::before { content: ''; position: absolute; left: -29px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--navy); border: 2px solid var(--gold); }
+    .timeline-step.active::before { background: #2e7d32; }
+    .timeline-step h4 { margin: 0 0 4px; font-size: 14px; color: var(--navy); }
+    .timeline-step p { margin: 0; font-size: 12.5px; color: #64748b; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="announcement">LEGAL KNOWLEDGE <span>✦</span> PRACTICAL LEARNING <span>✦</span> COMMUNITY</div>
+  <header class="site-header">
+    <a aria-label="Legal Lounge Live home" class="brand" href="index.html">
+      <span class="brand-mark">LL</span>
+      <span class="brand-word">LEGAL LOUNGE <b>LIVE</b><small>Understand the Law. Apply the Law.</small></span>
+    </a>
+    <button aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle" id="menuToggle">☰</button>
+    <nav aria-label="Main" class="main-nav" id="mainNav">
+      <a class="nav-home" href="index.html">Home</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="journal.html">Journal</a>
+      <a href="bare-acts.html">Bare Acts</a>
+      <a href="section-finder.html">Section Finder</a>
+      <a href="calculators.html" aria-current="page" style="color:var(--gold-dark);font-weight:700;">Calculators</a>
+      <a href="drafting.html">Drafting</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="mock-test.html">Mock Test</a>
+      <a class="nav-cta" href="community.html">Join the Lounge <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-intro container">
+      <p class="eyebrow">PRACTICAL LITIGATION SUITE</p>
+      <h1>Courtroom &amp; Legal Calculators</h1>
+      <p>Interactive statutory timeline, limitation, and bail eligibility calculators built on current Indian enactments including the Limitation Act 1963, BNSS 2023, and NI Act 1881.</p>
+      <a class="text-link" href="index.html">← Back to home</a>
+    </section>
+
+    <section class="container">
+      <div class="calc-tabs">
+        <button class="calc-tab active" data-tab="limitation">Limitation Period Calculator (1963)</button>
+        <button class="calc-tab" data-tab="bail">BNSS Sec 479 Undertrial Bail Calculator</button>
+        <button class="calc-tab" data-tab="cheque">Sec 138 NI Act Cheque Bounce Tracker</button>
+      </div>
+
+      <!-- 1. Limitation Calculator -->
+      <div class="calc-card" id="tab-limitation">
+        <div class="calc-grid">
+          <div class="calc-form">
+            <h2 style="font-family:var(--serif);font-size:22px;color:var(--navy);margin-top:0;">Statutory Limitation Period Calculator</h2>
+            <p style="font-size:13.5px;color:#5c6878;margin-bottom:24px;">Determine the prescribed limitation expiry date under the Schedule to the Limitation Act, 1963.</p>
+
+            <div class="form-group">
+              <label for="limCategory">Nature of Suit / Appeal / Application</label>
+              <select id="limCategory">
+                <option value="money">Money suit / Breach of contract (Art. 55) — 3 Years</option>
+                <option value="movable">Recovery of movable property (Art. 68) — 3 Years</option>
+                <option value="immovable">Possession of immovable property on title (Art. 65) — 12 Years</option>
+                <option value="specific">Specific performance of contract (Art. 54) — 3 Years</option>
+                <option value="tort">Compensation for personal injury / tort (Art. 72) — 1 Year</option>
+                <option value="app_hc_decree">First Appeal to High Court from Decree (Art. 116a) — 90 Days</option>
+                <option value="app_dist_decree">Appeal to District Court from Decree (Art. 116b) — 30 Days</option>
+                <option value="app_crim_death">Criminal Appeal to HC against death sentence (Art. 115a) — 30 Days</option>
+                <option value="app_crim_hc">Criminal Appeal to High Court against conviction (Art. 115b) — 60 Days</option>
+                <option value="app_crim_sess">Criminal Appeal to Sessions Court (Art. 115c) — 30 Days</option>
+                <option value="crim_rev">Criminal Revision Petition to HC / Sessions (Art. 131) — 90 Days</option>
+                <option value="execution">Execution of Court Decree (Art. 136) — 12 Years</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="limStartDate">Starting Date (Cause of action / Order / Decree date)</label>
+              <input type="date" id="limStartDate">
+            </div>
+
+            <button class="button button-gold" id="btnCalcLimitation" type="button" style="width:100%;">Calculate Limitation Expiry <span>→</span></button>
+          </div>
+
+          <div class="calc-result-box" id="limResult">
+            <div class="calc-result-badge badge-info">AWAITING INPUT</div>
+            <div class="calc-stat-value" id="limDateDisplay">—</div>
+            <p style="color:#64748b;font-size:13px;margin:0 0 16px;" id="limStatusText">Select the legal category and enter the starting date to compute statutory limitation.</p>
+            <div class="calc-meta-row"><span>Governing Schedule:</span><strong id="limArtCode">Limitation Act, 1963</strong></div>
+            <div class="calc-meta-row"><span>Prescribed Period:</span><strong id="limPeriodText">—</strong></div>
+            <div class="calc-meta-row"><span>Status Today:</span><strong id="limStatusDays">—</strong></div>
+            <div class="calc-meta-row"><span>Section 4 / 5 Protection:</span><span style="font-size:11.5px;color:#475569;text-align:right;">If court closed on expiry date, file next open day (Sec 4). Delay condonation applicable for appeals/revisions (Sec 5).</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. BNSS Bail Calculator -->
+      <div class="calc-card" id="tab-bail" hidden>
+        <div class="calc-grid">
+          <div class="calc-form">
+            <h2 style="font-family:var(--serif);font-size:22px;color:var(--navy);margin-top:0;">BNSS Section 479 Undertrial Bail Calculator</h2>
+            <p style="font-size:13.5px;color:#5c6878;margin-bottom:24px;">Calculate mandatory statutory bail eligibility for undertrial prisoners under Section 479 of the Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023.</p>
+
+            <div class="form-group">
+              <label for="bailMaxSentence">Maximum Statutory Imprisonment for Offence</label>
+              <select id="bailMaxSentence">
+                <option value="3">3 Years (e.g. Simple theft BNS 303, cheating)</option>
+                <option value="5">5 Years (e.g. Criminal breach of trust BNS 316)</option>
+                <option value="7">7 Years (e.g. Aggravated cheating BNS 318(4), grievous hurt)</option>
+                <option value="10">10 Years (e.g. Attempt to murder BNS 109, robbery)</option>
+                <option value="life">Death or Life Imprisonment (Sec 479 Barred)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="bailCustodyStart">Date Accused was Taken into Custody / Remand</label>
+              <input type="date" id="bailCustodyStart">
+            </div>
+
+            <div class="form-group">
+              <label>First-time Offender Status</label>
+              <div style="display:flex;gap:18px;margin-top:6px;">
+                <label style="font-weight:500;font-size:13.5px;"><input type="radio" name="bailFirstTime" value="yes" checked style="width:auto;margin-right:6px;"> Yes (First-time offender — 1/3rd rule applies)</label>
+                <label style="font-weight:500;font-size:13.5px;"><input type="radio" name="bailFirstTime" value="no" style="width:auto;margin-right:6px;"> No (Repeat offender — 1/2 rule applies)</label>
+              </div>
+            </div>
+
+            <button class="button button-gold" id="btnCalcBail" type="button" style="width:100%;">Check Bail Eligibility <span>→</span></button>
+          </div>
+
+          <div class="calc-result-box" id="bailResult">
+            <div class="calc-result-badge badge-info">AWAITING INPUT</div>
+            <div class="calc-stat-value" id="bailDaysServed">0 Days</div>
+            <p style="color:#64748b;font-size:13px;margin:0 0 16px;" id="bailSummaryText">Enter custody date and statutory offence tier to evaluate eligibility under Section 479 BNSS.</p>
+            <div class="calc-meta-row"><span>Required Custody Threshold:</span><strong id="bailThresholdText">—</strong></div>
+            <div class="calc-meta-row"><span>Actual Custody Undergone:</span><strong id="bailActualText">—</strong></div>
+            <div class="calc-meta-row"><span>Statutory Bail Status:</span><strong id="bailEligibleBadge">—</strong></div>
+            <div class="calc-meta-row"><span>Jailer Duty under Sec 479(3):</span><span style="font-size:11.5px;color:#475569;text-align:right;">Jail Superintendent is mandated by law to immediately apply to the court for release on bail once threshold is completed.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Cheque Bounce Tracker -->
+      <div class="calc-card" id="tab-cheque" hidden>
+        <div class="calc-grid">
+          <div class="calc-form">
+            <h2 style="font-family:var(--serif);font-size:22px;color:var(--navy);margin-top:0;">Sec 138 NI Act Cheque Bounce Timeline Tracker</h2>
+            <p style="font-size:13.5px;color:#5c6878;margin-bottom:24px;">The Negotiable Instruments Act imposes strict statutory deadlines. A missed day can cause the complaint to be barred by limitation.</p>
+
+            <div class="form-group">
+              <label for="chqReturnDate">Date of Bank Return Memo (Dishonour Date)</label>
+              <input type="date" id="chqReturnDate">
+            </div>
+
+            <button class="button button-gold" id="btnCalcCheque" type="button" style="width:100%;">Generate Statutory Timeline <span>→</span></button>
+          </div>
+
+          <div class="calc-result-box">
+            <h3 style="font-family:var(--serif);font-size:18px;color:var(--navy);margin:0 0 12px;">Statutory Limitation Milestones</h3>
+            <div class="timeline-steps" id="chequeTimeline">
+              <div class="timeline-step">
+                <h4>Step 1: Bank Dishonour (Day 0)</h4>
+                <p>Cheque is dishonoured with remarks like "Funds Insufficient" or "Signature Differs".</p>
+              </div>
+              <div class="timeline-step">
+                <h4>Step 2: Statutory Demand Notice (Within 30 Days)</h4>
+                <p id="step2Date">Legal notice must be dispatched to the drawer within 30 days of receiving return memo.</p>
+              </div>
+              <div class="timeline-step">
+                <h4>Step 3: 15-Day Cure Window</h4>
+                <p id="step3Date">Drawer has 15 statutory days from date of receipt of notice to make full payment.</p>
+              </div>
+              <div class="timeline-step">
+                <h4>Step 4: Criminal Complaint Filing (Within 30 Days)</h4>
+                <p id="step4Date">If unpaid, Section 138 complaint must be filed before the competent Magistrate within 1 month.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-links-grid">
+      <div class="footer-col">
+        <h4>About &amp; Governance</h4>
+        <ul style="list-style:none;margin:0;padding:0;">
+          <li><a href="about.html">About Legal Lounge</a></li>
+          <li><a href="corrections.html">Corrections Policy</a></li>
+          <li><a href="disclaimer.html">Disclaimer &amp; Terms</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="contact.html">Contact the Desk</a></li>
+          <li><a href="mailto:info@legallounge.live" style="color:var(--gold);font-weight:600;">info@legallounge.live ↗</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Statutes &amp; Codes</h4>
+        <ul style="list-style:none;margin:0;padding:0;">
+          <li><a href="constitution.html">Constitution of India</a></li>
+          <li><a href="criminal-codes.html">New Criminal Codes</a></li>
+          <li><a href="bns-guide.html">BNS 2023 Guide</a></li>
+          <li><a href="bnss-guide.html">BNSS 2023 Guide</a></li>
+          <li><a href="bare-acts.html">Bare Acts Library</a></li>
+          <li><a href="section-finder.html">Section Finder</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Practical Learning</h4>
+        <ul style="list-style:none;margin:0;padding:0;">
+          <li><a href="calculators.html">Courtroom Calculators</a></li>
+          <li><a href="learning.html">Learning Hub</a></li>
+          <li><a href="case-law.html">Landmark Judgments</a></li>
+          <li><a href="supreme-court-live.html">Supreme Court Live</a></li>
+          <li><a href="decision-room.html">Decision Room Scenarios</a></li>
+          <li><a href="maxims.html">Legal Maxims A–Z</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Student &amp; Career</h4>
+        <ul style="list-style:none;margin:0;padding:0;">
+          <li><a href="exam-hub.html">Exam Hub (CLAT/AIBE)</a></li>
+          <li><a href="mock-test.html">Timed Mock Tests</a></li>
+          <li><a href="moot.html">Moot Court Hub</a></li>
+          <li><a href="drafting.html">Legal Drafting Practice</a></li>
+          <li><a href="quiz.html">Interactive Quiz Bank</a></li>
+          <li><a href="careers.html">Internships &amp; Jobs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Community &amp; Social</h4>
+        <ul style="list-style:none;margin:0;padding:0;">
+          <li><a href="https://www.linkedin.com/company/legal-lounge-live/" rel="noopener" target="_blank">LinkedIn ↗</a></li>
+          <li><a href="https://www.linkedin.com/newsletters/the-legal-lounge-weekly-7520867793827880961" rel="noopener" target="_blank">Weekly Newsletter ↗</a></li>
+          <li><a href="https://whatsapp.com/channel/0029VbDYBSvHFxOxUT1BV73i" rel="noopener" target="_blank">WhatsApp Channel ↗</a></li>
+          <li><a href="https://forms.gle/7gwnqpvtTcGuPg2T9" rel="noopener" target="_blank">Submit an Article ↗</a></li>
+          <li><a href="join.html">Join Community</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-inner">
+      <a class="brand footer-brand" href="index.html"><span class="brand-mark">LL</span><span class="brand-word">LEGAL LOUNGE <b>LIVE</b><small>Understand the Law. Apply the Law.</small></span></a>
+      <p>Educational content only. This website does not provide legal advice or create a lawyer-client relationship. Laws and outcomes depend on jurisdiction and facts.</p>
+      <span class="copyright">© <span id="year"></span> Legal Lounge Live</span>
+    </div>
+  </footer>
+
+  <script src="script.js?v=20261127"></script>
+  <script src="calculators.js?v=20261127"></script>
+  <script src="site-config.js?v=20261127"></script>
+  <script src="site.js?v=20261127"></script>
+  <script src="extras.js?v=20261127"></script>
+</body>
+</html>
