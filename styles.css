@@ -1082,3 +1082,128 @@
   padding: 1px 4px;
   border-radius: 3px;
 }
+
+
+/* ── DARK MODE / MIDNIGHT NAVY THEME ── */
+html.dark-mode {
+  --paper: #0b1424;
+  --cream: #111e33;
+  --ink: #e2e8f0;
+  --line: #20334d;
+  --muted: #94a3b8;
+  color: #e2e8f0;
+  background-color: #0b1424;
+}
+html.dark-mode body {
+  background-color: #0b1424;
+  color: #e2e8f0;
+}
+html.dark-mode .site-header,
+html.dark-mode .calc-card,
+html.dark-mode .flow-container,
+html.dark-mode .draft-display,
+html.dark-mode .draft-nav,
+html.dark-mode .board-card,
+html.dark-mode .policy-section,
+html.dark-mode .spotlight-dialog,
+html.dark-mode .quiz-panel,
+html.dark-mode .learn-card,
+html.dark-mode .article-card,
+html.dark-mode .case-note {
+  background: #111e33 !important;
+  border-color: #20334d !important;
+  color: #e2e8f0 !important;
+}
+html.dark-mode .spotlight-input {
+  color: #fff !important;
+}
+html.dark-mode .spotlight-item:hover,
+html.dark-mode .spotlight-item.selected,
+html.dark-mode .calc-result-box,
+html.dark-mode .pipeline-card,
+html.dark-mode .mock-palette,
+html.dark-mode .draft-paper {
+  background: #172740 !important;
+  border-color: #273e5e !important;
+  color: #e2e8f0 !important;
+}
+html.dark-mode h1, html.dark-mode h2, html.dark-mode h3, html.dark-mode h4,
+html.dark-mode .brand-word, html.dark-mode .pipeline-card h3 {
+  color: #f1f5f9 !important;
+}
+
+/* ── FLOATING READER TOOLBAR ── */
+.reader-toolbar {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(16, 31, 53, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--gold);
+  border-radius: 30px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 9998;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.reader-tool-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+  transition: all .15s;
+}
+.reader-tool-btn:hover {
+  background: rgba(255,255,255,0.15);
+  color: var(--gold);
+}
+
+/* ── CITATION POPUP MODAL ── */
+.cite-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 31, 53, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cite-modal-overlay[hidden] { display: none !important; }
+.cite-modal-dialog {
+  background: #fff;
+  width: min(580px, calc(100% - 32px));
+  border-radius: 8px;
+  padding: 24px 28px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+}
+.cite-modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.cite-modal-header h3 { font-family: var(--serif); font-size: 20px; color: var(--navy); margin: 0; }
+.cite-close-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: #64748b; }
+.cite-box { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: #f8fafc; border: 1px solid var(--line); border-radius: 4px; padding: 10px 14px; margin: 6px 0 16px; font-size: 13px; font-family: var(--sans); }
+.btn-copy-cite { background: var(--navy); color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 11.5px; font-weight: 700; cursor: pointer; }
+
+/* ── CLEAN EXECUTIVE A4 PRINT ENGINE ── */
+@media print {
+  .site-header, .site-footer, .announcement, .reader-toolbar,
+  .calc-tabs, .draft-nav, .draft-actions, .mock-nav, .quiz-head button,
+  .spotlight-overlay, .cite-modal-overlay, .search-pill-btn, .button, .menu-toggle {
+    display: none !important;
+  }
+  body, html {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+  .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+  .draft-vault-grid { display: block !important; }
+  .draft-paper { border: none !important; padding: 0 !important; font-size: 11pt !important; line-height: 1.6 !important; }
+  a { text-decoration: none !important; color: #000 !important; }
+}

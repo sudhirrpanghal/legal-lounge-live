@@ -1,0 +1,21 @@
+{
+  "name": "Legal Lounge Live",
+  "short_name": "LegalLounge",
+  "description": "Understand the Law. Apply the Law. Comprehensive Indian Statutes, Bare Acts, Judgments & Practical Legal Suite.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#101f35",
+  "theme_color": "#101f35",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

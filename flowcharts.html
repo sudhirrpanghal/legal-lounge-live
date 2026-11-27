@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FNQ5QP15F7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FNQ5QP15F7');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Legal &amp; Procedural Flowcharts | Legal Lounge Live</title>
+  <meta name="description" content="Visual step-by-step procedural roadmaps for Indian law: Criminal Trial under BNSS 2023, Civil Suit under CPC 1908, Cheque Dishonour under NI Act, and Writ Jurisdiction.">
+  <meta name="theme-color" content="#101f35">
+  <link rel="canonical" href="https://legallounge.live/flowcharts.html">
+  <link rel="manifest" href="manifest.json"><link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261127">
+  <style>
+    .flow-nav-tabs { display: flex; gap: 8px; margin: 32px 0 24px; flex-wrap: wrap; }
+    .flow-nav-tab { padding: 11px 18px; font-weight: 700; font-size: 13px; border: 1px solid var(--line); background: #fff; color: var(--navy); cursor: pointer; border-radius: 4px; transition: all .15s; }
+    .flow-nav-tab:hover { border-color: var(--gold); }
+    .flow-nav-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    
+    .flow-container { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 36px; box-shadow: 0 4px 16px rgba(16,31,53,0.06); }
+    .flow-header { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+    .flow-header h2 { font-family: var(--serif); font-size: 26px; color: var(--navy); margin: 0 0 8px; }
+    .flow-header p { font-size: 14px; color: #64748b; margin: 0; }
+
+    /* Interactive Timeline Pipeline */
+    .pipeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 28px 0; position: relative; }
+    .pipeline-card { background: #f8fafc; border: 1px solid #e2e8f0; border-top: 4px solid #94a3b8; border-radius: 6px; padding: 18px; cursor: pointer; transition: all .2s; }
+    .pipeline-card:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(0,0,0,0.06); border-top-color: var(--gold); }
+    .pipeline-card.active { background: #fff; border-color: var(--navy); border-top-color: var(--gold); box-shadow: 0 8px 20px rgba(16,31,53,0.12); }
+    
+    .pipeline-step-num { font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 6px; }
+    .pipeline-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin: 0 0 6px; }
+    .pipeline-card p { font-size: 12px; color: #64748b; margin: 0; line-height: 1.45; }
+
+    /* Stage Detail Box */
+    .stage-detail-box { background: #faf8f5; border: 1px solid #e7ded0; border-radius: 6px; padding: 28px; margin-top: 28px; }
+    .stage-detail-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+    .stage-detail-title { font-family: var(--serif); font-size: 20px; color: var(--navy); margin: 0; }
+    .stage-statute-badge { background: var(--navy); color: var(--gold); padding: 4px 10px; border-radius: 3px; font-size: 11px; font-weight: 800; letter-spacing: 1px; }
+    .stage-content { font-size: 14px; line-height: 1.8; color: #334155; }
+    .stage-content strong { color: var(--navy); }
+    .stage-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; padding-top: 16px; border-top: 1px dashed #cbd5e1; font-size: 13px; }
+    @media(max-width: 650px) { .stage-meta-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="announcement">LEGAL KNOWLEDGE <span>✦</span> PRACTICAL LEARNING <span>✦</span> COMMUNITY</div>
+  <header class="site-header">
+    <a aria-label="Legal Lounge Live home" class="brand" href="index.html">
+      <span class="brand-mark">LL</span>
+      <span class="brand-word">LEGAL LOUNGE <b>LIVE</b><small>Understand the Law. Apply the Law.</small></span>
+    </a>
+    <button aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle" id="menuToggle">☰</button>
+    <nav aria-label="Main" class="main-nav" id="mainNav">
+      <a class="nav-home" href="index.html">Home</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="journal.html">Journal</a>
+      <a href="bare-acts.html">Bare Acts</a>
+      <a href="section-finder.html">Section Finder</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="flowcharts.html" aria-current="page" style="color:var(--gold-dark);font-weight:700;">Flowcharts</a>
+      <a href="drafting.html">Drafting</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="mock-test.html">Mock Test</a>
+      <a class="nav-cta" href="community.html">Join the Lounge <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-intro container">
+      <p class="eyebrow">VISUAL LITIGATION ROADMAPS</p>
+      <h1>Interactive Procedural Flowcharts</h1>
+      <p>Master multi-stage Indian procedural laws through visual pathways. Click any step to inspect statutory provisions, mandatory time limits, and leading Supreme Court authorities.</p>
+      <a class="text-link" href="index.html">← Back to home</a>
+    </section>
+
+    <section class="container" style="padding-bottom:70px;">
+      <div class="flow-nav-tabs">
+        <button class="flow-nav-tab active" data-flow="bnss">Criminal Trial under BNSS, 2023</button>
+        <button class="flow-nav-tab" data-flow="cpc">Commercial Suit under CPC, 1908</button>
+        <button class="flow-nav-tab" data-flow="ni138">Cheque Dishonour (Sec 138 NI Act)</button>
+        <button class="flow-nav-tab" data-flow="writs">Writ Jurisdiction (Art 32 vs Art 226)</button>
+      </div>
+
+      <div class="flow-container">
+        <div class="flow-header">
+          <h2 id="flowTitle">Criminal Trial Procedure under BNSS, 2023</h2>
+          <p id="flowDesc">From occurrence of cognizable offence to delivery of judgment under the Bharatiya Nagarik Suraksha Sanhita.</p>
+        </div>
+
+        <div class="pipeline-grid" id="pipelineSteps"></div>
+
+        <div class="stage-detail-box" id="stageDetail">
+          <div class="stage-detail-head">
+            <h3 class="stage-detail-title" id="stageTitle">Select a step</h3>
+            <span class="stage-statute-badge" id="stageStatute">STATUTORY CODE</span>
+          </div>
+          <div class="stage-content" id="stageBody">
+            Click on any milestone above to review procedural steps, rights of parties, statutory deadlines, and judicial guidelines.
+          </div>
+          <div class="stage-meta-grid" id="stageMeta">
+            <div><strong>Mandatory Time Limit:</strong> <span id="stageTimeLimit">—</span></div>
+            <div><strong>Governing Landmark Case:</strong> <span id="stagePrecedent">—</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-links-grid">
+      <div class="footer-col">
+        <h4>About &amp; Governance</h4>
+        <ul style="list-style:none;margin:0;padding:0;">
+          <li><a href="about.html">About Legal Lounge</a></li>
+          <li><a href="editorial-board.html">Editorial Board &amp; Ethics</a></li>
+          <li><a href="corrections.html">Corrections Policy</a></li>
+          <li><a href="disclaimer.html">Disclaimer &amp; Terms</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="contact.html">Contact the Desk</a></li>
+          <li><a href="mailto:info@legallounge.live" style="color:var(--gold);font-weight:600;">info@legallounge.live ↗</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Statutes &amp; Codes</h4>
+        <ul style="list-style:none;margin:0;padding:0;">
+          <li><a href="constitution.html">Constitution of India</a></li>
+          <li><a href="criminal-codes.html">New Criminal Codes</a></li>
+          <li><a href="bns-guide.html">BNS 2023 Guide</a></li>
+          <li><a href="bnss-guide.html">BNSS 2023 Guide</a></li>
+          <li><a href="bare-acts.html">Bare Acts Library</a></li>
+          <li><a href="section-finder.html">Section Finder</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Practical Learning</h4>
+        <ul style="list-style:none;margin:0;padding:0;">
+          <li><a href="flowcharts.html">Procedural Flowcharts</a></li>
+          <li><a href="calculators.html">Courtroom Calculators</a></li>
+          <li><a href="learning.html">Learning Hub</a></li>
+          <li><a href="case-law.html">Landmark Judgments</a></li>
+          <li><a href="supreme-court-live.html">Supreme Court Live</a></li>
+          <li><a href="decision-room.html">Decision Room Scenarios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Student &amp; Career</h4>
+        <ul style="list-style:none;margin:0;padding:0;">
+          <li><a href="exam-hub.html">Exam Hub (CLAT/AIBE)</a></li>
+          <li><a href="mock-test.html">Timed Mock Tests</a></li>
+          <li><a href="moot.html">Moot Court Hub</a></li>
+          <li><a href="drafting.html">Legal Drafting Practice</a></li>
+          <li><a href="quiz.html">Interactive Quiz Bank</a></li>
+          <li><a href="careers.html">Internships &amp; Jobs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Community &amp; Social</h4>
+        <ul style="list-style:none;margin:0;padding:0;">
+          <li><a href="https://www.linkedin.com/company/legal-lounge-live/" rel="noopener" target="_blank">LinkedIn ↗</a></li>
+          <li><a href="https://www.linkedin.com/newsletters/the-legal-lounge-weekly-7520867793827880961" rel="noopener" target="_blank">Weekly Newsletter ↗</a></li>
+          <li><a href="https://whatsapp.com/channel/0029VbDYBSvHFxOxUT1BV73i" rel="noopener" target="_blank">WhatsApp Channel ↗</a></li>
+          <li><a href="https://forms.gle/7gwnqpvtTcGuPg2T9" rel="noopener" target="_blank">Submit an Article ↗</a></li>
+          <li><a href="join.html">Join Community</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-inner">
+      <a class="brand footer-brand" href="index.html"><span class="brand-mark">LL</span><span class="brand-word">LEGAL LOUNGE <b>LIVE</b><small>Understand the Law. Apply the Law.</small></span></a>
+      <p>Educational content only. This website does not provide legal advice or create a lawyer-client relationship. Laws and outcomes depend on jurisdiction and facts.</p>
+      <span class="copyright">© <span id="year"></span> Legal Lounge Live</span>
+    </div>
+  </footer>
+
+  <script src="script.js?v=20261127"></script>
+  <script src="flowcharts.js?v=20261127"></script>
+  <script src="site-config.js?v=20261127"></script>
+  <script src="site.js?v=20261127"></script>
+  <script src="extras.js?v=20261127"></script>
+</body>
+</html>
